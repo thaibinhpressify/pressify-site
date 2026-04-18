@@ -1,0 +1,74 @@
+.wp-content {
+  @apply prose max-w-none;
+  color: rgb(0 0 0 / 0.7);
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    color: var(--color-title-section);
+  }
+
+  :where(a) {
+    color: var(--color-orange);
+    text-decoration: none;
+  }
+
+  :where(a:hover) {
+    text-decoration: underline;
+  }
+
+  :where(code) {
+    border-radius: 6px;
+    padding: 2px 6px;
+    background-color: rgb(0 0 0 / 0.05);
+  }
+
+  :where(pre) {
+    border-radius: 12px;
+    background-color: rgb(0 0 0 / 0.06);
+    padding: 16px;
+  }
+
+  :where(blockquote) {
+    border-left-color: rgb(from var(--color-orange) r g b / 0.35);
+    color: rgb(0 0 0 / 0.65);
+  }
+
+  :where(img) {
+    border-radius: 14px;
+  }
+
+  :where(table) {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .wp-block-separator {
+    border: none;
+    height: 1px;
+    background-color: rgb(0 0 0 / 0.08);
+    margin: 24px 0;
+  }
+
+  .wp-block-image {
+    margin: 22px 0;
+  }
+
+  .wp-block-button__link {
+    border-radius: 100px;
+    padding: 12px 24px;
+    background-color: var(--color-orange);
+    color: var(--color-white);
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 14px;
+    font-size: 14px;
+  }
+
+  .wp-block-button.is-style-outline .wp-block-button__link {
+    background-color: transparent;
+    color: var(--color-orange);
+    border: 1.5px solid var(--color-orange);
+  }
+}

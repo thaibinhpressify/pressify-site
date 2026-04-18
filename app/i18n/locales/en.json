@@ -1,0 +1,115 @@
+{
+  "seller-login": "Seller Login",
+  "catalog": "Catalog",
+  "home": "Home",
+  "intergration": "Intergration",
+  "about": "About",
+  "contact": "Contact us",
+  "learn-more": "Learn more →",
+  "banner": {
+    "sologan": "✦ Specializing in custom printing solutions",
+    "title": "COMPREHENSIVE <span class='text-orange'>DIGITAL</span> PRINTING SOLUTIONS",
+    "desc": "Specializing in custom printing for t-shirts and businesses,<br/>offering warehouse rental services tailored to your needs.",
+    "get_started": "Get Started",
+    "view_catalog": "View Catalog",
+    "connectStore": "Connect to your store"
+  },
+  "offer": {
+    "our-service": "Our Services",
+    "desc": "Comprehensive digital solutions to grow your online presence"
+  },
+  "deliver": {
+    "txt": "WHY CHOOSE US",
+    "title": "We Deliver Results\nYou Can Measure",
+    "desc": "From strategy to execution, we combine creativity with data to build digital experiences that actually perform. Our team brings years of hands-on expertise across design, development, and marketing.",
+    "service": {
+      "expert": "Expert team with 10+ years of experience",
+      "transparent": "Transparent, data-driven approach",
+      "ontime": "On-time delivery guarantee",
+      "dedicated": "Dedicated post-launch support"
+    },
+    "value": {
+      "expert": {
+        "value": "500+",
+        "desc": "Projects Completed"
+      },
+      "transparent": {
+        "value": "98%",
+        "desc": "Client Satisfaction"
+      },
+      "ontime": {
+        "value": "10+",
+        "desc": "Years Experience"
+      },
+      "dedicated": {
+        "value": "50+",
+        "desc": "Team Members"
+      }
+    }
+  },
+  "client": {
+    "title": "What Our Clients Say",
+    "testimonials": "Testimonials"
+  },
+  "blog": {
+    "latest": "Latest Posts",
+    "title": "From Our Blog",
+    "view-all": "View All Posts"
+  },
+  "footer": {
+    "title": "Stay Ahead of the Curve",
+    "desc": "Get the latest insights on design, development, and digital marketing.",
+    "page": "Page",
+    "privacy-policy": "Privacy Policy",
+    "terms-of-service": "Terms of Service",
+    "integrations": "Integrations",
+    "shipping": "Shipping",
+    "tiktok": "TikTok connect",
+    "pressify": "Pressify API",
+    "csv": "CSV template",
+    "express-production": "Express Production 1-2 Business Days",
+    "express-shipping": "Express Shipping 3-5 Business Days"
+  },
+  "news": {
+    "title": "News",
+    "status": "News & update"
+  },
+  "post": {
+    "read": "Read Article →",
+    "related_articles": "Related Articles"
+  },
+  "questions": {
+    "cta": {
+      "title": "Still Have Questions?",
+      "desc": "Our support team is available Mon–Fri, 9am–6pm EST. Average response time under 2 hours.",
+      "contact_support": "Contact Support",
+      "live_chat": "Live Chat"
+    },
+    "search": {
+      "placeholder": "Search your question here...",
+      "button": "Search"
+    },
+    "tabs": {
+      "all": "All Questions"
+    },
+    "footer_cta": {
+      "title": "Still Have Questions?",
+      "desc": "Our support team is available Mon–Fri, 9am–6pm EST.",
+      "chat": "Chat with Us →",
+      "email": "Send an Email"
+    }
+  },
+   "contactForm": {
+    "title": "Contact us",
+    "name": "Your name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send",
+    "phone": "Phone",
+    "chat": "Chat",
+    "mailSubjectDefault": "Contact",
+    "mailName": "Name",
+    "mailEmail": "Email"
+  }
+}

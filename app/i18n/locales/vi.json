@@ -1,0 +1,24 @@
+{
+  "seller-login": "Đăng nhập",
+  "questions": {
+    "cta": {
+      "title": "Vẫn còn thắc mắc?",
+      "desc": "Đội ngũ hỗ trợ làm việc Thứ 2–Thứ 6, 9:00–18:00 (EST). Thời gian phản hồi trung bình dưới 2 giờ.",
+      "contact_support": "Liên hệ hỗ trợ",
+      "live_chat": "Chat trực tiếp"
+    },
+    "search": {
+      "placeholder": "Tìm kiếm câu hỏi của bạn...",
+      "button": "Tìm kiếm"
+    },
+    "tabs": {
+      "all": "Tất cả câu hỏi"
+    },
+    "footer_cta": {
+      "title": "Vẫn còn thắc mắc?",
+      "desc": "Đội ngũ hỗ trợ làm việc Thứ 2–Thứ 6, 9:00–18:00 (EST).",
+      "chat": "Chat với chúng tôi →",
+      "email": "Gửi email"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.btn {
+  padding: 12px 24px;
+  border-radius: 100px;
+  border: 1.5px solid transparent;
+  font-size: 14px;
+  line-height: 14px;
+
+  &.\--primary {
+    @apply border-orange bg-orange text-white;
+  }
+
+  &.\--outline-primary {
+    @apply border-orange text-orange bg-transparent;
+  }
+}

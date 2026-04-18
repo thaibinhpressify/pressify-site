@@ -1,0 +1,61 @@
+@font-face {
+  font-family: "Lexend";
+  src: url("./Jakarta/Lexend/Lexend-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./Jakarta/Roboto/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./Jakarta/Roboto/Roboto-Italic-VariableFont_wdth,wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("./Jakarta/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("./Jakarta/Plus_Jakarta_Sans/PlusJakartaSans-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+.font-lexend {
+  font-family: "Lexend", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.font-roboto {
+  font-family: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.font-jakarta {
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-optical-sizing: auto;
+}
+
+* {
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 14px;
+  line-height: 21px;
+}
