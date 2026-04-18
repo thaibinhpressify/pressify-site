@@ -2,22 +2,25 @@
 import HeaderSection from "~/components/sections/HeaderSection.vue";
 import { useWpStore } from "~~/stores/wp";
 
-useSeoMeta({
-  title: "Privacy Policy",
-  description: "Read Pressify privacy policy.",
-  ogTitle: "Privacy Policy",
-  ogDescription: "Read Pressify privacy policy.",
-});
+const { locale } = useI18n()
 
 const wp = useWpStore();
-
 const { data: page, pending, error } = await useAsyncData(
   "wp:page:policy",
   async () => {
-    return await wp.fetchPageByUri("/policy/");
+    return await wp.fetchPageByUri(locale.value === 'en' ? '/policy/' :`/chinh-sach-bao-mat-pressify/`);
   },
-  { server: false }
+  { watch: [locale], server: false }
 );
+
+useSeoMeta({
+  title: locale.value === 'en' ? "Privacy Policy" : "Chính sách bảo mật Pressify",
+  description: locale.value === 'en' ? page?.value?.content || '' : "Read Pressify privacy policy.",
+  ogTitle: locale.value === 'en' ? "Privacy Policy" : "Chính sách bảo mật Pressify",
+  ogType: 'article',
+  ogImage: page?.value?.featuredImage?.source || '',
+  ogDescription: locale.value === 'en' ? page?.value?.content || '' : "Read Pressify privacy policy.",
+});
 </script>
 
 <template>

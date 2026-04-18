@@ -13,6 +13,9 @@ export type WpPage = {
   title: string;
   uri: string;
   content: string;
+  featuredImage: {
+    source: string | null;
+  };
 };
 
 export type WpTaxonomy = "CATEGORY" | "POST_TAG" | "TAG" | "category" | "post_tag" | "tag";
@@ -174,7 +177,7 @@ export const useWpStore = defineStore("wp", {
       this.error = "";
       try {
         const data = await this.query<{
-          page?: { id: string; title?: string | null; uri?: string | null; content?: string | null };
+          page?: { id: string; title?: string | null; uri?: string | null; content?: string | null; featuredImage?: { node?: { sourceUrl?: string | null } } };
         }>(
           `
             query GetPage($id: ID!) {
@@ -182,7 +185,8 @@ export const useWpStore = defineStore("wp", {
                 id
                 title
                 uri
-                content
+                content,
+                featuredImage { node { sourceUrl } }
               }
             }
           `,
@@ -195,6 +199,7 @@ export const useWpStore = defineStore("wp", {
           title: data.page?.title ?? "",
           uri: data.page?.uri ?? normalized,
           content: data.page?.content ?? "",
+          featuredImage: { source: data.page?.featuredImage?.node?.sourceUrl ?? "" },
         };
 
         this.pagesByUri[normalized] = page;
