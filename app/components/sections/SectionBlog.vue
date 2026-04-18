@@ -22,7 +22,7 @@ const blogs = computed(() => (props.blogs?.length ? props.blogs : []))
             {{ $t('blog.latest') }}
           </div>
 
-          <h3 class="blog__title">
+          <h3 class="blog__title uppercase">
             {{ $t('blog.title') }}
           </h3>
         </div>

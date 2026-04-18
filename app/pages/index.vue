@@ -8,7 +8,7 @@ import { useHomeStore } from '~~/stores/home'
 
 
 
-const { t } = useI18n()
+const { t , locale} = useI18n()
 
 useSeoMeta({
   title: 'Pressify',
@@ -25,11 +25,11 @@ await useAsyncData(
     await Promise.all([
       home.fetchBanner(),
       home.fetchFeedbacks({ categoryId: 4, first: 3 }),
-      home.fetchNews({ categoryId: 3, first: 3 }),
+      home.fetchNews({ categoryId: locale.value === "en" ? 3 : 5, first: 3 }),
     ])
     return true
   },
-  { server: false }
+  { watch: [locale], server: false }
 )
 
 const banner = computed(() => home.banner)

@@ -2,7 +2,7 @@
 import BaseSection from './BaseSection.vue'
 import CardFeedback from '@/components/card/CardFeedback.vue'
 
-const props = defineProps({
+defineProps({
   feedbacks: {
     type: Array,
     default: () => [],
@@ -39,7 +39,7 @@ const fallbackFeedbacks = [
   }
 ]
 
-const feedbacks = computed(() => (props.feedbacks?.length ? props.feedbacks : fallbackFeedbacks))
+// const feedbacks = computed(() => (props.feedbacks?.length ? props.feedbacks : fallbackFeedbacks))
 </script>
 
 <template>
@@ -51,7 +51,7 @@ const feedbacks = computed(() => (props.feedbacks?.length ? props.feedbacks : fa
     </template>
     <div class="container m-auto lg:mt-[48px] px-[15px] lg:px-0">
       <div class="grid grid-cols-12 gap-[28px]">
-        <div v-for="feedback, index in feedbacks" :key="index" class="col-span-12 lg:col-span-4">
+        <div v-for="feedback, index in fallbackFeedbacks" :key="index" class="col-span-12 lg:col-span-4">
           <CardFeedback class="h-full" v-bind="feedback" />
         </div>
       </div>

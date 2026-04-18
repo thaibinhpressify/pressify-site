@@ -2,11 +2,17 @@
 import HeaderSection from "~/components/sections/HeaderSection.vue";
 import { useWpStore } from "~~/stores/wp";
 
+const { locale } = useI18n();
+
 useSeoMeta({
   title: "About",
-  description: "Learn more about Pressify and our mission.",
+  description: "About Pressify.",
   ogTitle: "About",
-  ogDescription: "Learn more about Pressify and our mission.",
+  ogDescription: "About Pressify.",
+  ogImage: "/logo.png",
+  ogType: "website",
+  ogUrl: `${locale.value}/about/`,
+  ogLocale: locale.value,
 });
 
 const wp = useWpStore();
@@ -14,9 +20,9 @@ const wp = useWpStore();
 const { data, pending, error } = await useAsyncData(
   "wp:page:about",
   async () => {
-    return await wp.fetchPageByUri("/about/");
+    return await wp.fetchPageByUri(locale.value === "en" ? "/about/" : "/ve-pressify/");
   },
-  { server: false }
+  { watch: [locale], server: false }
 );
 </script>
 
@@ -24,7 +30,7 @@ const { data, pending, error } = await useAsyncData(
   <div class="page about">
     <HeaderSection
       status="Pressify"
-      title="About"
+      :title="$t('about')"
       desc=""
     />
 

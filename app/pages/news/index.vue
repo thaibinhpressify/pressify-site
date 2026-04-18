@@ -4,13 +4,24 @@ import CardPost from '~/components/card/CardPost.vue'
 import HeaderSection from '~/components/sections/HeaderSection.vue'
 import { useWpStore } from '~~/stores/wp'
 
-useSeoMeta({
-  title: 'News',
-  description: 'Latest updates, announcements, and stories from Pressify.',
-  ogTitle: 'News',
-  ogDescription: 'Latest updates, announcements, and stories from Pressify.',
-})
 
+const { t, locale } = useI18n()
+
+if (locale.value == 'en') {
+  useSeoMeta({
+    title: t("news.title"),
+    description: t("news.description"),
+    ogTitle: 'News',
+    ogDescription: 'Latest updates, announcements, and stories from Pressify.',
+  })
+} else {
+  useSeoMeta({
+    title: t("news.title"),
+    description: t("news.description"),
+    ogTitle: t("news.title"),
+    ogDescription: t("news.description"),
+  })
+}
 const wp = useWpStore()
 
 const { data } = await useAsyncData(
@@ -33,7 +44,7 @@ const { data } = await useAsyncData(
 
     const result = await wp.query(
       query,
-      { first: 12, categoryId: 3 },
+      { first: 12, categoryId: locale.value == 'en' ? 3 : 5 },
       { operationName: 'GetNewsByCategory' }
     )
 
@@ -48,11 +59,20 @@ const { data } = await useAsyncData(
       })) ?? []
     )
   },
-  { server: false }
+  { watch: [locale], server: false }
 )
 
 const posts = computed(() => data.value ?? [])
 const postFirst = computed(() => posts.value?.[0] ?? {})
+
+watch(() => locale.value, () => {
+  useSeoMeta({
+    title: t("news.title"),
+    description: t("news.description"),
+    ogTitle: t("news.title"),
+    ogDescription: t("news.description"),
+  })
+})
 </script>
 
 <template>

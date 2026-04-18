@@ -34,6 +34,7 @@ const { data, pending, error } = await useAsyncData(
         colors,
         sizes,
         sizeRange: sizes.join(' · '),
+        style: normalize(item?.style || ''),
       }
     })
   },
@@ -45,14 +46,31 @@ const products = computed(() => data.value || [])
 const filterName = ref('')
 const filterSize = ref('all')
 const filterColor = ref('all')
+const filterStyle = ref('all')
+
+
+const allStyles = computed(() => {
+  const styles = products.value.flatMap((p) => p.style)
+  return uniq(styles).sort((a, b) => a.localeCompare(b))
+})
 
 const allSizes = computed(() => {
-  const sizes = products.value.flatMap((p) => (Array.isArray(p?.sizes) ? p.sizes : []))
+  let sizes = []
+  if (filterStyle.value === 'all') {
+    sizes = products.value.flatMap((p) => (Array.isArray(p?.sizes) ? p.sizes : []))
+  } else {
+    sizes = products.value.filter((p) => normalize(p.style) === normalize(filterStyle.value)).flatMap((p) => (Array.isArray(p?.sizes) ? p.sizes : []))
+  }
   return uniq(sizes).sort((a, b) => a.localeCompare(b))
 })
 
 const allColors = computed(() => {
-  const colors = products.value.flatMap((p) => (Array.isArray(p?.colors) ? p.colors : []))
+  let colors = []
+  if (filterStyle.value === 'all') {
+    colors = products.value.flatMap((p) => (Array.isArray(p?.colors) ? p.colors : []))
+  } else {
+    colors = products.value.filter((p) => normalize(p.style) === normalize(filterStyle.value)).flatMap((p) => (Array.isArray(p?.colors) ? p.colors : []))
+  }
   return uniq(colors).sort((a, b) => a.localeCompare(b))
 })
 
@@ -62,6 +80,12 @@ const filteredProducts = computed(() => {
     if (q) {
       const title = normalize(p?.title).toLowerCase()
       if (!title.includes(q)) return false
+    }
+
+    if (filterStyle.value !== 'all') {
+      const style = p.style
+      if (normalize(style) === normalize(filterStyle.value)) return true
+      else return false
     }
 
     if (filterSize.value !== 'all') {
@@ -82,14 +106,15 @@ const clearFilters = () => {
   filterName.value = ''
   filterSize.value = 'all'
   filterColor.value = 'all'
+  filterStyle.value = 'all'
 }
 </script>
 
 <template>
-  <div class="catalog">
+  <div class="catalog min-h-screen">
     <HeaderSection
       status="Pressify"
-      title="All Catalog"
+      :title="$t('catalogPage.title')"
       desc=""
     />
 
@@ -114,28 +139,45 @@ const clearFilters = () => {
               {{ String(error) }}
             </div>
             <div v-else class="catalog__count w-full text-right">
-              Showing {{ filteredProducts.length }} products
+              {{ $t('catalogPage.showing', { count: filteredProducts.length }) }}
             </div>
           </div>
           <div class="col-span-12 lg:col-span-3">
             <div class="catalog__sidebar bg-white">
               <div class="catalog__sidebar-title">
-                Filters
+                {{ $t('catalogPage.filters.title') }}
               </div>
               <div class="catalog__filters">
                 <div class="catalog__field">
                   <div class="catalog__label">
-                    Name
+                    {{ $t('catalogPage.filters.name') }}
                   </div>
-                  <input v-model="filterName" class="catalog__input" type="text" placeholder="Search product...">
+                  <input
+                    v-model="filterName"
+                    class="catalog__input"
+                    type="text"
+                    :placeholder="$t('catalogPage.filters.namePlaceholder')"
+                  >
                 </div>
 
                 <div class="catalog__field">
                   <div class="catalog__label">
-                    Size
+                    {{ $t('catalogPage.filters.style') }}
+                  </div>
+                  <select v-model="filterStyle" class="catalog__select">
+                    <option value="all">{{ $t('catalogPage.filters.allStyles') }}</option>
+                    <option v-for="s in allStyles" :key="s" :value="s">
+                      {{ s }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="catalog__field">
+                  <div class="catalog__label">
+                    {{ $t('catalogPage.filters.size') }}
                   </div>
                   <select v-model="filterSize" class="catalog__select">
-                    <option value="all">All sizes</option>
+                    <option value="all">{{ $t('catalogPage.filters.allSizes') }}</option>
                     <option v-for="s in allSizes" :key="s" :value="s">
                       {{ s }}
                     </option>
@@ -144,7 +186,7 @@ const clearFilters = () => {
 
                 <div class="catalog__field">
                   <div class="catalog__label">
-                    Color
+                    {{ $t('catalogPage.filters.color') }}
                   </div>
                   <div class="catalog__colors">
                     <button
@@ -153,7 +195,7 @@ const clearFilters = () => {
                       :class="{ '--active': filterColor === 'all' }"
                       @click="filterColor = 'all'"
                     >
-                      All
+                      {{ $t('catalogPage.filters.allColors') }}
                     </button>
                     <button
                       v-for="c in allColors"
@@ -170,7 +212,7 @@ const clearFilters = () => {
                 </div>
 
                 <button type="button" class="btn --outline-primary w-full" @click="clearFilters">
-                  Clear filters
+                  {{ $t('catalogPage.filters.clear') }}
                 </button>
               </div>
             </div>

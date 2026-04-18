@@ -1,5 +1,103 @@
 {
+  "language": {
+    "en": "Tiếng Anh",
+    "vi": "Tiếng Việt"
+  },
   "seller-login": "Đăng nhập",
+  "catalog": "Danh mục",
+  "home": "Trang chủ",
+  "intergration": "Tích hợp",
+  "about": "Giới thiệu",
+  "contact": "Liên hệ",
+  "learn-more": "Tìm hiểu thêm →",
+  "banner": {
+    "sologan": "✦ Chuyên về giải pháp in ấn theo yêu cầu",
+    "title": "GIẢI PHÁP IN ẤN KỸ THUẬT SỐ <span class='text-orange'>TOÀN DIỆN</span>",
+    "desc": "Chuyên in ấn theo yêu cầu cho áo thun và doanh nghiệp,<br/>cung cấp dịch vụ cho thuê kho bãi phù hợp nhu cầu của bạn.",
+    "get_started": "Bắt đầu",
+    "view_catalog": "Xem danh mục",
+    "connectStore": "Kết nối cửa hàng"
+  },
+  "offer": {
+    "our-service": "Dịch vụ của chúng tôi",
+    "desc": "Giải pháp số toàn diện để phát triển hiện diện trực tuyến của bạn"
+  },
+  "deliver": {
+    "txt": "VÌ SAO CHỌN CHÚNG TÔI",
+    "title": "Chúng tôi mang lại kết quả\nbạn có thể đo lường",
+    "desc": "Từ chiến lược đến triển khai, chúng tôi kết hợp sáng tạo với dữ liệu để xây dựng trải nghiệm số thực sự hiệu quả. Đội ngũ có nhiều năm kinh nghiệm thực chiến trong thiết kế, phát triển và marketing.",
+    "service": {
+      "expert": "Đội ngũ chuyên gia với hơn 10 năm kinh nghiệm",
+      "transparent": "Tiếp cận minh bạch, dựa trên dữ liệu",
+      "ontime": "Cam kết bàn giao đúng hạn",
+      "dedicated": "Hỗ trợ sau triển khai tận tâm"
+    },
+    "value": {
+      "expert": {
+        "value": "500+",
+        "desc": "Dự án hoàn thành"
+      },
+      "transparent": {
+        "value": "98%",
+        "desc": "Hài lòng khách hàng"
+      },
+      "ontime": {
+        "value": "10+",
+        "desc": "Năm kinh nghiệm"
+      },
+      "dedicated": {
+        "value": "50+",
+        "desc": "Thành viên"
+      }
+    }
+  },
+  "client": {
+    "title": "Khách hàng nói gì",
+    "testimonials": "Đánh giá"
+  },
+  "blog": {
+    "latest": "Bài viết mới nhất",
+    "title": "Từ blog của chúng tôi",
+    "view-all": "Xem tất cả bài viết"
+  },
+  "footer": {
+    "title": "Luôn dẫn đầu xu hướng",
+    "desc": "Nhận các chia sẻ mới nhất về thiết kế, phát triển và marketing số.",
+    "page": "Trang",
+    "privacy-policy": "Chính sách bảo mật",
+    "terms-of-service": "Điều khoản dịch vụ",
+    "integrations": "Tích hợp",
+    "shipping": "Vận chuyển",
+    "tiktok": "Kết nối TikTok",
+    "pressify": "Pressify API",
+    "csv": "Mẫu CSV",
+    "express-production": "Sản xuất nhanh 1–2 ngày làm việc",
+    "express-shipping": "Vận chuyển nhanh 3–5 ngày làm việc"
+  },
+  "news": {
+    "title": "Tin tức",
+    "status": "Tin tức & cập nhật"
+  },
+  "post": {
+    "read": "Đọc bài viết →",
+    "related_articles": "Bài viết liên quan"
+  },
+  "catalogPage": {
+    "title": "Tất cả danh mục",
+    "showing": "Đang hiển thị {count} sản phẩm",
+    "filters": {
+      "title": "Bộ lọc",
+      "name": "Tên",
+      "namePlaceholder": "Tìm sản phẩm...",
+      "style": "Kiểu",
+      "allStyles": "Tất cả kiểu",
+      "size": "Kích cỡ",
+      "allSizes": "Tất cả kích cỡ",
+      "color": "Màu sắc",
+      "allColors": "Tất cả",
+      "clear": "Xóa bộ lọc"
+    }
+  },
   "questions": {
     "cta": {
       "title": "Vẫn còn thắc mắc?",
@@ -20,5 +118,18 @@
       "chat": "Chat với chúng tôi →",
       "email": "Gửi email"
     }
+  },
+  "contactForm": {
+    "title": "Liên hệ",
+    "name": "Tên của bạn",
+    "email": "Email",
+    "subject": "Chủ đề",
+    "message": "Tin nhắn",
+    "send": "Gửi",
+    "phone": "Điện thoại",
+    "chat": "Chat",
+    "mailSubjectDefault": "Liên hệ",
+    "mailName": "Tên",
+    "mailEmail": "Email"
   }
 }

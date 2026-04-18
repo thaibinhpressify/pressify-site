@@ -1,4 +1,8 @@
 {
+  "language": {
+    "en": "English",
+    "vi": "Vietnamese"
+  },
   "seller-login": "Seller Login",
   "catalog": "Catalog",
   "home": "Home",

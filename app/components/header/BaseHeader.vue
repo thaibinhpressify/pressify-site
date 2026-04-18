@@ -1,5 +1,6 @@
 <script setup>
 import BaseMenu from './BaseMenu.vue'
+import LanguageSwitch from './LanguageSwitch.vue'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
@@ -18,7 +19,8 @@ const localePath = useLocalePath()
         <BaseMenu />
       </div>
 
-      <div class="col-span-6 justify-end lg:col-span-3 flex items-center">
+      <div class="col-span-6 justify-end lg:col-span-3 flex items-center gap-[12px]">
+        <LanguageSwitch />
         <NuxtLink class="header__btn" :to="localePath('/login')">
           {{ t('seller-login') }}
         </NuxtLink>

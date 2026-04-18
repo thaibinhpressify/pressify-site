@@ -11,7 +11,7 @@ defineProps({
   <div class="container mx-auto px-[15px] lg:px-0">
     <slot name="header"/>
     <slot name="title">
-      <div v-show="title" class="base-section__title text-center">
+      <div v-show="title" class="base-section__title text-center uppercase">
         {{ title }}
       </div>
     </slot>
