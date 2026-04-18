@@ -20,7 +20,7 @@ defineProps({
 </script>
 <template>
   <div class="card-service w-full h-full">
-    <div class="card-service__container flex flex-col justify-between">
+    <div class="card-service__container h-full flex flex-col justify-between">
       <div class="card-service__icon flex items-center justify-center">
         <img :src="icon" :alt="title">
       </div>

@@ -6,7 +6,7 @@ const current = computed(() => String(locale.value || 'en'))
 </script>
 
 <template>
-  <div class="dropdown dropdown-end">
+  <div class="dropdown dropdown-end language-switch">
     <button type="button" class="language-switch__btn" aria-label="Switch language">
       <span class="language-switch__flag">
         <img v-if="current === 'vi'" src="/language/vi.png" alt="">
@@ -17,7 +17,7 @@ const current = computed(() => String(locale.value || 'en'))
       </span>
     </button>
 
-    <ul class="dropdown-content menu bg-white shadow-lg rounded-box w-[170px] p-2 border border-black/10">
+    <ul class="dropdown-content menu left-0 bg-white shadow-lg rounded-box w-[170px] p-2 border border-black/10">
       <li>
         <NuxtLink :to="switchLocalePath('en')" class="language-switch__item">
           <span class="language-switch__item-code">
@@ -42,6 +42,7 @@ const current = computed(() => String(locale.value || 'en'))
 .language-switch {
   &__btn {
     height: 40px;
+    width: fit-content;
     border-radius: 12px;
     border: 1px solid rgb(255 255 255 / 0.25);
     padding: 0 12px;

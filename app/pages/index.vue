@@ -52,7 +52,7 @@ const banner = computed(() => home.banner)
 
     <template v-else>
       <BannerVideo class="home__baner" :src="home.bannerVideoUrl || undefined" :poster="home.bannerPosterUrl || undefined">
-        <div class="banner__intro absolute w-full bottom-[40px] left-0">
+        <div class="banner__intro absolute w-full top-[20%] lg:bottom-[40px] left-0">
          <div class="container m-auto">
            <div class="home__sologan text-orange text-center m-auto">
             {{ banner.title || 'Pressify' }}

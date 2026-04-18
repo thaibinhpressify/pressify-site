@@ -21,6 +21,10 @@ export function useMenu() {
       path: "/about",
     },
     {
+      name: t("qa"),
+      path: "/qa",
+    },
+    {
       name: t("news.title"),
       path: "/news",
     },

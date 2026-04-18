@@ -14,7 +14,7 @@ useSeoMeta({
   ogDescription: 'Find answers to common questions about Pressify products and services.',
 })
 
-const { activeTab, query, categories, filteredCategories, displayedCategories } = useQA()
+const { activeTab, query, toAnchor, filteredCategories, displayedCategories } = useQA()
 </script>
 <template>
   <div class="page qa">

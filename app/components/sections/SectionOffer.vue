@@ -42,7 +42,7 @@ const services = ref([{
         {{ $t('offer.desc') }}
       </p>
 
-      <div class="offer__service grid grid-cols-12 gap-[24px] pt-[15px] lg:pt-[48px]">
+      <div class="offer__service grid grid-cols-12 gap-[15px] lg:gap-[24px] pt-[15px] lg:pt-[48px]">
         <div
           v-for="item, index in services"
           :key="index"

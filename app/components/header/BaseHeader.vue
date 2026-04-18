@@ -19,7 +19,7 @@ const closeMobileMenu = () => {
   <div class="container mx-auto">
     <div class="grid grid-cols-12">
       <div class="col-span-6 lg:col-span-3">
-        <NuxtLink :to="localePath('/')">
+        <NuxtLink class="header__logo outline-none" :to="localePath('/')">
           <img class="h-[51px]" src="/logo.png" alt="Pressify">
         </NuxtLink>
       </div>
