@@ -8,7 +8,7 @@ const { data, pending, error } = await useAsyncData(
   'catalog:product',
   async () => {
     if (!id.value) return null
-    const response = await $fetch(`/api/pressify/product/${id.value}`)
+    const response = await $fetch(`https://pressify.us/api/product/${id.value}`)
 
     console.log('===> response', response)
     return response.data

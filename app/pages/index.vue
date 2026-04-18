@@ -19,7 +19,7 @@ useSeoMeta({
 
 const home = useHomeStore()
 
-await useAsyncData(
+const { pending } = await useAsyncData(
   'home:content',
   async () => {
     await Promise.all([
@@ -37,30 +37,45 @@ const banner = computed(() => home.banner)
 <template>
 <div class="page">
   <div class="w-full">
-    <BannerVideo class="home__baner" :src="home.bannerVideoUrl || undefined" :poster="home.bannerPosterUrl || undefined">
-      <div class="banner__intro absolute w-full bottom-[40px] left-0">
-       <div class="container m-auto">
-         <div class="home__sologan text-orange text-center m-auto">
-          {{ banner.title || 'Pressify' }}
+    <div v-if="pending" class="home__loading">
+      <div class="w-full h-[520px] lg:h-[650px] bg-[#F5F5F5] rounded-[16px] skeleton" />
+      <div class="container mx-auto mt-[28px] px-[15px] lg:px-0">
+        <div class="w-full h-[44px] bg-[#F5F5F5] rounded-[10px] skeleton" />
+        <div class="mt-[14px] w-full h-[200px] bg-[#F5F5F5] rounded-[16px] skeleton" />
+        <div class="mt-[28px] grid grid-cols-12 gap-[18px]">
+          <div class="col-span-12 lg:col-span-4 h-[320px] bg-[#F5F5F5] rounded-[16px] skeleton" />
+          <div class="col-span-12 lg:col-span-4 h-[320px] bg-[#F5F5F5] rounded-[16px] skeleton" />
+          <div class="col-span-12 lg:col-span-4 h-[320px] bg-[#F5F5F5] rounded-[16px] skeleton" />
         </div>
-        <div class="home__content text-center w-full lg:w-[800px] m-auto">
-         <div class="w-full" v-html="banner.content || ''"/>
-        </div>
-
-        <div class="home__footer flex gap-[16px] justify-center pt-[24px] pb-[15px]">
-          <button class="home__btn btn --primary">
-            <span>{{ t('banner.get_started') }}</span>
-          </button>
-          <button class="home__btn btn">{{ t('banner.view_catalog') }}</button>
-          </div>
-       </div>
       </div>
-    </BannerVideo>
+    </div>
 
-    <SectionOffer  />
-    <SectionDeliver  />
-    <SectionClient :feedbacks="home.feedbacks" />
-    <SectionBlog :blogs="home.news" />
+    <template v-else>
+      <BannerVideo class="home__baner" :src="home.bannerVideoUrl || undefined" :poster="home.bannerPosterUrl || undefined">
+        <div class="banner__intro absolute w-full bottom-[40px] left-0">
+         <div class="container m-auto">
+           <div class="home__sologan text-orange text-center m-auto">
+            {{ banner.title || 'Pressify' }}
+          </div>
+          <div class="home__content text-center w-full lg:w-[800px] m-auto">
+           <div class="w-full" v-html="banner.content || ''"/>
+          </div>
+
+          <div class="home__footer flex gap-[16px] justify-center pt-[24px] pb-[15px]">
+            <button class="home__btn btn --primary">
+              <span>{{ t('banner.get_started') }}</span>
+            </button>
+            <button class="home__btn btn">{{ t('banner.view_catalog') }}</button>
+            </div>
+         </div>
+        </div>
+      </BannerVideo>
+
+      <SectionOffer  />
+      <SectionDeliver  />
+      <SectionClient :feedbacks="home.feedbacks" />
+      <SectionBlog :blogs="home.news" />
+    </template>
   </div>
 </div>
 </template>

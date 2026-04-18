@@ -17,7 +17,7 @@ const uniq = (arr) => Array.from(new Set(arr.filter(Boolean)))
 const { data, pending, error } = await useAsyncData(
   'catalog:products',
   async () => {
-    let response = await $fetch('/api/pressify/all-product')
+    let response = await $fetch('https://pressify.us/api/all-product')
     if (typeof response === 'string') response = JSON.parse(response)
     const rawProducts = (response?.data || response?.products || response?.items || response) || []
     const list = Array.isArray(rawProducts) ? rawProducts : []
