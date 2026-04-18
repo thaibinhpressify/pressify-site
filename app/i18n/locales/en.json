@@ -116,5 +116,21 @@
     "mailSubjectDefault": "Contact",
     "mailName": "Name",
     "mailEmail": "Email"
+  },
+  "catalogPage": {
+    "title": "All Categories",
+    "showing": "Showing {count} products",
+    "filters": {
+      "title": "Filters",
+      "name": "Name",
+      "namePlaceholder": "Search products...",
+      "style": "Style",
+      "allStyles": "All Styles",
+      "size": "Size",
+      "allSizes": "All Sizes",
+      "color": "Color",
+      "allColors": "All Colors",
+      "clear": "Clear Filters"
+    }
   }
 }
