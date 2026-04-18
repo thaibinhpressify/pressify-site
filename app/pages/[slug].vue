@@ -7,6 +7,8 @@ import { useWpStore } from '~~/stores/wp'
 const route = useRoute()
 const slug = computed(() => String(route.params.slug || ''))
 const wp = useWpStore()
+const { locale } = useI18n()
+const router =  useRouter()
 // const localePath = useLocalePath()
 
 const queryPost =
@@ -87,6 +89,10 @@ useSeoMeta(() => ({
   ogDescription: seoDescription.value || undefined,
   ogType: 'article',
 }))
+
+watch(() => locale.value, () => {
+  router.replace('/news')
+})
 </script>
 <template>
   <div class="page post">
