@@ -76,7 +76,8 @@
   },
   "news": {
     "title": "News",
-    "status": "News & update"
+    "status": "News & update",
+    "description": "All the latest news from Pressify, including product launches, feature updates, tips, company news, and more."
   },
   "post": {
     "read": "Read Article →",

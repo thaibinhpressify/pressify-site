@@ -80,8 +80,8 @@ watch(() => locale.value, () => {
     
     <HeaderSection
       status="Pressify"
-      title="News"
-      desc="All the latest news from Pressify, including product launches, feature updates, tips, company news, and more."
+      :title="t('news.title')"
+      :desc="t('news.description')"
     />
     
     <div class="news__menu-wrapper py-[20px] bg-white-200">

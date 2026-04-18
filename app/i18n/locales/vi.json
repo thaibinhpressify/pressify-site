@@ -76,7 +76,8 @@
   },
   "news": {
     "title": "Tin tức",
-    "status": "Tin tức & cập nhật"
+    "status": "Tin tức & cập nhật",
+    "description": "Tất cả tin tức mới nhất từ Pressify, bao gồm sản phẩm mới ra, cập nhật tính năng, tips, tin tức công ty, và nhiều hơn."
   },
   "post": {
     "read": "Đọc bài viết →",
