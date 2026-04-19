@@ -65,7 +65,9 @@ const banner = computed(() => home.banner)
             <button class="home__btn btn --primary">
               <span>{{ t('banner.get_started') }}</span>
             </button>
-            <button class="home__btn btn">{{ t('banner.view_catalog') }}</button>
+            <button class="home__btn btn">
+              <nuxt-link to="/catalog">{{ t('banner.view_catalog') }}</nuxt-link>
+            </button>
             </div>
          </div>
         </div>
