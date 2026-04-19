@@ -15,16 +15,16 @@ const closeMobileMenu = () => {
 }
 </script>
 <template>
-<header class="header py-[21px] px-[15px] lg:px-0">
+<header class="header py-[10px] px-[15px] lg:px-0">
   <div class="container mx-auto">
     <div class="grid grid-cols-12">
-      <div class="col-span-6 lg:col-span-3">
+      <div class="col-span-6 lg:col-span-2">
         <NuxtLink class="header__logo outline-none" :to="localePath('/')">
           <img class="h-[51px]" src="/logo.png" alt="Pressify">
         </NuxtLink>
       </div>
 
-      <div class="hidden lg:block lg:col-span-6">
+      <div class="hidden lg:block lg:col-span-7">
         <BaseMenu />
       </div>
 

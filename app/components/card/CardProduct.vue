@@ -24,79 +24,50 @@ const props = defineProps({
     type: Number,
     default: 6,
   },
-  sizeRange: {
-    type: String,
-    default: '',
+  sizes: {
+    type: Array,
+    default: () => [],
   },
 })
 
 const swatches = computed(() => props.colors.slice(0, props.maxSwatches))
 const extraCount = computed(() => Math.max(0, props.colors.length - props.maxSwatches))
+const sizes = computed(() => props.sizes.slice(0, 5))
+const extraSize = computed(() => Math.max(0, props.sizes.length - props.maxSwatches))
 </script>
 
 <template>
   <div class="card-product bg-white h-full">
-    <NuxtLink v-if="href" class="card-product__link" :to="href">
-      <div class="card-product__media">
-        <img v-if="image" class="card-product__img" :src="image" :alt="title || 'Product'" >
+    <div class="card-product__media">
+      <img v-if="image" class="card-product__img" :src="image" :alt="title || 'Product'" >
+    </div>
+    <div class="card-product__content">
+      <h3 class="card-product__title">
+        <slot name="title">
+          {{ title }}
+        </slot>
+      </h3>
+      <div v-if="meta" class="card-product__meta">
+        {{ meta }}
       </div>
-      <div class="card-product__content">
-        <h3 class="card-product__title">
-          <slot name="title">
-            {{ title }}
-          </slot>
-        </h3>
-        <div v-if="meta" class="card-product__meta">
-          {{ meta }}
-        </div>
 
-        <div v-if="swatches.length" class="card-product__swatches">
-          <span
-            v-for="(c, i) in swatches"
-            :key="`${c}-${i}`"
-            class="card-product__swatch"
-            :style="{ backgroundColor: c }"
-          />
-          <span v-if="extraCount" class="card-product__more">
-            +{{ extraCount }}
-          </span>
-        </div>
-
-        <div v-if="sizeRange" class="card-product__sizes text-[15px]">
-          {{ sizeRange }}
-        </div>
+      <div v-if="swatches.length" class="card-product__swatches">
+        <span
+          v-for="(c, i) in swatches"
+          :key="`${c}-${i}`"
+          class="card-product__swatch"
+          :style="{ backgroundColor: c }"
+        />
+        <span v-if="extraCount" class="card-product__more">
+          +{{ extraCount }}
+        </span>
       </div>
-    </NuxtLink>
 
-    <div v-else class="card-product__link">
-      <div class="card-product__media">
-        <img v-if="image" class="card-product__img" :src="image" :alt="title || 'Product'" >
-      </div>
-      <div class="card-product__content">
-        <h3 class="card-product__title">
-          <slot name="title">
-            {{ title }}
-          </slot>
-        </h3>
-        <div v-if="meta" class="card-product__meta">
-          {{ meta }}
-        </div>
-
-        <div v-if="swatches.length" class="card-product__swatches">
-          <span
-            v-for="(c, i) in swatches"
-            :key="`${c}-${i}`"
-            class="card-product__swatch"
-            :style="{ backgroundColor: c }"
-          />
-          <span v-if="extraCount" class="card-product__more">
-            +{{ extraCount }}
-          </span>
-        </div>
-
-        <div v-if="sizeRange" class="card-product__sizes">
-          {{ sizeRange }}
-        </div>
+      <div v-if="sizes.length" class="card-product__sizes">
+        {{ sizes.join(', ') }}
+        <span v-if="extraSize" class="card-product__more">
+          +{{ extraSize }}
+        </span>
       </div>
     </div>
   </div>

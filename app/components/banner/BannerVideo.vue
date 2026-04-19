@@ -11,7 +11,14 @@
       playsinline
       webkit-playsinline
       preload="metadata"
+      @loadeddata="handleReady"
+      @canplay="handleReady"
+      @playing="handleReady"
+      @error="handleError"
     />
+    <div v-if="isVideoLoading" class="banner-video-intro__loading">
+      <div class="w-full h-full skeleton" />
+    </div>
     <div class="banner-video-intro__overlay" :class="overlayClass" />
     <div class="banner-video-intro__content w-full">
       <slot />
@@ -20,9 +27,9 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
 
-defineProps({
+const props = defineProps({
   src: {
     type: String,
     default: "/banner/video-fulfillment.mp4",
@@ -39,6 +46,20 @@ defineProps({
 
 const videoRef = ref(null);
 let unbind = null;
+const isVideoLoading = ref(!!props.src);
+let loadingTimeout = null;
+
+const handleReady = () => {
+  isVideoLoading.value = false;
+  if (loadingTimeout) {
+    clearTimeout(loadingTimeout);
+    loadingTimeout = null;
+  }
+};
+
+const handleError = () => {
+  handleReady();
+};
 
 const tryPlay = async () => {
   const video = videoRef.value;
@@ -48,15 +69,16 @@ const tryPlay = async () => {
   video.autoplay = true;
   try {
     await video.play();
+    handleReady();
   } catch {
     if (unbind) return;
     const onFirstGesture = async () => {
       try {
         await video.play();
-      } catch (error) {
-        console.error('Failed to play video on first gesture', error);
+      } finally {
+        handleReady();
+        if (unbind) unbind();
       }
-      if (unbind) unbind();
     };
     window.addEventListener("touchstart", onFirstGesture, { passive: true });
     window.addEventListener("click", onFirstGesture, { passive: true });
@@ -73,11 +95,34 @@ onMounted(() => {
   requestAnimationFrame(() => {
     tryPlay();
   });
+  loadingTimeout = window.setTimeout(() => {
+    handleReady();
+  }, 4000);
 });
 
 onUnmounted(() => {
   if (unbind) unbind();
+  if (loadingTimeout) {
+    clearTimeout(loadingTimeout);
+    loadingTimeout = null;
+  }
 });
+
+watch(
+  () => props.src,
+  () => {
+    isVideoLoading.value = !!props.src;
+    if (typeof window !== "undefined") {
+      if (loadingTimeout) clearTimeout(loadingTimeout);
+      loadingTimeout = window.setTimeout(() => {
+        handleReady();
+      }, 4000);
+      requestAnimationFrame(() => {
+        tryPlay();
+      });
+    }
+  }
+);
 </script>
 
 <style lang="scss">
@@ -110,6 +155,26 @@ onUnmounted(() => {
     );
   }
 
+  &__loading {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(0 0 0 / 0.2);
+    backdrop-filter: blur(2px);
+  }
+
+  &__spinner {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 3px solid rgb(255 255 255 / 0.25);
+    border-top-color: rgb(255 255 255 / 0.9);
+    animation: banner-spin 0.9s linear infinite;
+  }
+
   &__content {
     position: absolute;
     inset: 0;
@@ -122,6 +187,15 @@ onUnmounted(() => {
     @media screen and (min-width: 768px) {
       padding: 90px 15px 60px;
     }
+  }
+}
+
+@keyframes banner-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 </style>

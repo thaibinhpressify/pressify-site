@@ -33,7 +33,6 @@ const { data, pending, error } = await useAsyncData(
         meta: normalize(item?.brand || item?.sku || item?.model || ''),
         colors,
         sizes,
-        sizeRange: sizes.join(' · '),
         style: normalize(item?.style || ''),
       }
     })
@@ -231,14 +230,8 @@ const clearFilters = () => {
                   :image="p.image"
                   :meta="p.meta"
                   :colors="p.colors"
-                  :size-range="p.sizeRange"
-                >
-                  <template #title>
-                    <span class="text-black-200">
-                      {{ p.title }}
-                    </span>
-                  </template>
-                </CardProduct>
+                  :sizes="p.sizes"
+                />
               </NuxtLink>
             </div>
           </div>

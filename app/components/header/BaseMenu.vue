@@ -6,7 +6,7 @@ const localePath = useLocalePath()
 </script>
 
 <template>
-<ul class="base-menu flex items-center gap-[40px] w-full h-full">
+<ul class="base-menu flex items-center w-full h-full justify-center">
   <li
     v-for="item in menu"
     :key="item.path"
@@ -29,6 +29,10 @@ const localePath = useLocalePath()
   .base-menu {
     font-size: 14px;
     color: var(--color-txt-menu);
+
+    .menu__link {
+      padding: 15px 20px;
+    }
 
     .menu__link--active {
       color: var(--color-txt-menu-active);
