@@ -37,9 +37,9 @@ const closeMobileMenu = () => {
 
         <div class="hidden lg:flex items-center gap-[12px]">
           <LanguageSwitch />
-          <NuxtLink class="header__btn" :to="localePath('/login')">
+          <a class="header__btn" href="https://pressify.us/login" target="_blank">
             {{ t('seller-login') }}
-          </NuxtLink>
+          </a>
         </div>
       </div>
     </div>
