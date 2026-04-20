@@ -42,9 +42,9 @@ const close = () => emit('close')
         <div class="mobile-sidebar__body">
           <div class="mobile-sidebar__controls">
             <LanguageSwitch />
-            <NuxtLink class="mobile-sidebar__login btn --primary" :to="localePath('/login')" @click="close">
+            <a class="mobile-sidebar__login btn --primary" href="https://pressify.us/login" target="_blank">
               {{ $t('seller-login') }}
-            </NuxtLink>
+            </a>
           </div>
 
           <nav class="mobile-sidebar__nav">
