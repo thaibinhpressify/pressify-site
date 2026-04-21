@@ -2,6 +2,7 @@
 import { useMenu } from '~/composables/menu/home';
 import MenuFooter from '~/components/footer/MenuFooter.vue';
 const { menuPage, menuIntegrations, menuShipping } = useMenu();
+const localePath = useLocalePath();
 </script>
 <template>
 <footer class="footer bg-black-300">
@@ -18,9 +19,9 @@ const { menuPage, menuIntegrations, menuShipping } = useMenu();
     <div class="footer__bottom w-full">
       <div class="grid grid-cols-12">
         <div class="col-span-12 lg:col-span-4">
-          <nuxt-link to="/">
+          <NuxtLink :to="localePath('/')">
             <img class="h-[80px] py-[10px]" src="/logo.png" alt="Pressify" >
-          </nuxt-link>
+          </NuxtLink>
 
           <div class="footer__address text-white mb-[55px]">
             <strong>

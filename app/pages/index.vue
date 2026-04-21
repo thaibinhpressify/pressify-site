@@ -9,6 +9,7 @@ import { useHomeStore } from '~~/stores/home'
 
 
 const { t , locale} = useI18n()
+const localePath = useLocalePath()
 
 useSeoMeta({
   title: 'Pressify',
@@ -65,9 +66,9 @@ const banner = computed(() => home.banner)
             <button class="home__btn btn --primary">
               <span>{{ t('banner.get_started') }}</span>
             </button>
-            <button class="home__btn btn">
-              <nuxt-link to="/catalog">{{ t('banner.view_catalog') }}</nuxt-link>
-            </button>
+            <NuxtLink class="home__btn btn" :to="localePath('/catalog')">
+              {{ t('banner.view_catalog') }}
+            </NuxtLink>
             </div>
          </div>
         </div>

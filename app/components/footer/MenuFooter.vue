@@ -5,11 +5,27 @@ defineProps({
     default: () => []
   }
 })
+
+const localePath = useLocalePath()
+
+const isExternal = (value) => /^https?:\/\//i.test(String(value || ''))
+const isHash = (value) => {
+  const v = String(value || '')
+  return v === '#' || v.startsWith('#')
+}
 </script>
 <template>
   <ul class="menu-footer">
     <li v-for="item in menu" :key="item.path" class="menu-footer__item">
-      <nuxt-link :to="item.path">{{ item.name }}</nuxt-link>
+      <a v-if="isExternal(item.path)" :href="item.path" target="_blank" rel="noreferrer">
+        {{ item.name }}
+      </a>
+      <a v-else-if="isHash(item.path)" :href="item.path">
+        {{ item.name }}
+      </a>
+      <NuxtLink v-else :to="localePath(item.path)">
+        {{ item.name }}
+      </NuxtLink>
     </li>
   </ul>
 </template>

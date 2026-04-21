@@ -19,7 +19,7 @@ const { activeTab, query, toAnchor, filteredCategories, displayedCategories } = 
 <template>
   <div class="page qa">
     <div class="qa__header bg-white-100">
-      <div class="container mx-auto px-[15px] lg:px-0">
+      <div class="container mx-auto">
       <div class="grid grid-cols-12">
         <div class="col-span-8">
           <HeaderSection status="Help center" title="Frequently Asked Questions" desc="Find answers to common questions about our products and services.">

@@ -55,7 +55,7 @@ const services_value = ref([
       </div>
 
       <div class="col-span-12 lg:col-span-6">
-        <div class="grid grid-cols-2 gap-[24px]">
+        <div class="grid grid-cols-2 gap-[12px] lg:gap-[24px]">
           <CardDeliver v-for="(item, index) in services_value" :key="index" v-bind="item" />
         </div>
       </div>

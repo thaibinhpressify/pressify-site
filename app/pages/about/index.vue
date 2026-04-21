@@ -35,7 +35,7 @@ const { data, pending, error } = await useAsyncData(
     />
 
     <div class="bg-white-200">
-      <div class="container mx-auto py-[56px]">
+      <div class="container mx-auto px-[15px] lg:px-0 py-[25px] lg:py-[56px]">
         <div v-if="pending" class="about__loading">
          <div class="w-full h-[500px] skeleton rounded-[15px]" />
         </div>

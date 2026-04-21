@@ -53,9 +53,10 @@
   font-optical-sizing: auto;
 }
 
-* {
+*, html, body {
   font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-optical-sizing: auto;
   font-size: 14px;
   line-height: 21px;
-}
+  color: #000;
+ }

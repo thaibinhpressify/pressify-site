@@ -52,15 +52,15 @@ export function useMenu() {
   const menuIntegrations = ref([
     {
       name: t("footer.tiktok"),
-      path: "/tiktok",
+      path: "/intergration",
     },
     {
       name: t("footer.pressify"),
-      path: "/pressify",
+      path: "/intergration",
     },
     {
       name: t("footer.csv"),
-      path: "/csv",
+      path: "/intergration",
     },
   ]);
 

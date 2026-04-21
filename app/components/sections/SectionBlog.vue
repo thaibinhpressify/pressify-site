@@ -32,7 +32,7 @@ const blogs = computed(() => (props.blogs?.length ? props.blogs : []))
       </div>
 
       <div class="blog__list mt-[48px]">
-        <div class="grid grid-cols-12 gap-[28px]">
+        <div class="grid grid-cols-12 gap-[12px] lg:gap-[28px]">
           <div v-for="blog in blogs" :key="blog.title" class="col-span-12 lg:col-span-4">
             <NuxtLink :to="localePath(`/${blog.slug}`)">
               <CardPost class="h-full" v-bind="blog" />

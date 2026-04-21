@@ -21,7 +21,7 @@ const setValue = (value) => {
 
 <template>
   <div class="questions-tabs bg-white-100">
-    <div class="container mx-auto">
+    <div class="container mx-auto px-[15px] lg:px-0">
       <div class="questions-tabs__row">
         <button
           type="button"

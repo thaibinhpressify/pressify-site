@@ -27,8 +27,10 @@ const localePath = useLocalePath()
 
 <style lang="scss">
   .base-menu {
-    font-size: 14px;
-    color: var(--color-txt-menu);
+    &, & * {
+      font-size: 14px;
+      color: var(--color-txt-menu);
+    }
 
     .menu__link {
       padding: 15px 20px;

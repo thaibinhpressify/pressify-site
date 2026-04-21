@@ -12,12 +12,12 @@ const current = computed(() => String(locale.value || 'en'))
         <img v-if="current === 'vi'" src="/language/vi.png" alt="">
         <img v-else src="/language/en.png" alt="">
       </span>
-      <span class="language-switch__label">
+      <span class="language-switch__label text-white">
         {{ current.toUpperCase() }}
       </span>
     </button>
 
-    <ul class="dropdown-content menu left-0 bg-white shadow-lg rounded-box w-[170px] p-2 border border-black/10">
+    <ul class="--mobile dropdown-content menu left-0 bg-white shadow-lg rounded-box w-[170px] p-2 border border-black/10">
       <li>
         <NuxtLink :to="switchLocalePath('en')" class="language-switch__item">
           <span class="language-switch__item-code">
@@ -94,6 +94,10 @@ const current = computed(() => String(locale.value || 'en'))
     font-size: 12px;
 
     @apply text-gray-100;
+  }
+
+  .dropdown-content.\--mobile {
+    z-index: 9999;
   }
 }
 </style>

@@ -50,7 +50,7 @@ const fallbackFeedbacks = [
       </div>
     </template>
     <div class="container m-auto lg:mt-[48px] px-[15px] lg:px-0">
-      <div class="grid grid-cols-12 gap-[28px]">
+      <div class="grid grid-cols-12 gap-[12px] lg:gap-[28px]">
         <div v-for="feedback, index in fallbackFeedbacks" :key="index" class="col-span-12 lg:col-span-4">
           <CardFeedback class="h-full" v-bind="feedback" />
         </div>
