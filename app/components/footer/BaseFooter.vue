@@ -89,21 +89,21 @@ const localePath = useLocalePath();
 <style lang="scss">
   .footer {
     padding: 36px 0 30px;
-    &__title {
-      font-size: 38px;
-      line-height: 40px;
-      font-weight: 500;
-    }
+  }
 
-    &__desc {
-      padding: 10px 0;
-      color: rgba(255, 255, 255, 0.6);
-    }
+  .footer__title {
+    font-size: 38px;
+    line-height: 40px;
+    font-weight: 500;
+  }
 
-    &__address {
-      &, & * {
-        color: #fff;
-      }
-    }
+  .footer__desc {
+    padding: 10px 0;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .footer__address,
+  .footer__address * {
+    color: #fff;
   }
 </style>

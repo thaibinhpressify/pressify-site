@@ -31,14 +31,13 @@ const isHash = (value) => {
 </template>
 
 <style lang="scss">
-  .menu-footer {
-    &__item {
-      font-size: 16px;
-      line-height: 40px;
+  .menu-footer__item {
+    font-size: 16px;
+    line-height: 40px;
+  }
 
-      &, & * {
-        color: #fff;
-      }
-    }
+  .menu-footer__item,
+  .menu-footer__item * {
+    color: #fff;
   }
 </style>

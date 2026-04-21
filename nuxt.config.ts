@@ -44,11 +44,12 @@ export default defineNuxtConfig({
     },
   },
   css: [
+        "~/assets/scss/main.scss",
+
     "~/assets/fonts/index.css",
     "animate.css/animate.min.css",
     "swiper/css",
     "swiper/css/effect-creative",
-    "~/assets/scss/main.scss",
   ],
   app: {
     head: {
