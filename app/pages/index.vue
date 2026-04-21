@@ -20,17 +20,35 @@ useSeoMeta({
 
 const home = useHomeStore()
 
-const { pending } = await useAsyncData(
+const { pending: bannerPending } = await useAsyncData(
+  'home:banner',
+  async () => {
+    await home.fetchBanner()
+    return true
+  },
+  { watch: [locale], server: false }
+)
+
+const { pending: contentPending, execute: loadContent } = await useAsyncData(
   'home:content',
   async () => {
     await Promise.all([
-      home.fetchBanner(),
       home.fetchFeedbacks({ categoryId: 4, first: 3 }),
       home.fetchNews({ categoryId: locale.value === "en" ? 3 : 5, first: 3 }),
     ])
     return true
   },
-  { watch: [locale], server: false }
+  { server: false, immediate: false }
+)
+
+watch(
+  () => [locale.value, bannerPending.value],
+  async ([_locale, isBannerPending]) => {
+    if (!isBannerPending) {
+      await loadContent()
+    }
+  },
+  { immediate: true }
 )
 
 const banner = computed(() => home.banner)
@@ -38,17 +56,8 @@ const banner = computed(() => home.banner)
 <template>
 <div class="page">
   <div class="w-full">
-    <div v-if="pending" class="home__loading">
+    <div v-if="bannerPending" class="home__loading">
       <div class="w-full h-[520px] lg:h-[650px] bg-[#F5F5F5] rounded-[16px] skeleton" />
-      <div class="container mx-auto mt-[28px] px-[15px] lg:px-0">
-        <div class="w-full h-[44px] bg-[#F5F5F5] rounded-[10px] skeleton" />
-        <div class="mt-[14px] w-full h-[200px] bg-[#F5F5F5] rounded-[16px] skeleton" />
-        <div class="mt-[28px] grid grid-cols-12 gap-[18px]">
-          <div class="col-span-12 lg:col-span-4 h-[320px] bg-[#F5F5F5] rounded-[16px] skeleton" />
-          <div class="col-span-12 lg:col-span-4 h-[320px] bg-[#F5F5F5] rounded-[16px] skeleton" />
-          <div class="col-span-12 lg:col-span-4 h-[320px] bg-[#F5F5F5] rounded-[16px] skeleton" />
-        </div>
-      </div>
     </div>
 
     <template v-else>
@@ -64,7 +73,7 @@ const banner = computed(() => home.banner)
 
           <div class="home__footer flex gap-[16px] justify-center pt-[24px] pb-[15px]">
             <button class="home__btn btn --primary">
-              <span>{{ t('banner.get_started') }}</span>
+              {{ t('banner.get_started') }}
             </button>
             <NuxtLink class="home__btn btn" :to="localePath('/catalog')">
               {{ t('banner.view_catalog') }}
@@ -74,10 +83,22 @@ const banner = computed(() => home.banner)
         </div>
       </BannerVideo>
 
-      <SectionOffer  />
-      <SectionDeliver  />
-      <SectionClient :feedbacks="home.feedbacks" />
-      <SectionBlog :blogs="home.news" />
+      <div v-if="contentPending" class="container mx-auto mt-[28px] px-[15px] lg:px-0">
+        <div class="w-full h-[44px] bg-[#F5F5F5] rounded-[10px] skeleton" />
+        <div class="mt-[14px] w-full h-[200px] bg-[#F5F5F5] rounded-[16px] skeleton" />
+        <div class="mt-[28px] grid grid-cols-12 gap-[18px]">
+          <div class="col-span-12 lg:col-span-4 h-[320px] bg-[#F5F5F5] rounded-[16px] skeleton" />
+          <div class="col-span-12 lg:col-span-4 h-[320px] bg-[#F5F5F5] rounded-[16px] skeleton" />
+          <div class="col-span-12 lg:col-span-4 h-[320px] bg-[#F5F5F5] rounded-[16px] skeleton" />
+        </div>
+      </div>
+
+      <template v-else>
+        <SectionOffer  />
+        <SectionDeliver  />
+        <SectionClient :feedbacks="home.feedbacks" />
+        <SectionBlog :blogs="home.news" />
+      </template>
     </template>
   </div>
 </div>
