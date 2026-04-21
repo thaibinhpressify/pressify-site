@@ -28,11 +28,14 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: isDev },
   runtimeConfig: {
-    pressifyApiBase: process.env.PRESSIFY_API_BASE || "http://localhost:8000",
+    pressifyApiBase: process.env.PRESSIFY_API_BASE || process.env.PRESSIFY_API_BASE_URL || "http://localhost:8000",
     wpGraphqlEndpoint: process.env.WP_GRAPHQL_ENDPOINT || process.env.ENDPOINT_WP_GRAPHQL || "",
     wpGraphqlToken: process.env.WP_GRAPHQL_TOKEN || "",
     public: {
-      pressifyApiBase: process.env.NUXT_PUBLIC_PRESSIFY_API_BASE || "http://localhost:8000",
+      pressifyApiBase:
+        process.env.NUXT_PUBLIC_PRESSIFY_API_BASE ||
+        process.env.NUXT_PUBLIC_PRESSIFY_API_BASE_URL ||
+        "http://localhost:8000",
       wpGraphqlEndpoint:
         process.env.NUXT_PUBLIC_WP_GRAPHQL_ENDPOINT || process.env.ENDPOINT_WP_GRAPHQL || "",
       wpBaseUrl,
