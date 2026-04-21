@@ -1,7 +1,5 @@
 services:
   app-prod:
-    profiles:
-      - prod
     build:
       context: .
       target: prod
@@ -21,8 +19,6 @@ services:
       - "3000"
 
   nginx:
-    profiles:
-      - prod
     image: nginx:alpine
     depends_on:
       - app-prod
