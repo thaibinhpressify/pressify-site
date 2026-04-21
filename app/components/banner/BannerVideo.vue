@@ -3,7 +3,7 @@
     <video
       ref="videoRef"
       class="banner-video-intro__video"
-      :class="{ 'banner-video-intro__video--hidden': showPosterFallback }"
+      :class="{ 'banner-video-intro__video--hidden': showPoster }"
       :src="src"
       :poster="poster"
       autoplay
@@ -18,14 +18,14 @@
       @error="handleError"
     />
     <img
-      v-if="showPosterFallback"
+      v-if="showPoster"
       class="banner-video-intro__poster"
       :src="poster"
       alt=""
       decoding="async"
       loading="eager"
     >
-    <div v-if="isVideoLoading" class="banner-video-intro__loading">
+    <div v-if="isVideoLoading && !poster" class="banner-video-intro__loading">
       <div class="w-full h-full skeleton" />
     </div>
     <div class="banner-video-intro__overlay" :class="overlayClass" />
@@ -56,12 +56,13 @@ const props = defineProps({
 const videoRef = ref(null);
 let unbind = null;
 const isVideoLoading = ref(!!props.src);
-const showPosterFallback = ref(false);
+const isVideoReady = ref(false);
+const showPoster = computed(() => !!props.poster && !isVideoReady.value);
 let loadingTimeout = null;
 
 const handleReady = () => {
   isVideoLoading.value = false;
-  showPosterFallback.value = false;
+  isVideoReady.value = true;
   if (loadingTimeout) {
     clearTimeout(loadingTimeout);
     loadingTimeout = null;
@@ -69,7 +70,12 @@ const handleReady = () => {
 };
 
 const handleError = () => {
-  handleReady();
+  isVideoLoading.value = false;
+  isVideoReady.value = false;
+  if (loadingTimeout) {
+    clearTimeout(loadingTimeout);
+    loadingTimeout = null;
+  }
 };
 
 const tryPlay = async () => {
@@ -86,8 +92,10 @@ const tryPlay = async () => {
     const onFirstGesture = async () => {
       try {
         await video.play();
-      } finally {
         handleReady();
+      } catch {
+        handleError();
+      } finally {
         if (unbind) unbind();
       }
     };
@@ -103,12 +111,13 @@ const tryPlay = async () => {
 
 onMounted(() => {
   if (typeof window === "undefined") return;
+  isVideoReady.value = false;
   requestAnimationFrame(() => {
     tryPlay();
   });
   loadingTimeout = window.setTimeout(() => {
     isVideoLoading.value = false;
-    showPosterFallback.value = !!props.poster;
+    isVideoReady.value = false;
     loadingTimeout = null;
   }, 3000);
 });
@@ -125,12 +134,12 @@ watch(
   () => props.src,
   () => {
     isVideoLoading.value = !!props.src;
-    showPosterFallback.value = false;
+    isVideoReady.value = false;
     if (typeof window !== "undefined") {
       if (loadingTimeout) clearTimeout(loadingTimeout);
       loadingTimeout = window.setTimeout(() => {
         isVideoLoading.value = false;
-        showPosterFallback.value = !!props.poster;
+        isVideoReady.value = false;
         loadingTimeout = null;
       }, 3000);
       requestAnimationFrame(() => {
