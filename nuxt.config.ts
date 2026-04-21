@@ -26,7 +26,7 @@ const deriveWpBaseUrl = (endpoint: string) => {
 const wpBaseUrl = process.env.WP_BASE_URL || process.env.NUXT_PUBLIC_WP_BASE_URL || deriveWpBaseUrl(wpEndpoint);
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
-  devtools: { enabled: true },
+  devtools: { enabled: isDev },
   runtimeConfig: {
     pressifyApiBase: process.env.PRESSIFY_API_BASE || "http://localhost:8000",
     wpGraphqlEndpoint: process.env.WP_GRAPHQL_ENDPOINT || process.env.ENDPOINT_WP_GRAPHQL || "",

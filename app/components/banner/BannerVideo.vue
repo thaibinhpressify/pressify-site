@@ -3,6 +3,7 @@
     <video
       ref="videoRef"
       class="banner-video-intro__video"
+      :class="{ 'banner-video-intro__video--hidden': showPosterFallback }"
       :src="src"
       :poster="poster"
       autoplay
@@ -16,6 +17,14 @@
       @playing="handleReady"
       @error="handleError"
     />
+    <img
+      v-if="showPosterFallback"
+      class="banner-video-intro__poster"
+      :src="poster"
+      alt=""
+      decoding="async"
+      loading="eager"
+    >
     <div v-if="isVideoLoading" class="banner-video-intro__loading">
       <div class="w-full h-full skeleton" />
     </div>
@@ -47,10 +56,12 @@ const props = defineProps({
 const videoRef = ref(null);
 let unbind = null;
 const isVideoLoading = ref(!!props.src);
+const showPosterFallback = ref(false);
 let loadingTimeout = null;
 
 const handleReady = () => {
   isVideoLoading.value = false;
+  showPosterFallback.value = false;
   if (loadingTimeout) {
     clearTimeout(loadingTimeout);
     loadingTimeout = null;
@@ -96,8 +107,10 @@ onMounted(() => {
     tryPlay();
   });
   loadingTimeout = window.setTimeout(() => {
-    handleReady();
-  }, 4000);
+    isVideoLoading.value = false;
+    showPosterFallback.value = !!props.poster;
+    loadingTimeout = null;
+  }, 3000);
 });
 
 onUnmounted(() => {
@@ -112,11 +125,14 @@ watch(
   () => props.src,
   () => {
     isVideoLoading.value = !!props.src;
+    showPosterFallback.value = false;
     if (typeof window !== "undefined") {
       if (loadingTimeout) clearTimeout(loadingTimeout);
       loadingTimeout = window.setTimeout(() => {
-        handleReady();
-      }, 4000);
+        isVideoLoading.value = false;
+        showPosterFallback.value = !!props.poster;
+        loadingTimeout = null;
+      }, 3000);
       requestAnimationFrame(() => {
         tryPlay();
       });
@@ -136,6 +152,19 @@ watch(
   }
 
   &__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__video--hidden {
+    opacity: 0;
+  }
+
+  &__poster {
     position: absolute;
     inset: 0;
     width: 100%;
