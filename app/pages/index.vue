@@ -116,7 +116,7 @@ const banner = computed(() => home.banner)
       border-radius: 16px;
       border: 1.5px solid rgb(255 255 255 / 0.3);
       font-size: 15px;
-      list-style: 19px;
+      color: var(--color-black);
 
       &.\--primary {
         background-color: var(--color-orange);

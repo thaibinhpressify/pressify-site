@@ -6,7 +6,10 @@
   line-height: 14px;
 
   &.\--primary {
-    @apply border-orange bg-orange text-white;
+    @apply border-orange bg-orange;
+    &, & * {
+      color: #fff;
+    }
   }
 
   &.\--outline-primary {

@@ -35,6 +35,10 @@ const isHash = (value) => {
     &__item {
       font-size: 16px;
       line-height: 40px;
+
+      &, & * {
+        color: #fff;
+      }
     }
   }
 </style>

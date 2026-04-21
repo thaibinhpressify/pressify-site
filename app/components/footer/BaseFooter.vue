@@ -99,5 +99,11 @@ const localePath = useLocalePath();
       padding: 10px 0;
       color: rgba(255, 255, 255, 0.6);
     }
+
+    &__address {
+      &, & * {
+        color: #fff;
+      }
+    }
   }
 </style>
