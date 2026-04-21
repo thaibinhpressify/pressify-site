@@ -44,14 +44,15 @@ export default defineNuxtConfig({
     },
   },
   css: [
-        "~/assets/scss/main.scss",
-
+    "~/assets/scss/main.scss",
     "~/assets/fonts/index.css",
     "animate.css/animate.min.css",
     "swiper/css",
     "swiper/css/effect-creative",
   ],
   app: {
+    pageTransition: { name: "page", mode: "out-in" },
+    layoutTransition: { name: "layout", mode: "out-in" },
     head: {
       meta: [
         {

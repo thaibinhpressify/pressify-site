@@ -1,3 +1,24 @@
 
 @use './classes/_btn.scss';
 @use './classes/_wp-content.scss';
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 180ms ease;
+}
+
+.layout-enter-from,
+.layout-leave-to {
+  opacity: 0;
+}

@@ -10,7 +10,7 @@ const Toaster = defineAsyncComponent(() =>
     <ClientOnly>
       <Toaster
         position="top-right"
-        :reverse-order="false"
+        :reverse-order="true"
         :toast-options="{
           duration: 5000
         }"

@@ -54,6 +54,7 @@ useSeoMeta({
 <template>
   <div class="min-h-screen w-full">
     <BaseHeader />
+    <NuxtLoadingIndicator :height="3" :throttle="200" color="var(--color-orange)" />
     <NuxtPage />
     <BaseFooter />
 
