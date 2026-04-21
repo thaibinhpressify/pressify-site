@@ -1,23 +1,4 @@
 services:
-  app:
-    build:
-      context: .
-      target: dev
-    ports:
-      - "3000:3000"
-    env_file:
-      - .env
-    environment:
-      HOST: 0.0.0.0
-      PORT: 3000
-      NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-http://localhost:3000}
-      NUXT_PUBLIC_PRESSIFY_API_BASE_URL: ${NUXT_PUBLIC_PRESSIFY_API_BASE_URL:-http://localhost:8000}
-      NUXT_PUBLIC_PRESSIFY_API_BASE: ${NUXT_PUBLIC_PRESSIFY_API_BASE_URL:-http://localhost:8000}
-      PRESSIFY_API_BASE: ${NUXT_PUBLIC_PRESSIFY_API_BASE_URL:-http://localhost:8000}
-    volumes:
-      - .:/app
-      - app_node_modules:/app/node_modules
-
   app-prod:
     profiles:
       - prod
