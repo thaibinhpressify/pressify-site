@@ -112,6 +112,13 @@ export default defineNuxtConfig({
     },
   },
   vite: {
+    server: {
+      ...(isDev
+        ? {
+            allowedHosts: ["blog.pressify.us", ".pressify.us"],
+          }
+        : {}),
+    },
     css: {
       preprocessorOptions: {
         scss: {
