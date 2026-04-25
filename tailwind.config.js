@@ -50,6 +50,7 @@ export default {
       },
       colors: {
         ...palette,
+        primary: palette.orange.DEFAULT,
       },
     },
   },
@@ -60,6 +61,7 @@ export default {
       const darkVars = {
         "--color-bg-header": palette.black[100],
         "--color-bg-login": palette.orange.DEFAULT,
+        "--color-bg-app": palette.orange.DEFAULT,
         "--color-txt-menu": palette.gray[100],
         "--color-txt-menu-active": palette.white.DEFAULT,
         "--color-orange": palette.orange.DEFAULT,
@@ -72,12 +74,16 @@ export default {
 
       const lightVars = {
         "--color-bg-header": palette.white.DEFAULT,
+        "--color-bg-app": palette.orange.DEFAULT,
       };
 
       addBase({
         ":root": darkVars,
         '[data-theme="dark"]': darkVars,
         '[data-theme="light"]': lightVars,
+        body: {
+          backgroundColor: "var(--color-bg-app)",
+        },
       });
     }),
   ],

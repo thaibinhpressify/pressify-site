@@ -6,7 +6,7 @@ const localePath = useLocalePath();
 </script>
 <template>
 <footer class="footer bg-black-300">
-  <div class="container mx-auto px-[15px] lg:px-0">
+<div class="container mx-auto px-[15px] lg:px-0">
     <div class="footer__header w-full">
       <h4 class="footer__title w-full text-white text-center">
         {{ $t('footer.title') }}
@@ -82,7 +82,7 @@ const localePath = useLocalePath();
         </div>
       </div>
     </div>
-  </div>
+</div>
 </footer>
 </template>
 
