@@ -19,6 +19,10 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  accessories: {
+    type: Array,
+    default: () => [],
+  },
 })
 
 const dataFilter = defineModel('dataFilter', {
@@ -199,6 +203,22 @@ const priceRangeText = computed(() => {
   if (min === max) return formatPrice(min)
   return `${formatPrice(min)} - ${formatPrice(max)}`
 })
+
+const activeAccessories = computed(() => {
+  const tierId = String(dataFilter.value.tier_id)
+  return props.accessories.map(acc => {
+    const items = Array.isArray(acc.accessory_items) 
+      ? acc.accessory_items.filter(item => String(item.tier_id) === tierId)
+      : []
+    
+    if (!items.length) return null
+
+    return {
+      ...acc,
+      items
+    }
+  }).filter(Boolean)
+})
 </script>
 
 <template>
@@ -280,6 +300,25 @@ const priceRangeText = computed(() => {
             <div v-if="warehouseNameValue" class="product-detail__kv-item">
               <span class="product-detail__kv-label">Warehouse</span>
               <span class="product-detail__kv-value">{{ warehouseNameValue }}</span>
+            </div>
+          </div>
+
+          <div v-if="activeAccessories.length" class="product-detail__accessories">
+            <div class="product-detail__label">
+              Accessories
+            </div>
+            <div class="product-detail__accessory-list">
+              <div v-for="acc in activeAccessories" :key="acc.id" class="product-detail__accessory">
+                <div class="product-detail__accessory-name">
+                  {{ acc.name }}
+                </div>
+                <div class="product-detail__accessory-items">
+                  <div v-for="item in acc.items" :key="item.id" class="product-detail__accessory-item">
+                    <span class="product-detail__accessory-style">{{ item.style }}</span>
+                    <span class="product-detail__accessory-fee">+{{ formatPrice(toNumber(item.fee)) }}</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -591,7 +630,60 @@ const priceRangeText = computed(() => {
   }
 
   &__option {
-    margin-top: 16px;
+    margin-top: 24px;
+  }
+
+  &__accessories {
+    margin-top: 24px;
+  }
+
+  &__accessory-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  &__accessory {
+    padding: 12px;
+    border-radius: 12px;
+    background: rgb(0 0 0 / 0.03);
+    border: 1px solid rgb(0 0 0 / 0.05);
+  }
+
+  &__accessory-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgb(0 0 0 / 0.8);
+    margin-bottom: 8px;
+  }
+
+  &__accessory-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__accessory-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid rgb(0 0 0 / 0.08);
+  }
+
+  &__accessory-style {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(0 0 0 / 0.6);
+  }
+
+  &__accessory-fee {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--color-orange);
   }
 
   &__label {

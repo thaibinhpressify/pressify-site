@@ -227,6 +227,7 @@ const clearFilters = () => {
               >
                 <CardProduct
                   :key="p.meta"
+                  :title="p.title"
                   :image="p.image"
                   :meta="p.meta"
                   :colors="p.colors"

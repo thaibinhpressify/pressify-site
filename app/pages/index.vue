@@ -61,17 +61,17 @@ const banner = computed(() => home.banner)
     </div>
 
     <template v-else>
-      <BannerVideo class="home__baner" :src="home.bannerVideoUrl || undefined" :poster="home.bannerPosterUrl || undefined">
+      <BannerVideo class="home__baner animate__animated animate__fadeIn" :src="home.bannerVideoUrl || undefined" :poster="home.bannerPosterUrl || undefined">
         <div class="banner__intro absolute w-full top-[20%] lg:bottom-[40px] left-0">
          <div class="container m-auto">
-           <div class="home__sologan text-orange text-center m-auto">
+           <div class="home__sologan text-orange text-center m-auto animate__animated animate__fadeInDown animate__delay-1s">
             {{ banner.title || 'Pressify' }}
           </div>
-          <div class="home__content text-center w-full lg:w-[800px] m-auto">
+          <div class="home__content text-center w-full lg:w-[800px] m-auto animate__animated animate__fadeInUp animate__delay-1s">
            <div class="w-full" v-html="banner.content || ''"/>
           </div>
 
-          <div class="home__footer flex gap-[16px] justify-center pt-[24px] pb-[15px]">
+          <div class="home__footer flex gap-[16px] justify-center pt-[24px] pb-[15px] animate__animated animate__fadeInUp animate__delay-2s">
             <button class="home__btn btn --primary">
               {{ t('banner.get_started') }}
             </button>
@@ -94,10 +94,10 @@ const banner = computed(() => home.banner)
       </div>
 
       <template v-else>
-        <SectionOffer  />
-        <SectionDeliver  />
-        <SectionClient :feedbacks="home.feedbacks" />
-        <SectionBlog :blogs="home.news" />
+        <SectionOffer v-reveal />
+        <SectionDeliver v-reveal />
+        <SectionClient v-reveal :feedbacks="home.feedbacks" />
+        <SectionBlog v-reveal :blogs="home.news" />
       </template>
     </template>
   </div>

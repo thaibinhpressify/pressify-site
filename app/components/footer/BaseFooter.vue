@@ -70,13 +70,10 @@ const localePath = useLocalePath();
         <div class="col-span-12 lg:col-span-6">
           <ul class="flex items-center text-white justify-end gap-[80px]">
             <li>
-              <a href="#">Facebook</a>
+              <a href="https://www.facebook.com/group.pressify" target="_blank" class="text-white">Facebook</a>
             </li>
             <li>
-              <a href="#">YouTube</a>
-            </li>
-            <li>
-              <a href="#">Twitter(X)</a>
+              <a href="https://www.instagram.com/pressify_inc/" target="_blank" class="text-white">Instagram</a>
             </li>
           </ul>
         </div>

@@ -4,18 +4,17 @@ import ProductDetail from '~/components/catalog/ProductDetail.vue'
 const route = useRoute()
 const id = computed(() => String(route.params.id || ''))
 
-const { data, pending, error } = await useAsyncData(
+const { data: product, pending, error } = await useAsyncData(
   'catalog:product',
   async () => {
     if (!id.value) return null
     const response = await $fetch(`https://pressify.us/api/product/${id.value}`)
-
     return response.data
   },
   { watch: [id], server: false }
 )
 
-const product = computed(() => data.value || null)
+const accessories = computed(() => product.value?.accessories || [])
 
 const tierNames = {
   11: 'Silver',
@@ -31,7 +30,7 @@ const dataFilter = reactive({
 })
 
 const prices = computed(() => {
- let variants = data.value?.variants || []
+ let variants = product.value?.variants || []
 
  if (dataFilter.size) {
   variants = variants.filter(variant => variant.size.toLowerCase() === dataFilter.size.toLowerCase())
@@ -49,7 +48,7 @@ const minPrice = computed(() => {
   return Math.min(...prices.value?.filter(price => price.tier_id === Number(dataFilter.tier_id))?.map(price => price.price) || [])
 })
 
-const medias = computed(() => data.value?.variants?.reduce((acc, variant) => {
+const medias = computed(() => product.value?.variants?.reduce((acc, variant) => {
 
   if (variant.package_image && variant.color) {
     if (dataFilter.color) {
@@ -84,7 +83,7 @@ useSeoMeta(() => ({
   <div class="catalog-detail min-h-screen">
     <div class="bg-white-200">
 
-      <div class="container mx-auto py-[56px] px-[15px] lg:px-0">
+      <div class="container mx-auto py-[15px] lg:py-[56px] px-[15px] lg:px-0">
         <div v-if="pending" class="catalog-detail__state">
           <div class="w-full h-[300px] lg:h-[400px] bg-[#F5F5F5] rounded-[8px] skeleton"/>
         </div>
@@ -98,6 +97,7 @@ useSeoMeta(() => ({
           :min-price="minPrice"
           :medias="medias_product"
           :tier-names="tierNames"
+          :accessories="accessories"
         />
       </div>
     </div>

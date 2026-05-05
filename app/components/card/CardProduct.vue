@@ -79,11 +79,16 @@ const extraSize = computed(() => Math.max(0, props.sizes.length - props.maxSwatc
   overflow: hidden;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
   border: 1px solid rgb(0 0 0 / 0.06);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  &__link {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+    border-color: var(--color-orange);
+
+    .card-product__img {
+      transform: scale(1.05);
+    }
   }
 
   &__media {
@@ -94,12 +99,14 @@ const extraSize = computed(() => Math.max(0, props.sizes.length - props.maxSwatc
     align-items: center;
     justify-content: center;
     padding: 18px;
+    overflow: hidden;
   }
 
   &__img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: transform 0.5s ease;
   }
 
   &__content {
@@ -107,8 +114,8 @@ const extraSize = computed(() => Math.max(0, props.sizes.length - props.maxSwatc
   }
 
   &__title {
-    font-size: 28px;
-    line-height: 34px;
+    font-size: 16px;
+    line-height: 20px;
     font-weight: 800;
     color: var(--color-title-section);
   }

@@ -27,6 +27,15 @@ defineProps({
   .card-deliver {
     border-radius: 16px;
     @apply bg-white;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      border-color: var(--color-orange);
+    }
+
     &__container {
       padding: 28px;
     }

@@ -46,6 +46,21 @@ defineProps({
     background-color: var(--color-white);
     padding: 15px;
     border-radius: 16px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      border-color: var(--color-orange);
+
+      .card-service__icon {
+        background-color: var(--color-orange);
+        img {
+          filter: brightness(0) invert(1);
+        }
+      }
+    }
 
     @media screen and (min-width: 768px) {
       padding: 32px 28px;
@@ -56,6 +71,7 @@ defineProps({
       height: 52px;
       @apply bg-white-100;
       @apply rounded-full;
+      transition: all 0.3s ease;
     }
 
     &__title {
