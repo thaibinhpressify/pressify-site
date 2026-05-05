@@ -110,7 +110,7 @@ watch(() => locale.value, () => {
             <BaseTag v-if="categoryLabel" :tag="categoryLabel" />
           </div>
 
-          <h2 class="title text-[48px] text-black-200">
+          <h2 class="title text-[24px] lg:text-[48px] text-black-200">
             {{ post.title }}
           </h2>
 

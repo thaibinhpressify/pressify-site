@@ -73,4 +73,15 @@
     color: var(--color-orange);
     border: 1.5px solid var(--color-orange);
   }
+
+  & div[dir="auto"] {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    svg, img {
+      height: fit-content;
+      margin: 0;
+    }
+  }
 }

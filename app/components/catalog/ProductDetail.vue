@@ -7,6 +7,27 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  minPrice: {
+    type: Number,
+    default: 0,
+  },
+  tierNames: {
+    type: Object,
+    default: () => ({}),
+  },
+  medias: {
+    type: Array,
+    default: () => [],
+  },
+})
+
+const dataFilter = defineModel('dataFilter', {
+  type: Object,
+  default: () => ({
+    color: '',
+    size: '',
+    tier_id: '',
+  }),
 })
 
 const emit = defineEmits(['update:color', 'update:size', 'update:image'])
@@ -24,6 +45,10 @@ const galleryImages = computed(() => {
   const push = (src) => {
     const s = String(src || '').trim()
     if (s && !images.includes(s)) images.push(s)
+    props.medias.forEach((m) => {
+      if (m && !images.includes(m)) images.push(m)
+    })
+    
   }
   push(props.product?.mockup_src)
   push(props.product?.image)
@@ -63,26 +88,27 @@ const sizes = computed(() => {
   return list
 })
 
-const selectedColor = ref(colors.value[0]?.hex || '')
-const selectedSize = ref(sizes.value[0] || '')
+
+
 const selectedImage = ref(galleryImages.value[0] || props.product?.mockup_src || '')
 
 watch(colors, (v) => {
-  if (!selectedColor.value && v?.[0]?.hex) selectedColor.value = v[0].hex
+  if (!dataFilter.value.color && v?.[0]?.hex) dataFilter.value.color = v[0].hex
 })
 watch(sizes, (v) => {
-  if (!selectedSize.value && v?.[0]) selectedSize.value = v[0]
+  if (!dataFilter.value.size && v?.[0]) dataFilter.value.size = v[0]
 })
 watch(galleryImages, (v) => {
   if (!selectedImage.value && v?.[0]) selectedImage.value = v[0]
+  
 })
 
 const activeVariant = computed(() => {
   const byColorAndSize = variants.value.find(
-    (v) => String(v?.hex || '').trim() === selectedColor.value && String(v?.size || '').trim() === selectedSize.value
+    (v) => String(v?.hex || '').trim() === dataFilter.value.color && String(v?.size || '').trim() === dataFilter.value.size
   )
   if (byColorAndSize) return byColorAndSize
-  const byColor = variants.value.find((v) => String(v?.hex || '').trim() === selectedColor.value)
+  const byColor = variants.value.find((v) => String(v?.hex || '').trim() === dataFilter.value.color)
   return byColor || null
 })
 
@@ -92,7 +118,7 @@ watch(activeVariant, (v) => {
 })
 
 const activeColorName = computed(() => {
-  const c = colors.value.find((x) => x.hex === selectedColor.value)
+  const c = colors.value.find((x) => x.hex === dataFilter.value.color)
   return c?.name || ''
 })
 
@@ -128,13 +154,6 @@ const technologyValue = computed(() => String(productMeta.value?.technology || '
 const materialValue = computed(() => String(productMeta.value?.material || '').trim())
 const warehouseNameValue = computed(() => String(productMeta.value?.warehouse_name || '').trim())
 
-const tierNames = {
-  11: 'Silver',
-  12: 'Gold',
-  13: 'Platinum',
-  14: 'Diamond',
-}
-
 const toNumber = (value) => {
   const n = Number(value)
   return Number.isFinite(n) ? n : null
@@ -154,7 +173,7 @@ const collectTierPrices = (variant) => {
   return Array.from(map.entries())
     .map(([tierId, price]) => ({
       tierId,
-      tierName: tierNames[tierId] || `Tier ${tierId}`,
+      tierName: props.tierNames[tierId] || `Tier ${tierId}`,
       price,
     }))
     .sort((a, b) => a.tierId - b.tierId)
@@ -169,6 +188,8 @@ const formatPrice = (value) => {
 }
 
 const activeTierPrices = computed(() => collectTierPrices(activeVariant.value))
+
+
 const priceRangeText = computed(() => {
   const list = activeTierPrices.value
   if (!list.length) return ''
@@ -236,7 +257,12 @@ const priceRangeText = computed(() => {
           </div>
 
           <div v-if="activeTierPrices.length" class="product-detail__tiers">
-            <div v-for="t in activeTierPrices" :key="t.tierId" class="product-detail__tier">
+            <div
+                v-for="t in activeTierPrices"
+                :key="t.tierId"
+                class="product-detail__tier"
+              >
+
               <span class="product-detail__tier-name">{{ t.tierName }}</span>
               <span class="product-detail__tier-price">{{ formatPrice(t.price) }}</span>
             </div>
@@ -270,14 +296,14 @@ const priceRangeText = computed(() => {
                 :key="c.hex"
                 type="button"
                 class="product-detail__swatch"
-                :class="{ '--active': c.hex === selectedColor }"
+                :class="{ '--active': c.hex === dataFilter.color }"
                 :style="{ backgroundColor: c.hex }"
                 @click="
-                  selectedColor = c.hex;
+                  dataFilter.color = c.hex;
                   emit('update:color', c.hex);
                 "
               >
-                <span v-if="c.hex === selectedColor" class="product-detail__swatch-check">✓</span>
+                <span v-if="c.hex === dataFilter.color" class="product-detail__swatch-check">✓</span>
               </button>
             </div>
           </div>
@@ -292,13 +318,34 @@ const priceRangeText = computed(() => {
                 :key="s"
                 type="button"
                 class="product-detail__size"
-                :class="{ '--active': s === selectedSize }"
+                :class="{ '--active': s === dataFilter.size }"
                 @click="
-                  selectedSize = s;
+                  dataFilter.size = s;
                   emit('update:size', s);
                 "
               >
                 {{ s }}
+              </button>
+            </div>
+          </div>
+
+          <div v-if="minPrice" class="product-detail__min-price">
+            <div class="product-detail__min-price-main">
+              <span class="product-detail__min-price-label">
+                {{ $t('minPriceLabel') }}
+              </span>
+              <span class="product-detail__min-price-value">{{ formatPrice(minPrice) }}</span>
+            </div>
+            <div class="product-detail__min-price-tiers">
+              <button
+                v-for="(name, id) in tierNames"
+                :key="id"
+                type="button"
+                class="product-detail__min-price-tier"
+                :class="{ '--active': String(id) === String(dataFilter.tier_id) }"
+                @click="dataFilter.tier_id = id"
+              >
+                {{ name }}
               </button>
             </div>
           </div>
@@ -318,12 +365,12 @@ const priceRangeText = computed(() => {
           </div>
 
           <div class="product-detail__cta">
-            <button type="button" class="btn --outline-primary product-detail__cta-btn">
+            <a href="https://t.me/KunPressify" target="_blank" rel="noopener noreferrer" type="button" class="btn --outline-primary product-detail__cta-btn">
               Contact Support
-            </button>
-            <button type="button" class="btn --primary product-detail__cta-btn">
+            </a>
+            <a href="https://pressify.us/login" target="_blank" rel="noopener noreferrer" type="button" class="btn --primary product-detail__cta-btn">
               Get Started
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -361,7 +408,7 @@ const priceRangeText = computed(() => {
 
   &__image {
     border-radius: 14px;
-    background: rgb(0 0 0 / 0.02);
+    background-color: #fff;
     overflow: hidden;
     aspect-ratio: 1 / 1;
     display: flex;
@@ -417,10 +464,15 @@ const priceRangeText = computed(() => {
 
   &__title {
     margin-top: 6px;
-    font-size: 34px;
-    line-height: 40px;
     font-weight: 800;
+    font-size: 24px;
+    line-height: 32px;
     color: var(--color-title-section);
+
+    @media screen and (min-width: 768px) {
+      font-size: 34px;
+      line-height: 40px;
+    }
   }
 
   &__price {
@@ -622,6 +674,67 @@ const priceRangeText = computed(() => {
     color: rgb(0 0 0 / 0.7);
     background: rgb(0 0 0 / 0.02);
     cursor: pointer;
+  }
+
+  &__min-price {
+    margin-top: 20px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: rgb(from var(--color-orange) r g b / 0.08);
+    border: 1px dashed var(--color-orange);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__min-price-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  &__min-price-tiers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-top: 8px;
+    border-top: 1px solid rgb(from var(--color-orange) r g b / 0.15);
+  }
+
+  &__min-price-tier {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgb(0 0 0 / 0.05);
+    color: rgb(0 0 0 / 0.5);
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+
+    &.--active {
+      background: var(--color-orange);
+      color: #fff;
+    }
+
+    &:hover:not(.--active) {
+      background: rgb(0 0 0 / 0.1);
+      color: rgb(0 0 0 / 0.7);
+    }
+  }
+
+  &__min-price-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgb(0 0 0 / 0.65);
+  }
+
+  &__min-price-value {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--color-orange);
   }
 
   &__cta {

@@ -133,5 +133,6 @@
     "mailName": "Tên",
     "mailEmail": "Email"
   },
-  "qa": "Câu hỏi"
+  "qa": "Câu hỏi",
+  "minPriceLabel": "Giá từ"
 }

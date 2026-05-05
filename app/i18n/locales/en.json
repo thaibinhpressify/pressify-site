@@ -133,5 +133,6 @@
       "clear": "Clear Filters"
     }
   },
-  "qa": "Q&A"
+  "qa": "Q&A",
+  "minPriceLabel": "Price from"
 }

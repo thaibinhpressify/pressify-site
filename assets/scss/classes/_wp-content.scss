@@ -71,4 +71,10 @@
     color: var(--color-orange);
     border: 1.5px solid var(--color-orange);
   }
+
+  .auto {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 }
