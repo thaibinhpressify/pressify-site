@@ -218,7 +218,11 @@ const fetchTemplateSize = async () => {
       `https://pressify.us/api/product-templates/${id}?size=${encodeURIComponent(size)}`,
     )
     const payload = response?.data ?? response
-    templateSize.value = payload && typeof payload === 'object' ? payload : null
+    if (payload == null) {
+      templateSize.value = null
+      return
+    }
+    templateSize.value = Array.isArray(payload) ? payload : [payload]
   } catch {
     templateSize.value = null
   }
@@ -232,19 +236,17 @@ watch(
   { immediate: true },
 )
 
-const templateDimensionsText = computed(() => {
-  const t = templateSize.value
-  if (!t) return ''
-  const w = toNumber(t.width)
-  const h = toNumber(t.height)
-  if (w === null || h === null) return ''
+const formatTemplateDimensions = (row) => {
+  const w = toNumber(row?.width)
+  const h = toNumber(row?.height)
+  if (w === null || h === null) return '—'
   return `${w} × ${h} px`
-})
+}
 
-const templateDpiText = computed(() => {
-  const d = toNumber(templateSize.value?.dpi)
-  return d === null ? '' : `${d} DPI`
-})
+const formatTemplateDpi = (row) => {
+  const d = toNumber(row?.dpi)
+  return d === null ? '—' : String(d)
+}
 
 const onSizeClick = (size) => {
   dataFilter.value.size = size
@@ -413,21 +415,31 @@ const activeAccessories = computed(() => {
           </div>
 
           <div
-            v-if="templateSize && (templateDimensionsText || templateDpiText)"
+            v-if="templateSize && templateSize.length > 0"
             class="product-detail__template"
           >
             <div class="product-detail__label">
               Template
             </div>
-            <div class="product-detail__kv product-detail__kv--nested">
-              <div v-if="templateDimensionsText" class="product-detail__kv-item">
-                <span class="product-detail__kv-label">Size</span>
-                <span class="product-detail__kv-value">{{ templateDimensionsText }}</span>
-              </div>
-              <div v-if="templateSize.side" class="product-detail__kv-item">
-                <span class="product-detail__kv-label">Side</span>
-                <span class="product-detail__kv-value">{{ templateSize.side }}</span>
-              </div>
+            <div class="product-detail__template-scroll">
+              <table class="product-detail__template-table">
+                <thead>
+                  <tr>
+                    <th>Size</th>
+                    <th>Dimensions</th>
+                    <th>DPI</th>
+                    <th>Side</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="t in templateSize" :key="t.id">
+                    <td>{{ t.size || 'All' }}</td>
+                    <td>{{ formatTemplateDimensions(t) }}</td>
+                    <td>{{ formatTemplateDpi(t) }}</td>
+                    <td>{{ t.side || '—' }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 
@@ -637,15 +649,55 @@ const activeAccessories = computed(() => {
     margin-top: 20px;
   }
 
+  &__template-scroll {
+    margin-top: 10px;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid rgb(0 0 0 / 0.08);
+    background: rgb(0 0 0 / 0.02);
+  }
+
+  &__template-table {
+    width: 100%;
+    min-width: 480px;
+    border-collapse: collapse;
+    font-size: 12px;
+    line-height: 16px;
+
+    th,
+    td {
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: middle;
+      border-bottom: 1px solid rgb(0 0 0 / 0.06);
+    }
+
+    th {
+      font-weight: 800;
+      color: rgb(0 0 0 / 0.55);
+      background: rgb(255 255 255 / 0.7);
+      white-space: nowrap;
+    }
+
+    td {
+      font-weight: 600;
+      color: rgb(0 0 0 / 0.82);
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover td {
+      background: rgb(255 255 255 / 0.45);
+    }
+  }
+
   &__kv {
     margin-top: 12px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
-
-    &--nested {
-      margin-top: 10px;
-    }
   }
 
   &__kv-item {
