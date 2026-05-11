@@ -204,6 +204,53 @@ const priceRangeText = computed(() => {
   return `${formatPrice(min)} - ${formatPrice(max)}`
 })
 
+const templateSize = ref(null)
+
+const fetchTemplateSize = async () => {
+  const id = props.product?.id
+  const size = String(dataFilter.value.size || '').trim()
+  if (!id || !size) {
+    templateSize.value = null
+    return
+  }
+  try {
+    const response = await $fetch(
+      `https://pressify.us/api/product-templates/${id}?size=${encodeURIComponent(size)}`,
+    )
+    const payload = response?.data ?? response
+    templateSize.value = payload && typeof payload === 'object' ? payload : null
+  } catch {
+    templateSize.value = null
+  }
+}
+
+watch(
+  [() => props.product?.id, () => dataFilter.value.size],
+  () => {
+    fetchTemplateSize()
+  },
+  { immediate: true },
+)
+
+const templateDimensionsText = computed(() => {
+  const t = templateSize.value
+  if (!t) return ''
+  const w = toNumber(t.width)
+  const h = toNumber(t.height)
+  if (w === null || h === null) return ''
+  return `${w} × ${h} px`
+})
+
+const templateDpiText = computed(() => {
+  const d = toNumber(templateSize.value?.dpi)
+  return d === null ? '' : `${d} DPI`
+})
+
+const onSizeClick = (size) => {
+  dataFilter.value.size = size
+  emit('update:size', size)
+}
+
 const activeAccessories = computed(() => {
   const tierId = String(dataFilter.value.tier_id)
   return props.accessories.map(acc => {
@@ -358,13 +405,29 @@ const activeAccessories = computed(() => {
                 type="button"
                 class="product-detail__size"
                 :class="{ '--active': s === dataFilter.size }"
-                @click="
-                  dataFilter.size = s;
-                  emit('update:size', s);
-                "
+                @click="onSizeClick(s)"
               >
                 {{ s }}
               </button>
+            </div>
+          </div>
+
+          <div
+            v-if="templateSize && (templateDimensionsText || templateDpiText)"
+            class="product-detail__template"
+          >
+            <div class="product-detail__label">
+              Template
+            </div>
+            <div class="product-detail__kv product-detail__kv--nested">
+              <div v-if="templateDimensionsText" class="product-detail__kv-item">
+                <span class="product-detail__kv-label">Size</span>
+                <span class="product-detail__kv-value">{{ templateDimensionsText }}</span>
+              </div>
+              <div v-if="templateSize.side" class="product-detail__kv-item">
+                <span class="product-detail__kv-label">Side</span>
+                <span class="product-detail__kv-value">{{ templateSize.side }}</span>
+              </div>
             </div>
           </div>
 
@@ -570,11 +633,19 @@ const activeAccessories = computed(() => {
     color: rgb(0 0 0 / 0.75);
   }
 
+  &__template {
+    margin-top: 20px;
+  }
+
   &__kv {
     margin-top: 12px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
+
+    &--nested {
+      margin-top: 10px;
+    }
   }
 
   &__kv-item {
