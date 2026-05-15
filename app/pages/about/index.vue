@@ -3,13 +3,16 @@ import HeaderSection from "~/components/sections/HeaderSection.vue";
 import { useWpStore } from "~~/stores/wp";
 
 const { locale } = useI18n();
+const config = useRuntimeConfig();
+const defaultOgImage = computed(() => getDefaultOgImageUrl(String(config.public.siteUrl || "")));
 
 useSeoMeta({
   title: "About",
   description: "About Pressify.",
   ogTitle: "About",
   ogDescription: "About Pressify.",
-  ogImage: "/logo.png",
+  ogImage: defaultOgImage,
+  twitterImage: defaultOgImage,
   ogType: "website",
   ogUrl: `${locale.value}/about/`,
   ogLocale: locale.value,

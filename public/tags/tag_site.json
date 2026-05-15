@@ -1,0 +1,1736 @@
+{
+  "name": "pressify.us",
+  "version": 2,
+  "timestamp": 1778837441931,
+  "data": {
+    "debugContext": "WEB",
+    "domainDetails": {
+      "enabled": true,
+      "startUrl": "https://blog.pressify.us/",
+      "includeDebugParam": true,
+      "domainName": "pressify.us",
+      "containers": [
+        "GTM-KPF5R79W"
+      ],
+      "createdTime": 1778837441931,
+      "lastUpdatedTime": 1778837441931
+    },
+    "containers": [
+      {
+        "type": 0,
+        "publicId": "GTM-KPF5R79W",
+        "canonicalId": "252513975",
+        "aliases": [
+          "GTM-KPF5R79W"
+        ],
+        "destinations": [],
+        "version": "QUICK_PREVIEW",
+        "product": "GTM",
+        "containerDetails": {
+          "publicId": "GTM-KPF5R79W",
+          "container": {
+            "type": "TAG_MANAGER",
+            "canonicalId": "252513975",
+            "auth": "kQsBQDdfUvVOdpHGzW0JLw",
+            "preview": "env-3",
+            "id": "GTM-KPF5R79W"
+          },
+          "createdTime": 1778837234434
+        },
+        "messages": [
+          {
+            "index": 5,
+            "eventNameKey": "gtm.load",
+            "navType": "MESSAGE",
+            "consentData": {
+              "consentList": [
+                {
+                  "type": "ad_storage",
+                  "status": "granted"
+                },
+                {
+                  "type": "analytics_storage",
+                  "status": "granted"
+                },
+                {
+                  "type": "ad_user_data",
+                  "status": "granted"
+                },
+                {
+                  "type": "ad_personalization",
+                  "status": "granted"
+                }
+              ],
+              "consentStatus": {
+                "default": false,
+                "update": false,
+                "tcf": false,
+                "wasSetLate": false,
+                "usedContainerConsent": false
+              },
+              "fullConsentList": {
+                "ad_storage": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "analytics_storage": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "ad_user_data": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "ad_personalization": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                }
+              }
+            },
+            "title": "Cửa sổ được tải",
+            "eventName": "gtm.load",
+            "tagInfo": [],
+            "groupId": "8502944791689002",
+            "eventId": 5,
+            "ruleInfo": [],
+            "message": {
+              "event": "gtm.load",
+              "gtm.uniqueEventId": 5
+            },
+            "messageString": "{event: \"gtm.load\", gtm.uniqueEventId: 5}",
+            "abstractModelString": "{event: \"gtm.load\", gtm: {uniqueEventId: 5, start: 1778837374373}}",
+            "macroInfo": [
+              {
+                "name": "Page URL",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"URL\"",
+                      "\"URL\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "https://blog.pressify.us/en?gtm_debug=1778837373166",
+                "resolvedValue": "\"https://blog.pressify.us/en?gtm_debug=1778837373166\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Page Hostname",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"HOST\"",
+                      "\"HOST\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "blog.pressify.us",
+                "resolvedValue": "\"blog.pressify.us\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Page Path",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"PATH\"",
+                      "\"PATH\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "/en",
+                "resolvedValue": "\"/en\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Referrer",
+                "variablePublicId": "f",
+                "variableType": "Liên kết giới thiệu HTTP",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"URL\"",
+                      "\"URL\""
+                    ]
+                  }
+                ],
+                "internalParams": [],
+                "rawResolvedValue": "https://tagassistant.google.com/",
+                "resolvedValue": "\"https://tagassistant.google.com/\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Event",
+                "variablePublicId": "e",
+                "variableType": "Sự kiện tùy chỉnh",
+                "returnType": "string",
+                "params": [],
+                "internalParams": [],
+                "rawResolvedValue": "gtm.load",
+                "resolvedValue": "\"gtm.load\"",
+                "debugMetadata": {},
+                "isHidden": false
+              }
+            ],
+            "abstractModel": {
+              "event": "gtm.load",
+              "gtm": {
+                "uniqueEventId": 5,
+                "start": 1778837374373
+              }
+            }
+          },
+          {
+            "index": 4,
+            "eventNameKey": "gtm.dom",
+            "navType": "MESSAGE",
+            "consentData": {
+              "consentList": [
+                {
+                  "type": "ad_storage",
+                  "status": "granted"
+                },
+                {
+                  "type": "analytics_storage",
+                  "status": "granted"
+                },
+                {
+                  "type": "ad_user_data",
+                  "status": "granted"
+                },
+                {
+                  "type": "ad_personalization",
+                  "status": "granted"
+                }
+              ],
+              "consentStatus": {
+                "default": false,
+                "update": false,
+                "tcf": false,
+                "wasSetLate": false,
+                "usedContainerConsent": false
+              },
+              "fullConsentList": {
+                "ad_storage": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "analytics_storage": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "ad_user_data": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "ad_personalization": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                }
+              }
+            },
+            "title": "DOM sẵn sàng",
+            "eventName": "gtm.dom",
+            "tagInfo": [],
+            "groupId": "8502944791689002",
+            "eventId": 4,
+            "ruleInfo": [],
+            "message": {
+              "event": "gtm.dom",
+              "gtm.uniqueEventId": 4
+            },
+            "messageString": "{event: \"gtm.dom\", gtm.uniqueEventId: 4}",
+            "abstractModelString": "{event: \"gtm.dom\", gtm: {uniqueEventId: 4, start: 1778837374373}}",
+            "macroInfo": [
+              {
+                "name": "Page URL",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"URL\"",
+                      "\"URL\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "https://blog.pressify.us/en?gtm_debug=1778837373166",
+                "resolvedValue": "\"https://blog.pressify.us/en?gtm_debug=1778837373166\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Page Hostname",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"HOST\"",
+                      "\"HOST\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "blog.pressify.us",
+                "resolvedValue": "\"blog.pressify.us\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Page Path",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"PATH\"",
+                      "\"PATH\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "/en",
+                "resolvedValue": "\"/en\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Referrer",
+                "variablePublicId": "f",
+                "variableType": "Liên kết giới thiệu HTTP",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"URL\"",
+                      "\"URL\""
+                    ]
+                  }
+                ],
+                "internalParams": [],
+                "rawResolvedValue": "https://tagassistant.google.com/",
+                "resolvedValue": "\"https://tagassistant.google.com/\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Event",
+                "variablePublicId": "e",
+                "variableType": "Sự kiện tùy chỉnh",
+                "returnType": "string",
+                "params": [],
+                "internalParams": [],
+                "rawResolvedValue": "gtm.dom",
+                "resolvedValue": "\"gtm.dom\"",
+                "debugMetadata": {},
+                "isHidden": false
+              }
+            ],
+            "abstractModel": {
+              "event": "gtm.dom",
+              "gtm": {
+                "uniqueEventId": 4,
+                "start": 1778837374373
+              }
+            }
+          },
+          {
+            "index": 3,
+            "eventNameKey": "gtm.js",
+            "navType": "MESSAGE",
+            "consentData": {
+              "consentList": [
+                {
+                  "type": "ad_storage",
+                  "status": "granted"
+                },
+                {
+                  "type": "analytics_storage",
+                  "status": "granted"
+                },
+                {
+                  "type": "ad_user_data",
+                  "status": "granted"
+                },
+                {
+                  "type": "ad_personalization",
+                  "status": "granted"
+                }
+              ],
+              "consentStatus": {
+                "default": false,
+                "update": false,
+                "tcf": false,
+                "wasSetLate": false,
+                "usedContainerConsent": false
+              },
+              "fullConsentList": {
+                "ad_storage": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "analytics_storage": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "ad_user_data": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "ad_personalization": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                }
+              }
+            },
+            "title": "Đã tải vùng chứa",
+            "eventName": "gtm.js",
+            "tagInfo": [],
+            "groupId": "8502944791689002",
+            "eventId": 3,
+            "ruleInfo": [],
+            "message": {
+              "gtm.start": 1778837374373,
+              "event": "gtm.js",
+              "gtm.uniqueEventId": 3
+            },
+            "messageString": "{gtm.start: 1778837374373, event: \"gtm.js\", gtm.uniqueEventId: 3}",
+            "abstractModelString": "{event: \"gtm.js\", gtm: {uniqueEventId: 3, start: 1778837374373}}",
+            "macroInfo": [
+              {
+                "name": "Page URL",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"URL\"",
+                      "\"URL\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "https://blog.pressify.us/en?gtm_debug=1778837373166",
+                "resolvedValue": "\"https://blog.pressify.us/en?gtm_debug=1778837373166\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Page Hostname",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"HOST\"",
+                      "\"HOST\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "blog.pressify.us",
+                "resolvedValue": "\"blog.pressify.us\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Page Path",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"PATH\"",
+                      "\"PATH\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "/en",
+                "resolvedValue": "\"/en\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Referrer",
+                "variablePublicId": "f",
+                "variableType": "Liên kết giới thiệu HTTP",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"URL\"",
+                      "\"URL\""
+                    ]
+                  }
+                ],
+                "internalParams": [],
+                "rawResolvedValue": "https://tagassistant.google.com/",
+                "resolvedValue": "\"https://tagassistant.google.com/\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Event",
+                "variablePublicId": "e",
+                "variableType": "Sự kiện tùy chỉnh",
+                "returnType": "string",
+                "params": [],
+                "internalParams": [],
+                "rawResolvedValue": "gtm.js",
+                "resolvedValue": "\"gtm.js\"",
+                "debugMetadata": {},
+                "isHidden": false
+              }
+            ],
+            "abstractModel": {
+              "event": "gtm.js",
+              "gtm": {
+                "uniqueEventId": 3,
+                "start": 1778837374373
+              }
+            }
+          },
+          {
+            "index": 2,
+            "eventNameKey": "gtm.init",
+            "navType": "MESSAGE",
+            "consentData": {
+              "consentList": [
+                {
+                  "type": "ad_storage",
+                  "status": "granted"
+                },
+                {
+                  "type": "analytics_storage",
+                  "status": "granted"
+                },
+                {
+                  "type": "ad_user_data",
+                  "status": "granted"
+                },
+                {
+                  "type": "ad_personalization",
+                  "status": "granted"
+                }
+              ],
+              "consentStatus": {
+                "default": false,
+                "update": false,
+                "tcf": false,
+                "wasSetLate": false,
+                "usedContainerConsent": false
+              },
+              "fullConsentList": {
+                "ad_storage": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "analytics_storage": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "ad_user_data": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "ad_personalization": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                }
+              }
+            },
+            "title": "Khởi chạy",
+            "eventName": "gtm.init",
+            "tagInfo": [],
+            "groupId": "8502944791689002",
+            "eventId": 2,
+            "ruleInfo": [],
+            "message": {
+              "event": "gtm.init",
+              "gtm.uniqueEventId": 2
+            },
+            "messageString": "{event: \"gtm.init\", gtm.uniqueEventId: 2}",
+            "abstractModelString": "{event: \"gtm.init\", gtm: {uniqueEventId: 2}}",
+            "macroInfo": [
+              {
+                "name": "Page URL",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"URL\"",
+                      "\"URL\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "https://blog.pressify.us/en?gtm_debug=1778837373166",
+                "resolvedValue": "\"https://blog.pressify.us/en?gtm_debug=1778837373166\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Page Hostname",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"HOST\"",
+                      "\"HOST\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "blog.pressify.us",
+                "resolvedValue": "\"blog.pressify.us\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Page Path",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"PATH\"",
+                      "\"PATH\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "/en",
+                "resolvedValue": "\"/en\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Referrer",
+                "variablePublicId": "f",
+                "variableType": "Liên kết giới thiệu HTTP",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"URL\"",
+                      "\"URL\""
+                    ]
+                  }
+                ],
+                "internalParams": [],
+                "rawResolvedValue": "https://tagassistant.google.com/",
+                "resolvedValue": "\"https://tagassistant.google.com/\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Event",
+                "variablePublicId": "e",
+                "variableType": "Sự kiện tùy chỉnh",
+                "returnType": "string",
+                "params": [],
+                "internalParams": [],
+                "rawResolvedValue": "gtm.init",
+                "resolvedValue": "\"gtm.init\"",
+                "debugMetadata": {},
+                "isHidden": false
+              }
+            ],
+            "abstractModel": {
+              "event": "gtm.init",
+              "gtm": {
+                "uniqueEventId": 2
+              }
+            }
+          },
+          {
+            "index": 1,
+            "eventNameKey": "gtm.init_consent",
+            "navType": "MESSAGE",
+            "consentData": {
+              "consentList": [
+                {
+                  "type": "ad_storage",
+                  "status": "granted"
+                },
+                {
+                  "type": "analytics_storage",
+                  "status": "granted"
+                },
+                {
+                  "type": "ad_user_data",
+                  "status": "granted"
+                },
+                {
+                  "type": "ad_personalization",
+                  "status": "granted"
+                }
+              ],
+              "consentStatus": {
+                "default": false,
+                "update": false,
+                "tcf": false,
+                "wasSetLate": false,
+                "usedContainerConsent": false
+              },
+              "fullConsentList": {
+                "ad_storage": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "analytics_storage": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "ad_user_data": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "ad_personalization": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                }
+              }
+            },
+            "title": "Hoạt động tiến hành lấy sự đồng ý",
+            "eventName": "gtm.init_consent",
+            "tagInfo": [],
+            "groupId": "8502944791689002",
+            "eventId": 1,
+            "ruleInfo": [],
+            "message": {
+              "event": "gtm.init_consent",
+              "gtm.uniqueEventId": 1
+            },
+            "messageString": "{event: \"gtm.init_consent\", gtm.uniqueEventId: 1}",
+            "abstractModelString": "{event: \"gtm.init_consent\", gtm: {uniqueEventId: 1}}",
+            "macroInfo": [
+              {
+                "name": "Page URL",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"URL\"",
+                      "\"URL\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "https://blog.pressify.us/en?gtm_debug=1778837373166",
+                "resolvedValue": "\"https://blog.pressify.us/en?gtm_debug=1778837373166\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Page Hostname",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"HOST\"",
+                      "\"HOST\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "blog.pressify.us",
+                "resolvedValue": "\"blog.pressify.us\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Page Path",
+                "variablePublicId": "u",
+                "variableType": "URL",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"PATH\"",
+                      "\"PATH\""
+                    ]
+                  }
+                ],
+                "internalParams": [
+                  {
+                    "key": "vtp_enableMultiQueryKeys",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  },
+                  {
+                    "key": "vtp_enableIgnoreEmptyQueryParam",
+                    "name": "",
+                    "value": [
+                      "false",
+                      "false"
+                    ]
+                  }
+                ],
+                "rawResolvedValue": "/en",
+                "resolvedValue": "\"/en\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Referrer",
+                "variablePublicId": "f",
+                "variableType": "Liên kết giới thiệu HTTP",
+                "returnType": "string",
+                "params": [
+                  {
+                    "key": "vtp_component",
+                    "name": "Loại thành phần",
+                    "value": [
+                      "\"URL\"",
+                      "\"URL\""
+                    ]
+                  }
+                ],
+                "internalParams": [],
+                "rawResolvedValue": "https://tagassistant.google.com/",
+                "resolvedValue": "\"https://tagassistant.google.com/\"",
+                "debugMetadata": {},
+                "isHidden": false
+              },
+              {
+                "name": "Event",
+                "variablePublicId": "e",
+                "variableType": "Sự kiện tùy chỉnh",
+                "returnType": "string",
+                "params": [],
+                "internalParams": [],
+                "rawResolvedValue": "gtm.init_consent",
+                "resolvedValue": "\"gtm.init_consent\"",
+                "debugMetadata": {},
+                "isHidden": false
+              }
+            ],
+            "abstractModel": {
+              "event": "gtm.init_consent",
+              "gtm": {
+                "uniqueEventId": 1
+              }
+            }
+          }
+        ],
+        "tagsFired": {},
+        "isNonDebuggable": false,
+        "summaryLogInfos": [],
+        "numTaggedPages": 1,
+        "numPages": 1,
+        "errorCount": 0,
+        "logCount": 0,
+        "groups": [
+          {
+            "navType": "GROUP",
+            "messageCount": 5,
+            "memoCount": 16,
+            "logInfo": [],
+            "consentData": {
+              "consentList": [
+                {
+                  "type": "ad_storage",
+                  "status": "granted"
+                },
+                {
+                  "type": "analytics_storage",
+                  "status": "granted"
+                },
+                {
+                  "type": "ad_user_data",
+                  "status": "granted"
+                },
+                {
+                  "type": "ad_personalization",
+                  "status": "granted"
+                }
+              ],
+              "fullConsentList": {
+                "ad_storage": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "analytics_storage": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "ad_user_data": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                },
+                "ad_personalization": {
+                  "consentEntry": {
+                    "implicit": true
+                  },
+                  "isConsentGranted": true
+                }
+              },
+              "consentStatus": {
+                "default": false,
+                "update": false,
+                "tcf": false,
+                "wasSetLate": false,
+                "usedContainerConsent": false
+              }
+            },
+            "groupId": "8502944791689002",
+            "title": "· Pressify",
+            "navTitle": "· Pressify",
+            "url": "https://blog.pressify.us/en?gtm_debug=1778837373166"
+          },
+          {
+            "navType": "GROUP",
+            "title": "",
+            "navTitle": "",
+            "logInfo": [],
+            "messageCount": 0,
+            "memoCount": 0
+          }
+        ],
+        "vendorTemplates": {
+          "Preview Environment 2 2026-05-15 022712": {
+            "containerName": "blog.pressify.us",
+            "environmentName": "Preview Environment 2 2026-05-15 022712",
+            "environmentLinkType": 4,
+            "vendorTemplateTypes": {
+              "e": {
+                "publicId": "e",
+                "displayName": {
+                  "text": [
+                    {
+                      "type": 1,
+                      "value": "Sự kiện tùy chỉnh",
+                      "containerContext": [
+                        0,
+                        2,
+                        1
+                      ],
+                      "enablingCondition": [],
+                      "product": [],
+                      "translations": []
+                    }
+                  ]
+                },
+                "param": [],
+                "type": 2,
+                "thumbnail": ""
+              },
+              "f": {
+                "publicId": "f",
+                "displayName": {
+                  "text": [
+                    {
+                      "type": 1,
+                      "value": "Liên kết giới thiệu HTTP",
+                      "containerContext": [],
+                      "enablingCondition": [],
+                      "product": [],
+                      "translations": []
+                    }
+                  ]
+                },
+                "param": [
+                  {
+                    "name": "stripWww",
+                    "type": 7,
+                    "displayName": {
+                      "text": [
+                        {
+                          "type": 1,
+                          "value": "Bỏ 'www.'",
+                          "containerContext": [],
+                          "enablingCondition": [],
+                          "product": [],
+                          "translations": []
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "component",
+                    "type": 5,
+                    "displayName": {
+                      "text": [
+                        {
+                          "type": 1,
+                          "value": "Loại thành phần",
+                          "containerContext": [],
+                          "enablingCondition": [],
+                          "product": [],
+                          "translations": []
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "defaultPages",
+                    "type": 4,
+                    "displayName": {
+                      "text": [
+                        {
+                          "type": 1,
+                          "value": "Trang mặc định",
+                          "containerContext": [],
+                          "enablingCondition": [],
+                          "product": [],
+                          "translations": []
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "queryKey",
+                    "type": 4,
+                    "displayName": {
+                      "text": [
+                        {
+                          "type": 1,
+                          "value": "Khóa truy vấn",
+                          "containerContext": [],
+                          "enablingCondition": [],
+                          "product": [],
+                          "translations": []
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "type": 2,
+                "thumbnail": ""
+              },
+              "u": {
+                "publicId": "u",
+                "displayName": {
+                  "text": [
+                    {
+                      "type": 1,
+                      "value": "URL",
+                      "containerContext": [],
+                      "enablingCondition": [],
+                      "product": [],
+                      "translations": []
+                    }
+                  ]
+                },
+                "param": [
+                  {
+                    "name": "stripWww",
+                    "type": 7,
+                    "displayName": {
+                      "text": [
+                        {
+                          "type": 1,
+                          "value": "Bỏ 'www.'",
+                          "containerContext": [],
+                          "enablingCondition": [],
+                          "product": [],
+                          "translations": []
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "component",
+                    "type": 5,
+                    "displayName": {
+                      "text": [
+                        {
+                          "type": 1,
+                          "value": "Loại thành phần",
+                          "containerContext": [],
+                          "enablingCondition": [],
+                          "product": [],
+                          "translations": []
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "defaultPages",
+                    "type": 4,
+                    "displayName": {
+                      "text": [
+                        {
+                          "type": 1,
+                          "value": "Trang mặc định",
+                          "containerContext": [],
+                          "enablingCondition": [],
+                          "product": [],
+                          "translations": []
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "queryKey",
+                    "type": 4,
+                    "displayName": {
+                      "text": [
+                        {
+                          "type": 1,
+                          "value": "Khóa truy vấn",
+                          "containerContext": [],
+                          "enablingCondition": [],
+                          "product": [],
+                          "translations": []
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "moreSettings",
+                    "type": 1,
+                    "displayName": {
+                      "text": [
+                        {
+                          "type": 1,
+                          "value": "Chế độ cài đặt khác",
+                          "containerContext": [],
+                          "enablingCondition": [],
+                          "product": [],
+                          "translations": []
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "customUrlSource",
+                    "type": 5,
+                    "displayName": {
+                      "text": [
+                        {
+                          "type": 1,
+                          "value": "Nguồn URL",
+                          "containerContext": [],
+                          "enablingCondition": [],
+                          "product": [],
+                          "translations": []
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "multiQueryKeys",
+                    "type": 7,
+                    "displayName": {
+                      "text": [
+                        {
+                          "type": 1,
+                          "value": "Hỗ trợ tách nhiều khóa truy vấn bằng dấu phẩy",
+                          "containerContext": [],
+                          "enablingCondition": [],
+                          "product": [],
+                          "translations": []
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "ignoreEmptyQueryParam",
+                    "type": 7,
+                    "displayName": {
+                      "text": [
+                        {
+                          "type": 1,
+                          "value": "Bỏ qua tham số truy vấn trống",
+                          "containerContext": [],
+                          "enablingCondition": [],
+                          "product": [],
+                          "translations": []
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "type": 2,
+                "thumbnail": ""
+              }
+            },
+            "paramMaps": {
+              "e": {},
+              "f": {
+                "stripWww": {
+                  "name": "stripWww",
+                  "type": 7,
+                  "displayName": {
+                    "text": [
+                      {
+                        "type": 1,
+                        "value": "Bỏ 'www.'",
+                        "containerContext": [],
+                        "enablingCondition": [],
+                        "product": [],
+                        "translations": []
+                      }
+                    ]
+                  }
+                },
+                "component": {
+                  "name": "component",
+                  "type": 5,
+                  "displayName": {
+                    "text": [
+                      {
+                        "type": 1,
+                        "value": "Loại thành phần",
+                        "containerContext": [],
+                        "enablingCondition": [],
+                        "product": [],
+                        "translations": []
+                      }
+                    ]
+                  }
+                },
+                "defaultPages": {
+                  "name": "defaultPages",
+                  "type": 4,
+                  "displayName": {
+                    "text": [
+                      {
+                        "type": 1,
+                        "value": "Trang mặc định",
+                        "containerContext": [],
+                        "enablingCondition": [],
+                        "product": [],
+                        "translations": []
+                      }
+                    ]
+                  }
+                },
+                "queryKey": {
+                  "name": "queryKey",
+                  "type": 4,
+                  "displayName": {
+                    "text": [
+                      {
+                        "type": 1,
+                        "value": "Khóa truy vấn",
+                        "containerContext": [],
+                        "enablingCondition": [],
+                        "product": [],
+                        "translations": []
+                      }
+                    ]
+                  }
+                }
+              },
+              "u": {
+                "stripWww": {
+                  "name": "stripWww",
+                  "type": 7,
+                  "displayName": {
+                    "text": [
+                      {
+                        "type": 1,
+                        "value": "Bỏ 'www.'",
+                        "containerContext": [],
+                        "enablingCondition": [],
+                        "product": [],
+                        "translations": []
+                      }
+                    ]
+                  }
+                },
+                "component": {
+                  "name": "component",
+                  "type": 5,
+                  "displayName": {
+                    "text": [
+                      {
+                        "type": 1,
+                        "value": "Loại thành phần",
+                        "containerContext": [],
+                        "enablingCondition": [],
+                        "product": [],
+                        "translations": []
+                      }
+                    ]
+                  }
+                },
+                "defaultPages": {
+                  "name": "defaultPages",
+                  "type": 4,
+                  "displayName": {
+                    "text": [
+                      {
+                        "type": 1,
+                        "value": "Trang mặc định",
+                        "containerContext": [],
+                        "enablingCondition": [],
+                        "product": [],
+                        "translations": []
+                      }
+                    ]
+                  }
+                },
+                "queryKey": {
+                  "name": "queryKey",
+                  "type": 4,
+                  "displayName": {
+                    "text": [
+                      {
+                        "type": 1,
+                        "value": "Khóa truy vấn",
+                        "containerContext": [],
+                        "enablingCondition": [],
+                        "product": [],
+                        "translations": []
+                      }
+                    ]
+                  }
+                },
+                "moreSettings": {
+                  "name": "moreSettings",
+                  "type": 1,
+                  "displayName": {
+                    "text": [
+                      {
+                        "type": 1,
+                        "value": "Chế độ cài đặt khác",
+                        "containerContext": [],
+                        "enablingCondition": [],
+                        "product": [],
+                        "translations": []
+                      }
+                    ]
+                  }
+                },
+                "customUrlSource": {
+                  "name": "customUrlSource",
+                  "type": 5,
+                  "displayName": {
+                    "text": [
+                      {
+                        "type": 1,
+                        "value": "Nguồn URL",
+                        "containerContext": [],
+                        "enablingCondition": [],
+                        "product": [],
+                        "translations": []
+                      }
+                    ]
+                  }
+                },
+                "multiQueryKeys": {
+                  "name": "multiQueryKeys",
+                  "type": 7,
+                  "displayName": {
+                    "text": [
+                      {
+                        "type": 1,
+                        "value": "Hỗ trợ tách nhiều khóa truy vấn bằng dấu phẩy",
+                        "containerContext": [],
+                        "enablingCondition": [],
+                        "product": [],
+                        "translations": []
+                      }
+                    ]
+                  }
+                },
+                "ignoreEmptyQueryParam": {
+                  "name": "ignoreEmptyQueryParam",
+                  "type": 7,
+                  "displayName": {
+                    "text": [
+                      {
+                        "type": 1,
+                        "value": "Bỏ qua tham số truy vấn trống",
+                        "containerContext": [],
+                        "enablingCondition": [],
+                        "product": [],
+                        "translations": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "pageSummaries": {
+          "8502944791689002": {
+            "href": "https://blog.pressify.us/en?gtm_debug=1778837373166",
+            "title": "· Pressify",
+            "referrer": "https://tagassistant.google.com/",
+            "readyState": "complete",
+            "groupId": "8502944791689002"
+          }
+        },
+        "containerLoadInfoByGroupId": {
+          "8502944791689002": {
+            "targetId": "GTM-KPF5R79W",
+            "containerLoadSource": 0,
+            "gtg": {
+              "source": 3,
+              "mPath": ""
+            }
+          }
+        },
+        "tagName": "blog.pressify.us",
+        "environmentName": "Preview Environment 2 2026-05-15 022712",
+        "environmentLinkType": 4
+      }
+    ]
+  }
+}

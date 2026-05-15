@@ -13,12 +13,18 @@ const { data: page, pending, error } = await useAsyncData(
   { watch: [locale], server: false }
 );
 
+const config = useRuntimeConfig();
+const defaultOgImage = computed(() =>
+  resolveOgImageUrl(page.value?.featuredImage?.source ?? undefined, String(config.public.siteUrl || ""))
+);
+
 useSeoMeta({
   title: locale.value === 'en' ? "Privacy Policy" : "Chính sách bảo mật Pressify",
   description: locale.value === 'en' ? page?.value?.content || '' : "Read Pressify privacy policy.",
   ogTitle: locale.value === 'en' ? "Privacy Policy" : "Chính sách bảo mật Pressify",
   ogType: 'article',
-  ogImage: page?.value?.featuredImage?.source || '',
+  ogImage: defaultOgImage,
+  twitterImage: defaultOgImage,
   ogDescription: locale.value === 'en' ? page?.value?.content || '' : "Read Pressify privacy policy.",
 });
 </script>

@@ -28,6 +28,8 @@ const canonicalUrl = computed(() => {
   return `${base}${pathname}`
 })
 
+const defaultOgImage = computed(() => getDefaultOgImageUrl(siteUrl.value))
+
 useHead(() => ({
   htmlAttrs: {
     lang: locale.value,
@@ -48,7 +50,10 @@ useSeoMeta({
   ogUrl: canonicalUrl,
   ogType: 'website',
   ogLocale: computed(() => locale.value),
+  ogImage: defaultOgImage,
+  ogImageAlt: siteName,
   twitterCard: 'summary_large_image',
+  twitterImage: defaultOgImage,
   twitterSite: siteName,
 })
 </script>

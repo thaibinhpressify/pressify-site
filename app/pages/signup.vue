@@ -599,11 +599,18 @@ useHead(() => ({
   title: t("signupPage.seoTitle"),
 }));
 
+const defaultOgImage = computed(() => getDefaultOgImageUrl(String(config.public.siteUrl || "")));
+
 useSeoMeta({
   title: computed(() => `${t("signupPage.seoTitle")} · ${siteName.value}`),
   description: computed(() => t("signupPage.tagline")),
   ogTitle: computed(() => `${t("signupPage.seoTitle")} · ${siteName.value}`),
+  ogDescription: computed(() => t("signupPage.tagline")),
   ogLocale: computed(() => locale.value),
+  ogImage: defaultOgImage,
+  ogImageAlt: siteName,
+  twitterCard: "summary_large_image",
+  twitterImage: defaultOgImage,
 });
 </script>
 

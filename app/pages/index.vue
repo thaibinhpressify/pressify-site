@@ -12,15 +12,7 @@ const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const config = useRuntimeConfig()
 
-const siteUrl = String(config.public.siteUrl || 'http://localhost:3000').replace(/\/+$/, '') ?? ''
-const defaultOgImage = `${siteUrl}/logo.png`
-
-function toAbsoluteOgImage(url: string | undefined) {
-  const trimmed = String(url).trim();
-  if (!trimmed) return defaultOgImage;
-  if (/^https?:\/\//i.test(trimmed)) return trimmed;
-  return `${siteUrl}${trimmed.startsWith("/") ? trimmed : `/${trimmed}`}`;
-}
+const siteUrl = String(config.public.siteUrl || 'http://localhost:3000').replace(/\/+$/, '')
 
 const home = useHomeStore()
 
@@ -31,22 +23,21 @@ const pageDescription = computed(() =>
   )
 )
 
-const ogImageUrl = computed(() => {
-  const poster = home.bannerPosterUrl?.trim()
-  return poster ? toAbsoluteOgImage(poster) : defaultOgImage
-})
+const ogImageUrl = computed(() =>
+  resolveOgImageUrl(home.bannerPosterUrl?.trim() || undefined, siteUrl)
+)
 
-useSeoMeta(() => ({
+useSeoMeta({
   title: 'Pressify',
-  description: pageDescription.value,
+  description: pageDescription,
   ogTitle: 'Pressify',
-  ogDescription: pageDescription.value,
-  ogImage: ogImageUrl.value,
+  ogDescription: pageDescription,
+  ogImage: ogImageUrl,
   ogImageAlt: 'Pressify',
   twitterCard: 'summary_large_image',
-  twitterImage: ogImageUrl.value,
+  twitterImage: ogImageUrl,
   ogType: 'website',
-}))
+})
 
 const { pending: bannerPending } = await useAsyncData(
   'home:banner',

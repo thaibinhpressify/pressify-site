@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { getGtmInlineScript, getGtmNoscriptHtml, GTM_CONTAINER_ID } from "./app/utils/google-tags";
+
+const gtmId = process.env.NUXT_PUBLIC_GTM_ID || GTM_CONTAINER_ID;
 const isDev = process.env.NODE_ENV !== "production";
 const wpEndpoint =
   process.env.WP_GRAPHQL_ENDPOINT ||
@@ -47,6 +50,7 @@ export default defineNuxtConfig({
       siteDescription:
         process.env.NUXT_PUBLIC_SITE_DESCRIPTION ||
         "Pressify helps you manage production, shipping, and storefront integrations.",
+      gtmId,
     },
   },
   css: [
@@ -74,7 +78,7 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KPF5R79W');`,
+          innerHTML: getGtmInlineScript(gtmId),
           type: "text/javascript",
           tagPriority: "high",
         },
@@ -82,8 +86,7 @@ export default defineNuxtConfig({
       noscript: [
         {
           tagPosition: "bodyOpen",
-          innerHTML:
-            '<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KPF5R79W" height="0" width="0" style="display:none;visibility:hidden"></iframe>',
+          innerHTML: getGtmNoscriptHtml(gtmId),
         },
       ],
     },
