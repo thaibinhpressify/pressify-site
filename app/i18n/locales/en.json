@@ -148,6 +148,7 @@
       "required": "Please fill in this field.",
       "pickOne": "Please select at least one option.",
       "email": "Invalid email address.",
+      "phone": "Invalid phone number (at least 8 digits).",
       "password": "Password must be at least 8 characters.",
       "passwordMatch": "Passwords do not match.",
       "submitFailed": "Could not submit signup. Please try again later."
@@ -213,7 +214,7 @@
         "subtitle": "Finish to submit your registration.",
         "fullName": "Full name",
         "email": "Email",
-        "phone": "Phone (optional)",
+        "phone": "Phone",
         "password": "Password",
         "passwordConfirm": "Confirm password",
         "facebook": "Facebook",

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import BannerVideo from '@/components/banner/BannerVideo.vue'
 import SectionOffer from '@/components/sections/SectionOffer.vue'
 import SectionDeliver from '@/components/sections/SectionDeliver.vue'
@@ -8,17 +8,45 @@ import { useHomeStore } from '~~/stores/home'
 
 
 
-const { t , locale} = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
+const config = useRuntimeConfig()
 
-useSeoMeta({
-  title: 'Pressify',
-  description: 'Print-on-demand operations made simple: production, shipping, and integrations.',
-  ogTitle: 'Pressify',
-  ogDescription: 'Print-on-demand operations made simple: production, shipping, and integrations.',
-})
+const siteUrl = String(config.public.siteUrl || 'http://localhost:3000').replace(/\/+$/, '') ?? ''
+const defaultOgImage = `${siteUrl}/logo.png`
+
+function toAbsoluteOgImage(url: string | undefined) {
+  const trimmed = String(url).trim();
+  if (!trimmed) return defaultOgImage;
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `${siteUrl}${trimmed.startsWith("/") ? trimmed : `/${trimmed}`}`;
+}
 
 const home = useHomeStore()
+
+const pageDescription = computed(() =>
+  String(
+    config.public.siteDescription ||
+      'Print-on-demand operations made simple: production, shipping, and integrations.'
+  )
+)
+
+const ogImageUrl = computed(() => {
+  const poster = home.bannerPosterUrl?.trim()
+  return poster ? toAbsoluteOgImage(poster) : defaultOgImage
+})
+
+useSeoMeta(() => ({
+  title: 'Pressify',
+  description: pageDescription.value,
+  ogTitle: 'Pressify',
+  ogDescription: pageDescription.value,
+  ogImage: ogImageUrl.value,
+  ogImageAlt: 'Pressify',
+  twitterCard: 'summary_large_image',
+  twitterImage: ogImageUrl.value,
+  ogType: 'website',
+}))
 
 const { pending: bannerPending } = await useAsyncData(
   'home:banner',

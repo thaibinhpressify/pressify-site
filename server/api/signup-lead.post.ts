@@ -53,6 +53,10 @@ export default defineEventHandler(async (event) => {
   if (!EMAIL_RE.test(email)) {
     throw createError({ statusCode: 400, statusMessage: "Invalid email" });
   }
+  const phoneDigits = phone.replace(/\D/g, "");
+  if (phoneDigits.length < 8 || phoneDigits.length > 15) {
+    throw createError({ statusCode: 400, statusMessage: "Invalid phone" });
+  }
 
   const config = useRuntimeConfig();
   const base = String(config.sellerApiBase || "").replace(/\/$/, "");
@@ -73,7 +77,7 @@ export default defineEventHandler(async (event) => {
     products,
     full_name: fullName,
     email,
-    ...(phone ? { phone } : {}),
+    phone,
     ...(facebook ? { facebook } : {}),
     ...(other ? { other } : {}),
   };

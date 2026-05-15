@@ -104,6 +104,7 @@
                       autocomplete="organization"
                       class="signup-field"
                       :placeholder="t('signupPage.steps.store.placeholder')"
+                      @keydown.enter="onPrimary"
                     />
                   </div>
                 </template>
@@ -183,16 +184,64 @@
                   <p class="mb-6 text-sm text-gray">{{ t("signupPage.steps.account.subtitle") }}</p>
                   <div class="flex flex-col gap-5">
                     <div class="signup-field-wrap">
-                      <label class="signup-label">{{ t("signupPage.steps.account.fullName") }}</label>
-                      <input v-model="form.fullName" type="text" autocomplete="name" class="signup-field" />
+                      <label class="signup-label" for="signup-fullName">
+                        {{ t("signupPage.steps.account.fullName") }}
+                        <span class="text-red" aria-hidden="true">*</span>
+                      </label>
+                      <input
+                        id="signup-fullName"
+                        v-model="form.fullName"
+                        type="text"
+                        autocomplete="name"
+                        required
+                        class="signup-field"
+                        :class="{ 'signup-field--invalid': fieldErrors.fullName }"
+                        :aria-invalid="fieldErrors.fullName ? 'true' : undefined"
+                        @input="fieldErrors.fullName = ''"
+                      />
+                      <p v-if="fieldErrors.fullName" class="signup-field-error" role="alert">
+                        {{ fieldErrors.fullName }}
+                      </p>
                     </div>
                     <div class="signup-field-wrap">
-                      <label class="signup-label">{{ t("signupPage.steps.account.email") }}</label>
-                      <input v-model="form.email" type="email" autocomplete="email" class="signup-field" />
+                      <label class="signup-label" for="signup-email">
+                        {{ t("signupPage.steps.account.email") }}
+                        <span class="text-red" aria-hidden="true">*</span>
+                      </label>
+                      <input
+                        id="signup-email"
+                        v-model="form.email"
+                        type="email"
+                        autocomplete="email"
+                        required
+                        class="signup-field"
+                        :class="{ 'signup-field--invalid': fieldErrors.email }"
+                        :aria-invalid="fieldErrors.email ? 'true' : undefined"
+                        @input="fieldErrors.email = ''"
+                      />
+                      <p v-if="fieldErrors.email" class="signup-field-error" role="alert">
+                        {{ fieldErrors.email }}
+                      </p>
                     </div>
                     <div class="signup-field-wrap">
-                      <label class="signup-label">{{ t("signupPage.steps.account.phone") }}</label>
-                      <input v-model="form.phone" type="tel" autocomplete="tel" class="signup-field" />
+                      <label class="signup-label" for="signup-phone">
+                        {{ t("signupPage.steps.account.phone") }}
+                        <span class="text-red" aria-hidden="true">*</span>
+                      </label>
+                      <input
+                        id="signup-phone"
+                        v-model="form.phone"
+                        type="tel"
+                        autocomplete="tel"
+                        required
+                        class="signup-field"
+                        :class="{ 'signup-field--invalid': fieldErrors.phone }"
+                        :aria-invalid="fieldErrors.phone ? 'true' : undefined"
+                        @input="fieldErrors.phone = ''"
+                      />
+                      <p v-if="fieldErrors.phone" class="signup-field-error" role="alert">
+                        {{ fieldErrors.phone }}
+                      </p>
                     </div>
                     <div class="signup-field-wrap">
                       <label class="signup-label">{{ t("signupPage.steps.account.facebook") }}</label>
@@ -311,6 +360,12 @@ const submitting = ref(false);
 const showThanks = ref(false);
 const thanksEmail = ref("");
 
+const fieldErrors = reactive({
+  fullName: "",
+  email: "",
+  phone: "",
+});
+
 const platformIds = ["etsy", "amazon", "tiktok", "shopify", "google_shopping", "other"] as const;
 const dailyOrderBandIds = ["1_10", "11_50", "51_200", "over_200"] as const;
 const channelIds = ["facebook", "google", "gpt", "site", "event"] as const;
@@ -412,6 +467,56 @@ onUnmounted(() => {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function isValidPhone(value: string): boolean {
+  const digits = value.replace(/\D/g, "");
+  return digits.length >= 8 && digits.length <= 15;
+}
+
+function clearAccountFieldErrors() {
+  fieldErrors.fullName = "";
+  fieldErrors.email = "";
+  fieldErrors.phone = "";
+}
+
+function validateAccountStep(): boolean {
+  clearAccountFieldErrors();
+  let valid = true;
+
+  const fullName = form.fullName.trim();
+  const email = form.email.trim();
+  const phone = form.phone.trim();
+
+  if (!fullName) {
+    fieldErrors.fullName = err("required");
+    valid = false;
+  } else if (fullName.length < 2) {
+    fieldErrors.fullName = err("required");
+    valid = false;
+  }
+
+  if (!email) {
+    fieldErrors.email = err("required");
+    valid = false;
+  } else if (!EMAIL_RE.test(email)) {
+    fieldErrors.email = err("email");
+    valid = false;
+  }
+
+  if (!phone) {
+    fieldErrors.phone = err("required");
+    valid = false;
+  } else if (!isValidPhone(phone)) {
+    fieldErrors.phone = err("phone");
+    valid = false;
+  }
+
+  if (!valid) {
+    stepError.value = err("required");
+  }
+
+  return valid;
+}
+
 function err(key: string) {
   return t(`signupPage.errors.${key}`);
 }
@@ -450,15 +555,7 @@ function validateCurrent(): boolean {
       }
       break;
     case 6:
-      if (form.fullName.trim().length < 2) {
-        stepError.value = err("required");
-        return false;
-      }
-      if (!EMAIL_RE.test(form.email.trim())) {
-        stepError.value = err("email");
-        return false;
-      }
-      break;
+      return validateAccountStep();
     default:
       break;
   }
@@ -467,6 +564,7 @@ function validateCurrent(): boolean {
 
 function goBack() {
   stepError.value = "";
+  clearAccountFieldErrors();
   if (step.value > 1) step.value -= 1;
 }
 
@@ -548,6 +646,25 @@ useSeoMeta({
   box-shadow:
     0 1px 2px rgb(0 0 0 / 0.04),
     0 0 0 3px rgb(255 121 0 / 0.2);
+}
+
+.signup-field--invalid {
+  border-color: #ff0000;
+  background-color: #fff8f8;
+}
+
+.signup-field--invalid:focus {
+  border-color: #ff0000;
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.04),
+    0 0 0 3px rgb(255 0 0 / 0.15);
+}
+
+.signup-field-error {
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: #ff0000;
 }
 
 .signup-field--textarea {

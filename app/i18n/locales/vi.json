@@ -148,6 +148,7 @@
       "required": "Vui lòng điền thông tin này.",
       "pickOne": "Vui lòng chọn ít nhất một mục.",
       "email": "Email không hợp lệ.",
+      "phone": "Số điện thoại không hợp lệ (tối thiểu 8 chữ số).",
       "password": "Mật khẩu tối thiểu 8 ký tự.",
       "passwordMatch": "Mật khẩu xác nhận không khớp.",
       "submitFailed": "Không gửi được đăng ký. Vui lòng thử lại sau."
@@ -213,7 +214,7 @@
         "subtitle": "Hoàn tất để tạo tài khoản đăng ký.",
         "fullName": "Họ và tên",
         "email": "Email",
-        "phone": "Số điện thoại (tuỳ chọn)",
+        "phone": "Số điện thoại",
         "password": "Mật khẩu",
         "passwordConfirm": "Xác nhận mật khẩu",
         "facebook": "Facebook",
