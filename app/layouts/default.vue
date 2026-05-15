@@ -1,6 +1,7 @@
 <script setup>
 import BaseHeader from '../components/header/BaseHeader.vue'
 import BaseFooter from '../components/footer/BaseFooter.vue'
+import GiftVoucher from '../components/common/GiftVoucher.vue'
 
 const route = useRoute()
 const config = useRuntimeConfig()
@@ -57,6 +58,8 @@ useSeoMeta({
     <NuxtLoadingIndicator :height="3" :throttle="200" color="var(--color-orange)" />
     <NuxtPage />
     <BaseFooter />
+
+    <GiftVoucher />
 
     <div class="social fixed bottom-[15px] left-[10px] lg:bottom-[50px] lg:left-[20px] z-[1000]">
       <ul class="social__list flex flex-col gap-[15px]">

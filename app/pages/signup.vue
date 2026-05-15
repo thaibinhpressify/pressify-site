@@ -389,6 +389,7 @@ const currentYear = new Date().getFullYear();
 const promoIndex = ref(0);
 const slideCount = 3;
 const wp = useWpStore()
+const router = useRouter();
 
 const { data } = await useAsyncData(
   'news:category:3',
@@ -578,7 +579,10 @@ async function onPrimary() {
   try {
     await $fetch("/api/signup-lead", {
       method: "POST",
-      body: form,
+      body: {
+        ...form,
+        note: router.currentRoute.value.query.vouncher ? `Vouncher: ${router.currentRoute.value.query.vouncher}` : '',
+      },
     });
     thanksEmail.value = form.email.trim();
     showThanks.value = true;
