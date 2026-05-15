@@ -104,7 +104,7 @@
       "email": "Send an Email"
     }
   },
-   "contactForm": {
+  "contactForm": {
     "title": "Contact us",
     "name": "Your name",
     "email": "Email",
@@ -134,5 +134,123 @@
     }
   },
   "qa": "Q&A",
-  "minPriceLabel": "Price from"
+  "minPriceLabel": "Price from",
+  "signup": "Sign up",
+  "signupPage": {
+    "seoTitle": "Seller signup",
+    "back": "Back",
+    "tagline": "POD production, warehousing, and fulfillment for your online store.",
+    "contactLink": "Contact us",
+    "stepOf": "Step {current} of {total}",
+    "next": "Continue",
+    "submit": "Complete signup",
+    "errors": {
+      "required": "Please fill in this field.",
+      "pickOne": "Please select at least one option.",
+      "email": "Invalid email address.",
+      "password": "Password must be at least 8 characters.",
+      "passwordMatch": "Passwords do not match.",
+      "submitFailed": "Could not submit signup. Please try again later."
+    },
+    "success": "Signup submitted. Our team will reach out shortly.",
+    "successTitle": "Success",
+    "thanks": {
+      "title": "Thank you!",
+      "subtitle": "We’ve received your registration.",
+      "body": "The Pressify team will review your details and get back to you as soon as possible.",
+      "emailHint": "We may reply at: {email}",
+      "ctaHome": "Back to home",
+      "ctaCatalog": "Browse catalog"
+    },
+    "footer": {
+      "rights": "© {year} Pressify. All rights reserved.",
+      "terms": "Terms of Service",
+      "policy": "Privacy Policy"
+    },
+    "promo": {
+      "slides": [
+        {
+          "title": "Quality POD, reliable delivery",
+          "desc": "Connect your store, sync orders, and track production in one place."
+        },
+        {
+          "title": "Sell across channels",
+          "desc": "Shopify, Etsy, Amazon, TikTok, and more — centralized operations."
+        },
+        {
+          "title": "Dedicated support",
+          "desc": "Pressify helps from onboarding through day-to-day operations."
+        }
+      ],
+      "seeMore": "See more",
+      "heroLine1": "End-to-end",
+      "heroLine2": "POD fulfillment"
+    },
+    "steps": {
+      "store": {
+        "title": "Store name",
+        "label": "Your store name",
+        "placeholder": "e.g. CoolPrints Studio"
+      },
+      "platform": {
+        "title": "Where do you sell?",
+        "hint": "Select all platforms that apply."
+      },
+      "dailyOrders": {
+        "title": "Your shop’s average orders per day",
+        "hint": "Estimate how many orders you handle on an average day."
+      },
+      "channel": {
+        "title": "How did you hear about Pressify?",
+        "hint": "Select one option."
+      },
+      "products": {
+        "title": "What products do you sell?",
+        "placeholder": "e.g. t-shirts, hoodies, mugs, canvas prints…"
+      },
+      "account": {
+        "title": "Your details",
+        "subtitle": "Finish to submit your registration.",
+        "fullName": "Full name",
+        "email": "Email",
+        "phone": "Phone (optional)",
+        "password": "Password",
+        "passwordConfirm": "Confirm password",
+        "facebook": "Facebook",
+        "other": "Other"
+      },
+      "success": "Registration submitted. Our team will reach out shortly.",
+      "successTitle": "Success",
+      "thanks": {
+        "title": "Thank you!",
+        "subtitle": "We’ve received your registration.",
+        "body": "The Pressify team will review your details and get back to you as soon as possible.",
+        "emailHint": "We may reply at: {email}",
+        "ctaHome": "Back to home",
+        "ctaCatalog": "Browse catalog"
+      }
+    },
+    "platforms": {
+      "etsy": "Etsy",
+      "amazon": "Amazon",
+      "tiktok": "TikTok",
+      "shopify": "Shopify",
+      "google_shopping": "Google Shopping",
+      "other": "Other"
+    },
+    "dailyOrders": {
+      "under_1": "Under 1 order / day",
+      "1_10": "1 – 10 orders / day",
+      "11_50": "11 – 50 orders / day",
+      "51_200": "51 – 200 orders / day",
+      "over_200": "Over 200 orders / day"
+    },
+    "channels": {
+      "facebook": "Facebook",
+      "google": "Google Search",
+      "gpt": "ChatGPT / AI",
+      "site": "Pressify website",
+      "event": "Event"
+    }
+  }
 }

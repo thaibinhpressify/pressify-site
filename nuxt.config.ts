@@ -28,6 +28,9 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: false },
   runtimeConfig: {
+    /** Seller onboarding API (e.g. FastAPI) — POST /sellers */
+    sellerApiBase:
+      process.env.SELLER_API_BASE || process.env.NUXT_SELLER_API_BASE || "http://localhost:8001",
     pressifyApiBase: process.env.PRESSIFY_API_BASE || process.env.PRESSIFY_API_BASE_URL || "http://localhost:8000",
     wpGraphqlEndpoint: process.env.WP_GRAPHQL_ENDPOINT || process.env.ENDPOINT_WP_GRAPHQL || "",
     wpGraphqlToken: process.env.WP_GRAPHQL_TOKEN || "",
@@ -69,6 +72,20 @@ export default defineNuxtConfig({
           href: "/logo.png",
         },
       ],
+      script: [
+        {
+          innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KPF5R79W');`,
+          type: "text/javascript",
+          tagPriority: "high",
+        },
+      ],
+      noscript: [
+        {
+          tagPosition: "bodyOpen",
+          innerHTML:
+            '<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KPF5R79W" height="0" width="0" style="display:none;visibility:hidden"></iframe>',
+        },
+      ],
     },
   },
   components: true,
@@ -92,12 +109,12 @@ export default defineNuxtConfig({
     ...(isDev
       ? {}
       : {
-          preset: "cloudflare_module",
-          cloudflare: {
-            deployConfig: true,
-            nodeCompat: true,
-          },
-        }),
+        preset: "cloudflare_module",
+        cloudflare: {
+          deployConfig: true,
+          nodeCompat: true,
+        },
+      }),
   },
 
   i18n: {
@@ -120,8 +137,8 @@ export default defineNuxtConfig({
     server: {
       ...(isDev
         ? {
-            allowedHosts: ["blog.pressify.us", ".pressify.us"],
-          }
+          allowedHosts: ["blog.pressify.us", ".pressify.us"],
+        }
         : {}),
     },
     css: {

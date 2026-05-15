@@ -8,7 +8,7 @@ const wp = useWpStore();
 const { data: page, pending, error } = await useAsyncData(
   "wp:page:policy",
   async () => {
-    return await wp.fetchPageByUri(locale.value === 'en' ? '/policy/' :`/chinh-sach-bao-mat-pressify/`);
+    return await wp.fetchPageByUri(locale.value === 'en' ? '/policy/' :`/chinh-sach-bao-mat/`);
   },
   { watch: [locale], server: false }
 );
@@ -27,7 +27,7 @@ useSeoMeta({
   <div class="page policy">
     <HeaderSection
       status="Pressify"
-      title="Privacy Policy"
+      :title="$t('footer.privacy-policy')"
       desc=""
     />
 

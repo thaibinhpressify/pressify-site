@@ -134,5 +134,123 @@
     "mailEmail": "Email"
   },
   "qa": "Câu hỏi",
-  "minPriceLabel": "Giá từ"
+  "minPriceLabel": "Giá từ",
+  "signup": "Đăng ký",
+  "signupPage": {
+    "seoTitle": "Đăng ký bán hàng",
+    "back": "Quay lại",
+    "tagline": "Giải pháp in POD, kho bãi và giao hàng cho cửa hàng trực tuyến của bạn.",
+    "contactLink": "Liên hệ",
+    "stepOf": "Bước {current} / {total}",
+    "next": "Tiếp tục",
+    "submit": "Hoàn tất đăng ký",
+    "errors": {
+      "required": "Vui lòng điền thông tin này.",
+      "pickOne": "Vui lòng chọn ít nhất một mục.",
+      "email": "Email không hợp lệ.",
+      "password": "Mật khẩu tối thiểu 8 ký tự.",
+      "passwordMatch": "Mật khẩu xác nhận không khớp.",
+      "submitFailed": "Không gửi được đăng ký. Vui lòng thử lại sau."
+    },
+    "success": "Đã gửi đăng ký. Chúng tôi sẽ liên hệ sớm.",
+    "successTitle": "Thành công",
+    "thanks": {
+      "title": "Cảm ơn bạn!",
+      "subtitle": "Chúng tôi đã nhận đăng ký của bạn.",
+      "body": "Đội ngũ Pressify sẽ xem xét thông tin và liên hệ với bạn trong thời gian sớm nhất.",
+      "emailHint": "Bạn có thể chờ phản hồi qua email: {email}",
+      "ctaHome": "Về trang chủ",
+      "ctaCatalog": "Xem danh mục sản phẩm"
+    },
+    "footer": {
+      "rights": "© {year} Pressify. Bảo lưu mọi quyền.",
+      "terms": "Điều khoản dịch vụ",
+      "policy": "Chính sách bảo mật"
+    },
+    "promo": {
+      "slides": [
+        {
+          "title": "In POD chất lượng, giao đúng hẹn",
+          "desc": "Kết nối cửa hàng, đồng bộ đơn hàng và theo dõi sản xuất trên một nền tảng."
+        },
+        {
+          "title": "Đa nền tảng bán hàng",
+          "desc": "Shopify, Etsy, Amazon, TikTok và nhiều kênh khác — quản lý tập trung."
+        },
+        {
+          "title": "Hỗ trợ tận tâm",
+          "desc": "Đội ngũ Pressify đồng hành từ thiết lập đến vận hành hàng ngày."
+        }
+      ],
+      "seeMore": "Tìm hiểu thêm",
+      "heroLine1": "Giải pháp",
+      "heroLine2": "POD toàn diện"
+    },
+    "steps": {
+      "store": {
+        "title": "Tên cửa hàng",
+        "label": "Tên cửa hàng của bạn",
+        "placeholder": "Ví dụ: CoolPrints Studio"
+      },
+      "platform": {
+        "title": "Bạn đang bán trên nền tảng nào?",
+        "hint": "Chọn tất cả nền tảng phù hợp."
+      },
+      "dailyOrders": {
+        "title": "Lượng đơn trung bình mỗi ngày của shop bạn",
+        "hint": "Ước lượng số đơn bạn xử lý trung bình mỗi ngày."
+      },
+      "channel": {
+        "title": "Bạn biết Pressify qua kênh nào?",
+        "hint": "Chọn một phương án."
+      },
+      "products": {
+        "title": "Bạn đang kinh doanh những sản phẩm nào?",
+        "placeholder": "Ví dụ: áo thun, hoodie, cốc sứ, tranh canvas…"
+      },
+      "account": {
+        "title": "Thông tin của bạn",
+        "subtitle": "Hoàn tất để tạo tài khoản đăng ký.",
+        "fullName": "Họ và tên",
+        "email": "Email",
+        "phone": "Số điện thoại (tuỳ chọn)",
+        "password": "Mật khẩu",
+        "passwordConfirm": "Xác nhận mật khẩu",
+        "facebook": "Facebook",
+        "other": "Khác"
+      },
+      "success": "Đã gửi đăng ký. Chúng tôi sẽ liên hệ sớm.",
+      "successTitle": "Thành công",
+      "thanks": {
+        "title": "Cảm ơn bạn!",
+        "subtitle": "Chúng tôi đã nhận đăng ký của bạn.",
+        "body": "Đội ngũ Pressify sẽ xem xét thông tin và liên hệ với bạn trong thời gian sớm nhất.",
+        "emailHint": "Bạn có thể chờ phản hồi qua email: {email}",
+        "ctaHome": "Về trang chủ",
+        "ctaCatalog": "Xem danh mục sản phẩm"
+      }
+    },
+    "platforms": {
+      "etsy": "Etsy",
+      "amazon": "Amazon",
+      "tiktok": "TikTok",
+      "shopify": "Shopify",
+      "google_shopping": "Google Shopping",
+      "other": "Khác"
+    },
+    "dailyOrders": {
+      "under_1": "Dưới 1 đơn / ngày",
+      "1_10": "1 – 10 đơn / ngày",
+      "11_50": "11 – 50 đơn / ngày",
+      "51_200": "51 – 200 đơn / ngày",
+      "over_200": "Trên 200 đơn / ngày"
+    },
+    "channels": {
+      "facebook": "Facebook",
+      "google": "Google Search",
+      "gpt": "ChatGPT / AI",
+      "site": "Website Pressify",
+      "event": "Sự kiện"
+    }
+  }
 }

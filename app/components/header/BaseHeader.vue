@@ -18,7 +18,7 @@ const closeMobileMenu = () => {
 <header class="header py-[10px] px-[15px] lg:px-0">
   <div class="container mx-auto">
     <div class="grid grid-cols-12">
-      <div class="col-span-6 lg:col-span-2">
+      <div class="col-span-6 lg:col-span-1">
         <NuxtLink class="header__logo outline-none" :to="localePath('/')">
           <img class="h-[51px]" src="/logo.png" alt="Pressify">
         </NuxtLink>
@@ -28,7 +28,7 @@ const closeMobileMenu = () => {
         <BaseMenu />
       </div>
 
-      <div class="col-span-6 justify-end lg:col-span-3 flex items-center gap-[12px]">
+      <div class="col-span-6 justify-end lg:col-span-4 flex items-center gap-[12px]">
         <button type="button" class="header__burger inline-flex lg:hidden" aria-label="Menu" @click="openMobileMenu">
           <span class="header__burger-line" />
           <span class="header__burger-line" />
@@ -37,9 +37,14 @@ const closeMobileMenu = () => {
 
         <div class="hidden lg:flex items-center gap-[12px]">
           <LanguageSwitch />
+          <NuxtLink :to="localePath('/signup')" class="header__btn">
+            {{ t('signup') }}
+          </NuxtLink>
+
           <a class="header__btn" href="https://pressify.us/login" target="_blank">
             {{ t('seller-login') }}
           </a>
+          
         </div>
       </div>
     </div>
@@ -56,9 +61,10 @@ const closeMobileMenu = () => {
 
     &__btn {
       background-color: var(--color-orange);
-      padding: 6px 29px 6px 17px;
+      padding: 6px 12px;
       border-radius: 8px;
       @apply text-white;
+      text-transform: capitalize;
     }
 
     &__burger {
