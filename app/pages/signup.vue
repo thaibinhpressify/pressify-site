@@ -581,7 +581,7 @@ async function onPrimary() {
       method: "POST",
       body: {
         ...form,
-        note: router.currentRoute.value.query.vouncher ? `Vouncher: ${router.currentRoute.value.query.vouncher}` : '',
+        note: router.currentRoute.value.query.voucher ? `Voucher: ${router.currentRoute.value.query.voucher}` : '',
       },
     });
     thanksEmail.value = form.email.trim();

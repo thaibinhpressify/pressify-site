@@ -5,7 +5,7 @@ const localePath = useLocalePath()
 <template>
   <div class="gift-voucher-container rounded-[15px] overflow-hidden">
     <NuxtLink
-    :to="localePath('/signup?vouncher=30')"
+    :to="localePath('/signup?voucher=30')"
     class="gift-voucher"
     aria-label="$30 off your first fulfillment"
   >
