@@ -18,7 +18,7 @@ const siteUrl = computed(() =>
     .replace(/\/+$/, '')
 )
 
-const normalizePathname = (value) => {
+const normalizePathname = (value: string) => {
   const raw = String(value || '/').trim() || '/'
   if (raw === '/') return '/'
   return raw.startsWith('/') ? raw : `/${raw}`

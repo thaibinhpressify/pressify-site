@@ -22,5 +22,9 @@ logs
 .env
 .env.*
 !.env.example
+
+# Secrets (never commit; never put under public/)
+secrets/
+public/secrets/
 package-lock.json
 

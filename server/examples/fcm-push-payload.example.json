@@ -1,0 +1,24 @@
+{
+  "comment": "Firebase HTTP v1 — POST https://fcm.googleapis.com/v1/projects/{project_id}/messages:send",
+  "message": {
+    "token": "DEVICE_FCM_TOKEN_FROM_register_fcm",
+    "notification": {
+      "title": "📢 [PRESSIFY] Sự kiện mới – Canvas & Linen",
+      "body": "Xem chi tiết và nhận ưu đãi trước deadline."
+    },
+    "data": {
+      "click_url": "https://blog.pressify.us/vi/chinh-thuc-ra-mat-san-pham-moi-canvas-linen",
+      "icon": "https://admin.pressify.us/wp-content/uploads/2026/05/photo_2026-05-15-16.53.15.jpeg",
+      "image": "https://admin.pressify.us/wp-content/uploads/2026/05/photo_2026-05-15-16.53.15.jpeg",
+      "tag": "event-133",
+      "type": "event",
+      "title": "📢 [PRESSIFY] Sự kiện mới – Canvas & Linen",
+      "body": "Xem chi tiết và nhận ưu đãi trước deadline."
+    },
+    "webpush": {
+      "fcm_options": {
+        "link": "https://blog.pressify.us/vi/chinh-thuc-ra-mat-san-pham-moi-canvas-linen"
+      }
+    }
+  }
+}
