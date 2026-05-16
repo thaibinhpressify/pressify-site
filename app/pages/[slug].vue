@@ -95,7 +95,7 @@ watch(() => locale.value, () => {
 })
 </script>
 <template>
-  <div class="page post">
+  <div class="page post bg-white rounded-[0]">
     <div class="container mx-auto lg:py-[56px] px-[15px] lg:px-0">
       <div class="post__main">
         <BreadCrumb :items="breadcrumbItems" class="mb-[16px]" />
