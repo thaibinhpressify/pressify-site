@@ -135,6 +135,15 @@
   },
   "qa": "Q&A",
   "minPriceLabel": "Price from",
+  "boxEvent": {
+    "badge": "Offer",
+    "title": "$30 off your first fulfillment",
+    "subtitle": "Read the full announcement on our blog.",
+    "deadlineUntil": "Ends: {date}",
+    "cta": "Read more",
+    "close": "Dismiss",
+    "new": "New"
+  },
   "signup": "Signup",
   "signupPage": {
     "seoTitle": "Seller signup",

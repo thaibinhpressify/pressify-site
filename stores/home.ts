@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { useWpStore } from "./wp";
 import { useRuntimeConfig } from "nuxt/app";
+import { locale } from "moment";
 
 export type HomeFeedbackAuthor = {
   avatar?: string;
@@ -29,8 +30,42 @@ export type HomeBanner = {
   bannerVideoUrl: string;
   bannerPosterUrl: string;
 };
+export type HomeEventBanner = {
+  id: string;
+  title: string;
+  slug: string;
+  date: string;
+  content: string;
+  featuredImage: string;
+  videoBanner: string;
+  /** `deadlineEvent.deadline` from WP (ISO string) */
+  deadline: string;
+};
 
 const stripHtml = (value: string) => value.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+
+const EVENT_CATEGORY_NAMES = ["event", "sự kiện", "su kien"];
+
+function postHasEventCategory(
+  categories: { nodes?: Array<{ name?: string | null }> } | null | undefined,
+): boolean {
+  const nodes = categories?.nodes ?? [];
+  for (const n of nodes) {
+    const name = (n.name ?? "").trim().toLowerCase();
+    if (EVENT_CATEGORY_NAMES.includes(name)) return true;
+  }
+  return false;
+}
+
+function isDeadlineInFuture(deadline: string | null | undefined): boolean {
+  if (deadline == null) return false;
+  const raw = String(deadline).trim();
+  if (!raw) return false;
+  const t = new Date(raw).getTime();
+  if (Number.isNaN(t)) return false;
+  return t > Date.now();
+}
+
 type AnyRecord = Record<string, unknown>;
 const isRecord = (value: unknown): value is AnyRecord =>
   typeof value === "object" && value !== null && !Array.isArray(value);
@@ -96,8 +131,13 @@ export const useHomeStore = defineStore("home", {
       bannerVideoUrl: "",
       bannerPosterUrl: "",
     } as HomeBanner,
+    eventBanner: [] as HomeEventBanner[],
+    isPostPage: false as boolean,
   }),
   actions: {
+    setIsPostPage(value: boolean) {
+      this.isPostPage = value;
+    },
     async fetchFeedbacks(params?: { categoryId?: number | string; first?: number }) {
       const categoryId = toDatabaseId(params?.categoryId ?? 4);
       const first = params?.first ?? 6;
@@ -244,6 +284,99 @@ export const useHomeStore = defineStore("home", {
       }
     },
 
+    async fetchEventBanner(params?: { first?: number, categoryId?: number | string }) {
+      const first = params?.first ?? 24;
+      const wp = useWpStore();
+      const wpBaseUrl = String(useRuntimeConfig().public.wpBaseUrl || "").trim().replace(/\/$/, "");
+
+      this.isLoading = true;
+      this.error = "";
+      try {
+        const data = await wp.query<{
+          posts?: {
+            nodes?: Array<{
+              id: string;
+              title?: string | null;
+              slug?: string | null;
+              date?: string | null;
+              content?: string | null;
+              featuredImage?: { node?: { sourceUrl?: string | null } | null } | null;
+              categories?: { nodes?: Array<{ name?: string | null }> } | null;
+              deadlineEvent?: { deadline?: string | null } | null;
+            }>;
+          };
+        }>(
+          `
+            query GetEventBannerPosts($first: Int!) {
+              posts(
+                first: $first
+                where: {
+                  orderby: { field: DATE, order: DESC }
+                }
+              ) {
+                nodes {
+                  id
+                  title
+                  slug
+                  date
+                  content
+                  featuredImage {
+                    node {
+                      sourceUrl
+                    }
+                  }
+                  categories {
+                    nodes {
+                      name
+                      databaseId
+                    }
+                  }
+                  deadlineEvent {
+                    deadline
+                  }
+                }
+              }
+            }
+          `,
+          { first },
+          { operationName: "GetEventBannerPosts" }
+        );
+
+        const nodes = data.posts?.nodes ?? [];
+        let chosen: HomeEventBanner | null = null;
+
+        for (const node of nodes) {
+          if (!postHasEventCategory(node.categories)) continue;
+          const deadline = node.deadlineEvent?.deadline;
+          if (!isDeadlineInFuture(deadline)) continue;
+          let isCategoryLanguage = node.categories?.nodes?.find((c: any) => c.databaseId === params?.categoryId)
+          if (!isCategoryLanguage) continue;
+          chosen = {
+            id: node.id,
+            title: stripHtml(node.title ?? ""),
+            slug: String(node.slug ?? "").trim(),
+            date: String(node.date ?? ""),
+            content: String(node.content ?? ""),
+            featuredImage: toAbsoluteUrl(
+              wpBaseUrl,
+              node.featuredImage?.node?.sourceUrl?.trim() ?? "",
+            ),
+            videoBanner: "",
+            deadline: String(deadline).trim(),
+          };
+          break;
+        }
+
+        this.eventBanner = chosen ? [chosen] : [];
+      } catch (e) {
+        this.error = e instanceof Error ? e.message : String(e);
+        this.eventBanner = [];
+      } finally {
+        this.isLoading = false;
+      }
+    },
+
+
     async fetchBanner(params?: { first?: number }) {
       const first = params?.first ?? 1;
       const wp = useWpStore();
@@ -261,63 +394,63 @@ export const useHomeStore = defineStore("home", {
           pickTitle: (data: AnyRecord) => string;
           pickContent: (data: AnyRecord) => string;
         }> = [
-          {
-            operationName: "GetHomeBanner1",
-            query:
-              "query GetHomeBanner1 {\n" +
-              "  allBanner {\n" +
-              "    nodes {\n" +
-              "      title\n" +
-              "      content\n" +
-              "      featuredImage { node { sourceUrl } }\n" +
-              "      videoBanner { urlVideo { node { filePath } } }\n" +
-              "    }\n" +
-              "  }\n" +
-              "}",
-            pick: (data: AnyRecord) => {
-              const filePath = getStringIn(data, ["allBanner", "nodes", 0, "videoBanner", "urlVideo", "node", "filePath"]);
-              return toAbsoluteUrl(wpBaseUrl, filePath);
+            {
+              operationName: "GetHomeBanner1",
+              query:
+                "query GetHomeBanner1 {\n" +
+                "  allBanner {\n" +
+                "    nodes {\n" +
+                "      title\n" +
+                "      content\n" +
+                "      featuredImage { node { sourceUrl } }\n" +
+                "      videoBanner { urlVideo { node { filePath } } }\n" +
+                "    }\n" +
+                "  }\n" +
+                "}",
+              pick: (data: AnyRecord) => {
+                const filePath = getStringIn(data, ["allBanner", "nodes", 0, "videoBanner", "urlVideo", "node", "filePath"]);
+                return toAbsoluteUrl(wpBaseUrl, filePath);
+              },
+              pickPoster: (data: AnyRecord) =>
+                toAbsoluteUrl(wpBaseUrl, getStringIn(data, ["allBanner", "nodes", 0, "featuredImage", "node", "sourceUrl"])),
+              pickTitle: (data: AnyRecord) => getStringIn(data, ["allBanner", "nodes", 0, "title"]),
+              pickContent: (data: AnyRecord) => getStringIn(data, ["allBanner", "nodes", 0, "content"]),
             },
-            pickPoster: (data: AnyRecord) =>
-              toAbsoluteUrl(wpBaseUrl, getStringIn(data, ["allBanner", "nodes", 0, "featuredImage", "node", "sourceUrl"])),
-            pickTitle: (data: AnyRecord) => getStringIn(data, ["allBanner", "nodes", 0, "title"]),
-            pickContent: (data: AnyRecord) => getStringIn(data, ["allBanner", "nodes", 0, "content"]),
-          },
-          {
-            operationName: "GetHomeBanner2",
-            query:
-              "query GetHomeBanner2($first: Int!) {\n" +
-              "  banners(first: $first, where: { orderby: { field: DATE, order: DESC } }) {\n" +
-              "    nodes { id title acf { videoBanner { url } } }\n" +
-              "  }\n" +
-              "}",
-            variables: { first },
-            pick: (data: AnyRecord) => {
-              const url = getIn(data, ["banners", "nodes", 0, "acf", "videoBanner", "url"]);
-              return typeof url === "string" ? url : "";
+            {
+              operationName: "GetHomeBanner2",
+              query:
+                "query GetHomeBanner2($first: Int!) {\n" +
+                "  banners(first: $first, where: { orderby: { field: DATE, order: DESC } }) {\n" +
+                "    nodes { id title acf { videoBanner { url } } }\n" +
+                "  }\n" +
+                "}",
+              variables: { first },
+              pick: (data: AnyRecord) => {
+                const url = getIn(data, ["banners", "nodes", 0, "acf", "videoBanner", "url"]);
+                return typeof url === "string" ? url : "";
+              },
+              pickPoster: (_data: AnyRecord) => "",
+              pickTitle: (data: AnyRecord) => getStringIn(data, ["banners", "nodes", 0, "title"]),
+              pickContent: (_data: AnyRecord) => "",
             },
-            pickPoster: (_data: AnyRecord) => "",
-            pickTitle: (data: AnyRecord) => getStringIn(data, ["banners", "nodes", 0, "title"]),
-            pickContent: (_data: AnyRecord) => "",
-          },
-          {
-            operationName: "GetHomeBanner3",
-            query:
-              "query GetHomeBanner3($first: Int!) {\n" +
-              "  banners(first: $first) {\n" +
-              "    nodes { id title videoBanner { url } }\n" +
-              "  }\n" +
-              "}",
-            variables: { first },
-            pick: (data: AnyRecord) => {
-              const url = getIn(data, ["banners", "nodes", 0, "videoBanner", "url"]);
-              return typeof url === "string" ? url : "";
+            {
+              operationName: "GetHomeBanner3",
+              query:
+                "query GetHomeBanner3($first: Int!) {\n" +
+                "  banners(first: $first) {\n" +
+                "    nodes { id title videoBanner { url } }\n" +
+                "  }\n" +
+                "}",
+              variables: { first },
+              pick: (data: AnyRecord) => {
+                const url = getIn(data, ["banners", "nodes", 0, "videoBanner", "url"]);
+                return typeof url === "string" ? url : "";
+              },
+              pickPoster: (_data: AnyRecord) => "",
+              pickTitle: (data: AnyRecord) => getStringIn(data, ["banners", "nodes", 0, "title"]),
+              pickContent: (_data: AnyRecord) => "",
             },
-            pickPoster: (_data: AnyRecord) => "",
-            pickTitle: (data: AnyRecord) => getStringIn(data, ["banners", "nodes", 0, "title"]),
-            pickContent: (_data: AnyRecord) => "",
-          },
-        ];
+          ];
 
         let url = "";
         let posterUrl = "";

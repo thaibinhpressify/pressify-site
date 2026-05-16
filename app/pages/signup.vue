@@ -577,11 +577,16 @@ async function onPrimary() {
   }
   submitting.value = true;
   try {
+    let note = router.currentRoute.value.query.voucher ? `Voucher: ${router.currentRoute.value.query.voucher}` : '';
+
+    if (router.currentRoute.value.query.event) {
+      note += `, Event: ${router.currentRoute.value.query.event as string}`;
+    }
     await $fetch("/api/signup-lead", {
       method: "POST",
       body: {
         ...form,
-        note: router.currentRoute.value.query.voucher ? `Voucher: ${router.currentRoute.value.query.voucher}` : '',
+        note: note,
       },
     });
     thanksEmail.value = form.email.trim();

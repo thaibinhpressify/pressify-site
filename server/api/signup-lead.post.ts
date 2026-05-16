@@ -13,6 +13,7 @@ type SignupLeadBody = {
   phone?: string;
   facebook?: string;
   other?: string;
+  note?: string;
 };
 
 export default defineEventHandler(async (event) => {
@@ -31,7 +32,7 @@ export default defineEventHandler(async (event) => {
   const phone = String(body.phone || "").trim();
   const facebook = String(body.facebook || "").trim();
   const other = String(body.other || "").trim();
-
+  const note = String(body.note || "").trim();
   if (storeName.length < 2) {
     throw createError({ statusCode: 400, statusMessage: "Invalid storeName" });
   }
@@ -80,6 +81,7 @@ export default defineEventHandler(async (event) => {
     phone,
     ...(facebook ? { facebook } : {}),
     ...(other ? { other } : {}),
+    ...(note ? { note } : {}),
   };
 
   try {

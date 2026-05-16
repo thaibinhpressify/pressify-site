@@ -1,11 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import BaseHeader from '../components/header/BaseHeader.vue'
 import BaseFooter from '../components/footer/BaseFooter.vue'
 import GiftVoucher from '../components/common/GiftVoucher.vue'
+import BoxEvent from '../components/common/BoxEvent.vue'
+import { useHomeStore } from '~~/stores/home'
 
 const route = useRoute()
 const config = useRuntimeConfig()
 const { locale } = useI18n()
+const home = useHomeStore()
 
 const siteName = computed(() => String(config.public.siteName || 'Pressify'))
 const siteDescription = computed(() => String(config.public.siteDescription || ''))
@@ -56,11 +59,22 @@ useSeoMeta({
   twitterImage: defaultOgImage,
   twitterSite: siteName,
 })
+
+await useAsyncData(
+  'home:eventBanner',
+  async () => {
+    await home.fetchEventBanner({ first: 24, categoryId: locale.value === "en" ? 3 : 5 })
+    return true
+  },
+  { watch: [locale], server: false, immediate: true }
+)
+
 </script>
 <template>
   <div class="min-h-screen w-full">
     <BaseHeader />
     <NuxtLoadingIndicator :height="3" :throttle="200" color="var(--color-orange)" />
+    <BoxEvent />
     <NuxtPage />
     <BaseFooter />
 

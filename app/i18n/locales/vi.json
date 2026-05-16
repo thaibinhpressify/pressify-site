@@ -135,6 +135,15 @@
   },
   "qa": "Câu hỏi",
   "minPriceLabel": "Giá từ",
+  "boxEvent": {
+    "badge": "Ưu đãi",
+    "title": "Giảm $30 lần fulfillment đầu tiên",
+    "subtitle": "Xem chi tiết sự kiện trên trang tin.",
+    "deadlineUntil": "Kết thúc: {date}",
+    "cta": "Xem chi tiết",
+    "close": "Đóng thông báo",
+    "new": "Mới"
+  },
   "signup": "Đăng ký",
   "signupPage": {
     "seoTitle": "Đăng ký bán hàng",
