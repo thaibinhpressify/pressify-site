@@ -112,7 +112,7 @@ function dismiss() {
               <img
                 :src="bannerImage"
                 :alt="activeEvent.title"
-                class="mx-auto h-auto w-full max-h-[120px] object-contain drop-shadow-md sm:max-h-[140px]"
+                class="mx-auto h-auto w-full max-h-[120px] object-contain drop-shadow-md sm:max-h-[340px]"
                 width="280"
                 height="140"
                 loading="lazy"
