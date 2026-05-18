@@ -83,6 +83,149 @@
     "read": "Read Article →",
     "related_articles": "Related Articles"
   },
+  "tos": {
+    "pageTitle": "Terms of Service",
+    "pageDesc": "Order cancellation and refund policy by order status.",
+    "cancelTable": {
+      "caption": "Cancellation, refund and resend policy by tracking status",
+      "headers": {
+        "orderGroup": "Order status",
+        "status": "Status",
+        "content": "Details",
+        "policy": "Handling policy",
+        "refund": "Refund"
+      },
+      "groupNoTracking": "No tracking yet",
+      "groupHasTracking": "Tracking available",
+      "subGroups": {
+        "platform": "Platform label (Tiktokship/Etsy/Amazon)",
+        "pressify": "Pressify label"
+      },
+      "rows": {
+        "pending_payment": {
+          "status": "Pending Payment",
+          "content": "Cancel immediately after the order is successfully fulfilled to the system — Unpaid (within 60 minutes after fulfillment).",
+          "policy": "Contact Pressify support directly for timely cancellation. The order receives a 100% refund after cancellation. Sellers may also cancel on their own within 60 minutes while the order is still in New Order status.",
+          "refund": "100%"
+        },
+        "processing": {
+          "status": "New Order / Processing (Paid)",
+          "content": "Cancel after 60 minutes from fulfillment (paid); the technical team has started gangsheet design and production.",
+          "policy": "Contact Pressify support directly for timely cancellation. Support will note the cancellation time so refunds follow the correct timeline.",
+          "refund": "0% – 100%"
+        },
+        "priority": {
+          "status": "Priority / Oversize / Express",
+          "content": "Priority/Oversize orders may be cancelled within 30 minutes from fulfillment.",
+          "policy": "Contact Pressify support directly for timely cancellation. The order receives a 100% refund after cancellation. Sellers may also cancel within 30 minutes while the order is still in New Order (Unpaid) status.",
+          "refund": "0% – 100%"
+        }
+      },
+      "trackingRows": {
+        "platform_transit": {
+          "content": "Platform label status includes: Delivered but not received, track in transit and inactive, etc.",
+          "policy": "50% refund / 50% resend of order value (print cost included — shipping cost excluded) due to third-party carrier issues.",
+          "refund": "50%"
+        },
+        "platform_wrong_address": {
+          "content": "Platform label status includes: wrong address caused by the customer, incorrect address details, etc.",
+          "policy": "The factory is not responsible for platform label issues caused by the customer and cannot refund/resend. If the seller places a new resend order, Pressify can help push production, ship out, and scan at USPS to activate tracking.",
+          "refund": "0%"
+        },
+        "platform_info_received": {
+          "content": "Platform label status: Info received for more than 4 days with no movement.",
+          "policy": "100% resend/refund of order value (print cost included — shipping cost excluded). Drop-off and USPS scan supported to activate tracking immediately.",
+          "refund": "100%"
+        },
+        "pressify_delivered_not_received": {
+          "content": "Third-party carrier issue with status: Delivered but not received (seller should provide customer claim photos for faster handling).",
+          "policy": "100% refund / 100% resend of print cost + 100% shipping cost due to third-party carrier issues.",
+          "refund": "100%"
+        },
+        "pressify_tracking_issues": {
+          "content": "Third-party carrier issue with status: Info received, tracking not found, tracking not running, wrong address, etc.",
+          "policy": "100% refund / 100% resend of print cost + 100% shipping cost due to third-party carrier issues.",
+          "refund": "100%"
+        },
+        "pressify_cancel_after_paid": {
+          "content": "Cancel after 60 minutes once paid and the technical team has started gangsheet design and production.",
+          "policy": "Contact Pressify support directly for timely cancellation. Support will note the order so refunds follow the cancellation timeline.",
+          "refund": "0% – 100%"
+        },
+        "pressify_tiktok_cancel": {
+          "content": "Seller requests cancellation because tracking did not run for too long and TikTok auto-cancelled the order.",
+          "policy": "100% refund / 100% resend of print cost + 100% shipping cost. Drop-off and USPS scan supported to activate tracking immediately.",
+          "refund": "100%"
+        }
+      },
+      "producedSection": {
+        "status": "Order already produced",
+        "policy": "Production fees are calculated at the time of order or shipment cancellation, as follows:\n• New order (within 30–60 minutes from fulfillment): 0%\n• Sample printed (Processing/Printed): 30%\n• Pressed garment: 60%\n• Completed order (packaged, labeled): 100%\nThese are the current factory fees and may change under future policies.",
+        "rows": {
+          "wrong_color": {
+            "content": "Design matches shirt color because the seller fulfilled the wrong design."
+          },
+          "wrong_size": {
+            "content": "Incorrect design size. (The design sample has already been produced or printed on the garment.)"
+          },
+          "cancel_pre_shipment": {
+            "content": "Cancel order after production (pre-shipment)."
+          }
+        }
+      },
+      "supportSection": {
+        "group": "Support policy",
+        "statuses": {
+          "gift_wrap": "Gift wrapping"
+        },
+        "rows": {
+          "faulty_order": {
+            "status": "Faulty order",
+            "content": "Peeling print, torn garment, wrong item, wrong size or color, etc. (manufacturer error).",
+            "policy": "Platform label:\n100% resend/refund of order value (print cost included — shipping cost excluded). Drop-off and USPS scan supported to activate tracking immediately.\n\nPressify label:\n100% resend/refund of order value (print cost and shipping cost included). Drop-off and USPS scan supported to activate tracking immediately.",
+            "refund": ""
+          },
+          "support_case": {
+            "status": "Support case",
+            "content": "Support sellers when calling customers for support cases.",
+            "policy": "Pressify provides 100% free support.",
+            "refund": ""
+          },
+          "images": {
+            "status": "Photos",
+            "content": "Pre-shipment photos so sellers can verify orders before dispatch.",
+            "policy": "Pressify provides 100% free support.",
+            "refund": ""
+          },
+          "account_appeal": {
+            "status": "Account appeal",
+            "content": "Provide production proof, invoices, images, and videos for seller account appeals.",
+            "policy": "Pressify provides 100% free support. Processing 1–3 business days.",
+            "refund": ""
+          },
+          "gift_paper": {
+            "content": "Gift wrapping for birthdays and holidays per customer request.",
+            "policy": "Paper wrap $2",
+            "refund": ""
+          },
+          "gift_box": {
+            "content": "Gift wrapping for birthdays and holidays per customer request.",
+            "policy": "Gift box $3",
+            "refund": ""
+          }
+        },
+        "footerNotes": "Standard orders: If fulfilled on Pressify but tracking is slow or held (tracking not moving, long hold for design/size/color), Pressify will help push the order and scan the label.\n\nPriority / Expedite orders: After 60 minutes, once printing and production have started, changes are not possible.\n\nStandard cut-off: 16:00 VN (4:00 AM US) to ensure earliest production and on-time warehouse dispatch.\n\n** Orders not paid within 48 hours (from fulfillment on the system) are auto-cancelled to avoid backlog.\n\nPriority / Expedite cut-off: 16:00 VN, resets at 4:00 VN the next day for earliest production and dispatch.\n\n** If a Priority order is cancelled for any reason, only shipping is refunded and 100% production cost is charged."
+      },
+      "noteTable": {
+        "title": "Note",
+        "rows": {
+          "tracking": "For tracking-related orders, Pressify will support resolution within 30 days from the fulfillment date.",
+          "faulty": "For faulty orders, Pressify will support resolution within 30 days from the date the customer receives the goods.",
+          "shipping": "Pressify only supports receiving and shipping via USPS. For orders using other carriers such as FedEx or UPS, receiving goods will be considered case by case. Pressify is not responsible for any issues arising during shipping when using those carriers."
+        }
+      }
+    }
+  },
   "questions": {
     "cta": {
       "title": "Still Have Questions?",
