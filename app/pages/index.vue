@@ -23,9 +23,16 @@ const pageDescription = computed(() =>
   )
 )
 
+const newsCategoryId = computed(() => (locale.value === 'en' ? 3 : 5))
+
 const ogImageUrl = computed(() =>
-  resolveOgImageUrl(home.bannerPosterUrl?.trim() || undefined, siteUrl)
+  resolveOgImageUrl(
+    home.news[0]?.thumbnail?.trim() || home.bannerPosterUrl?.trim() || undefined,
+    siteUrl
+  )
 )
+
+const ogImageAlt = computed(() => home.news[0]?.title?.trim() || 'Pressify')
 
 useSeoMeta({
   title: 'Pressify',
@@ -33,14 +40,20 @@ useSeoMeta({
   ogTitle: 'Pressify',
   ogDescription: pageDescription,
   ogImage: ogImageUrl,
-  ogImageAlt: 'Pressify',
+  ogImageAlt,
   twitterCard: 'summary_large_image',
   twitterImage: ogImageUrl,
   ogType: 'website',
 })
 
-const { pending: bannerPending } = await useAsyncData(
-  'home:banner',
+useAsyncData(
+  () => `home:news:${locale.value}`,
+  () => home.fetchNews({ categoryId: newsCategoryId.value, first: 3 }),
+  { watch: [locale] }
+)
+
+const { pending: bannerPending } = useAsyncData(
+  () => `home:banner:${locale.value}`,
   async () => {
     await home.fetchBanner()
     return true
@@ -48,13 +61,10 @@ const { pending: bannerPending } = await useAsyncData(
   { watch: [locale], server: false }
 )
 
-const { pending: contentPending, execute: loadContent } = await useAsyncData(
-  'home:content',
+const { pending: contentPending, execute: loadContent } = useAsyncData(
+  () => `home:content:${locale.value}`,
   async () => {
-    await Promise.all([
-      home.fetchFeedbacks({ categoryId: 4, first: 3 }),
-      home.fetchNews({ categoryId: locale.value === "en" ? 3 : 5, first: 3 }),
-    ])
+    await home.fetchFeedbacks({ categoryId: 4, first: 3 })
     return true
   },
   { server: false, immediate: false }

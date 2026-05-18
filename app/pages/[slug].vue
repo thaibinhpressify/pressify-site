@@ -1,25 +1,24 @@
 <script setup>
 import BaseTag from '~/components/tag/BaseTag.vue';
 import BreadCrumb from '~/components/header/BreadCrumb.vue'
-// import CardPost from '~/components/card/CardPost.vue';
 import { useWpStore } from '~~/stores/wp'
 
 const route = useRoute()
+const router = useRouter()
 const slug = computed(() => String(route.params.slug || ''))
 const wp = useWpStore()
 const { locale } = useI18n()
-const router =  useRouter()
-// const localePath = useLocalePath()
 
 const queryPost =
   'query GetPostBySlug($slug: ID!) {' +
   '\n  post(id: $slug, idType: SLUG) {' +
   '\n    id' +
   '\n    title' +
+  '\n    excerpt' +
   '\n    content' +
   '\n    date' +
   '\n    slug' +
-  '\n    featuredImage { node { sourceUrl } }' +
+  '\n    featuredImage { node { sourceUrl altText } }' +
   '\n    categories { nodes { name databaseId } }' +
   '\n  }' +
   '\n}'
@@ -38,18 +37,26 @@ const queryRelated =
   '\n  }' +
   '\n}'
 
-const { data, pending, error } = await useAsyncData(
-  'post:by-slug',
+const { data, pending, error } = useAsyncData(
+  () => `wp:post:${locale.value}:${slug.value}`,
   async () => {
     if (!slug.value) return { post: null, related: [] }
 
-    const postData = await wp.query(queryPost, { slug: slug.value }, { operationName: 'GetPostBySlug' })
+    const postData = await wp.query(
+      queryPost,
+      { slug: slug.value },
+      { operationName: 'GetPostBySlug' }
+    )
 
     const categoryId = postData?.post?.categories?.nodes?.[0]?.databaseId ?? 0
     let related = []
 
     if (categoryId) {
-      const relatedData = await wp.query(queryRelated, { first: 3, categoryId }, { operationName: 'GetRelatedPosts' })
+      const relatedData = await wp.query(
+        queryRelated,
+        { first: 3, categoryId },
+        { operationName: 'GetRelatedPosts' }
+      )
 
       related =
         relatedData?.posts?.nodes
@@ -65,35 +72,25 @@ const { data, pending, error } = await useAsyncData(
 
     return { post: postData?.post ?? null, related }
   },
-  { watch: [slug], server: false }
+  { watch: [slug, locale] }
 )
 
 const post = computed(() => data.value?.post ?? null)
+
+// Must run synchronously in setup — do not call after `await useAsyncData`
+useWpPostSeo(post, slug)
+
 const categoryLabel = computed(() => post.value?.categories?.nodes?.[0]?.name ?? '')
 const breadcrumbItems = computed(() => [
   { label: 'News', to: '/news' },
   { label: post.value?.title || String(slug.value || '') }
 ])
 
-const stripHtml = (value) => String(value || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
-const seoTitle = computed(() => post.value?.title || String(slug.value || 'Article'))
-const seoDescription = computed(() => {
-  const text = stripHtml(post.value?.content || '')
-  return text.length > 160 ? `${text.slice(0, 157)}...` : text
-})
-
-useSeoMeta(() => ({
-  title: seoTitle.value,
-  description: seoDescription.value || undefined,
-  ogTitle: seoTitle.value,
-  ogDescription: seoDescription.value || undefined,
-  ogType: 'article',
-}))
-
-watch(() => locale.value, () => {
+watch(locale, () => {
   router.replace('/news')
 })
 </script>
+
 <template>
   <div class="page post bg-white rounded-[0]">
     <div class="container mx-auto lg:py-[56px] px-[15px] lg:px-0">
@@ -110,7 +107,7 @@ watch(() => locale.value, () => {
             <BaseTag v-if="categoryLabel" :tag="categoryLabel" />
           </div>
 
-          <h2 class="title text-[24px] lg:text-[48px] text-black-200">
+          <h2 class="title text-[18px] md:text-[24px] lg:text-[38px] text-black-200">
             {{ post.title }}
           </h2>
 
@@ -118,22 +115,6 @@ watch(() => locale.value, () => {
         </div>
       </div>
     </div>
-
-    <!-- <div class="post__related bg-white-200 py-[56px]">
-      <div class="container mx-auto">
-        <h4 class="post__title-related">
-          {{ $t('post.related_articles') }}
-        </h4>
-
-        <div class="grid grid-cols-12 gap-[28px]">
-          <div v-for="blog in relatedPosts" :key="blog.slug" class="col-span-4">
-            <NuxtLink :to="localePath(`/${blog.slug}`)">
-              <CardPost class="h-full" v-bind="blog" />
-            </NuxtLink>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -142,7 +123,7 @@ watch(() => locale.value, () => {
     & .title {
       font-size: 24px;
       font-weight: 700;
-      @media (min-width: 991px) {
+      @media (min-width: 1024px) {
         line-height: 58px;
       }
     }

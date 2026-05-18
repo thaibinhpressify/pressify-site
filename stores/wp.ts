@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { useNuxtApp } from "nuxt/app";
+import { wpGraphqlRequest } from "~/utils/wpGraphql";
 
 export type WpPost = {
   id: string;
@@ -19,12 +19,6 @@ export type WpPage = {
 };
 
 export type WpTaxonomy = "CATEGORY" | "POST_TAG" | "TAG" | "category" | "post_tag" | "tag";
-
-type WpGqlFn = <TData>(
-  query: string,
-  variables?: Record<string, unknown>,
-  options?: { operationName?: string }
-) => Promise<TData>;
 
 const normalizePageUri = (value: string) => {
   const trimmed = value.trim();
@@ -49,8 +43,7 @@ export const useWpStore = defineStore("wp", {
   }),
   actions: {
     async query<TData>(query: string, variables?: Record<string, unknown>, options?: { operationName?: string }) {
-      const { $wpGql } = useNuxtApp() as unknown as { $wpGql: WpGqlFn };
-      return await $wpGql<TData>(query, variables, options);
+      return wpGraphqlRequest<TData>(query, variables, options);
     },
     async fetchPosts(first = 10) {
       this.isLoading = true;
