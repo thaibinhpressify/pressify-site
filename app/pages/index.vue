@@ -48,7 +48,10 @@ useSeoMeta({
 
 useAsyncData(
   () => `home:news:${locale.value}`,
-  () => home.fetchNews({ categoryId: newsCategoryId.value, first: 3 }),
+  async () => {
+    await home.fetchNews({ categoryId: newsCategoryId.value, first: 3 })
+    return true
+  },
   { watch: [locale] }
 )
 
