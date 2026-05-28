@@ -3,6 +3,7 @@ import HeaderSection from "~/components/sections/HeaderSection.vue";
 import { useWpStore } from "~~/stores/wp";
 
 const { locale } = useI18n()
+const siteKeywords = useSiteKeywords()
 
 const wp = useWpStore();
 const { data: page, pending, error } = await useAsyncData(
@@ -21,6 +22,11 @@ const defaultOgImage = computed(() =>
 useSeoMeta({
   title: locale.value === 'en' ? "Privacy Policy" : "Chính sách bảo mật Pressify",
   description: locale.value === 'en' ? page?.value?.content || '' : "Read Pressify privacy policy.",
+  keywords: () =>
+    buildMetaKeywords(
+      [locale.value === 'en' ? 'Privacy Policy' : 'Chính sách bảo mật', siteKeywords.value],
+      siteKeywords.value
+    ),
   ogTitle: locale.value === 'en' ? "Privacy Policy" : "Chính sách bảo mật Pressify",
   ogType: 'article',
   ogImage: defaultOgImage,

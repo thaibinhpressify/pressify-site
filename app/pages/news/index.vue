@@ -6,11 +6,17 @@ import { useWpStore } from '~~/stores/wp'
 
 
 const { t, locale } = useI18n()
+const siteKeywords = useSiteKeywords()
+
+const newsKeywords = computed(() =>
+  buildMetaKeywords([t('news.keywords'), t('news.title'), siteKeywords.value], siteKeywords.value)
+)
 
 if (locale.value == 'en') {
   useSeoMeta({
     title: t("news.title"),
     description: t("news.description"),
+    keywords: newsKeywords,
     ogTitle: 'News',
     ogDescription: 'Latest updates, announcements, and stories from Pressify.',
   })
@@ -18,6 +24,7 @@ if (locale.value == 'en') {
   useSeoMeta({
     title: t("news.title"),
     description: t("news.description"),
+    keywords: newsKeywords,
     ogTitle: t("news.title"),
     ogDescription: t("news.description"),
   })
@@ -69,6 +76,7 @@ watch(() => locale.value, () => {
   useSeoMeta({
     title: t("news.title"),
     description: t("news.description"),
+    keywords: newsKeywords,
     ogTitle: t("news.title"),
     ogDescription: t("news.description"),
   })

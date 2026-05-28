@@ -4,6 +4,7 @@ import TermsCancelTable from "~/components/terms/TermsCancelTable.vue";
 import { useWpStore } from "~~/stores/wp";
 
 const { t, locale } = useI18n();
+const siteKeywords = useSiteKeywords();
 
 const wp = useWpStore();
 const { data: page, pending, error } = await useAsyncData(
@@ -26,6 +27,8 @@ const defaultOgImage = computed(() =>
 useSeoMeta({
   title: () => t("tos.pageTitle"),
   description: () => t("tos.pageDesc"),
+  keywords: () =>
+    buildMetaKeywords([t("tos.pageKeywords"), siteKeywords.value], siteKeywords.value),
   ogTitle: () => t("tos.pageTitle"),
   ogType: "article",
   ogImage: defaultOgImage,

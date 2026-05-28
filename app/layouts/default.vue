@@ -32,6 +32,9 @@ const canonicalUrl = computed(() => {
 })
 
 const defaultOgImage = computed(() => getDefaultOgImageUrl(siteUrl.value))
+const siteKeywords = useSiteKeywords()
+
+useSiteBrandMeta()
 
 useHead(() => ({
   htmlAttrs: {
@@ -48,6 +51,7 @@ useHead(() => ({
 useSeoMeta({
   titleTemplate: computed(() => `%s · ${siteName.value}`),
   description: computed(() => siteDescription.value || undefined),
+  keywords: siteKeywords,
   robots: 'index,follow',
   ogSiteName: siteName,
   ogUrl: canonicalUrl,

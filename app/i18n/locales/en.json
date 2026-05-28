@@ -3,6 +3,9 @@
     "en": "English",
     "vi": "Vietnamese"
   },
+  "seo": {
+    "keywords": "Pressify, print on demand, POD, fulfillment, custom printing, t-shirt printing, warehouse, shipping, ecommerce, Shopify, Etsy"
+  },
   "seller-login": "Seller Login",
   "catalog": "Catalog",
   "home": "Home",
@@ -77,7 +80,8 @@
   "news": {
     "title": "News",
     "status": "News & update",
-    "description": "All the latest news from Pressify, including product launches, feature updates, tips, company news, and more."
+    "description": "All the latest news from Pressify, including product launches, feature updates, tips, company news, and more.",
+    "keywords": "Pressify news, product updates, announcements, POD, fulfillment"
   },
   "post": {
     "read": "Read Article →",
@@ -86,6 +90,7 @@
   "tos": {
     "pageTitle": "Terms of Service",
     "pageDesc": "Order cancellation and refund policy by order status.",
+    "pageKeywords": "Pressify terms of service, cancellation policy, refund, resend, POD fulfillment",
     "cancelTable": {
       "caption": "Cancellation, refund and resend policy by tracking status",
       "headers": {

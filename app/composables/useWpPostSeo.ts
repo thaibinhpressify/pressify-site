@@ -3,6 +3,9 @@ type WpPostSeoSource = {
   content?: string | null;
   excerpt?: string | null;
   slug?: string | null;
+  categories?: {
+    nodes?: Array<{ name?: string | null }> | null;
+  } | null;
   featuredImage?: {
     node?: {
       sourceUrl?: string | null;
@@ -32,6 +35,8 @@ export function useWpPostSeo(
 ) {
   const { locale } = useI18n();
   const config = useRuntimeConfig();
+  const siteKeywords = useSiteKeywords();
+  const brand = useSiteBrand();
 
   const siteUrl = computed(() =>
     String(config.public.siteUrl || "http://localhost:3000")
@@ -63,9 +68,24 @@ export function useWpPostSeo(
 
   const pageUrl = computed(() => `${siteUrl.value}${pagePath.value}`);
 
+  const seoKeywords = computed(() =>
+    buildMetaKeywords(
+      [
+        ...(post.value?.categories?.nodes?.map((n) => n.name) ?? []),
+        post.value?.title,
+        "Pressify",
+        siteKeywords.value,
+      ],
+      siteKeywords.value
+    )
+  );
+
   useSeoMeta({
     title: seoTitle,
     description: seoDescription,
+    keywords: seoKeywords,
+    author: brand,
+    articleAuthor: computed((): string[] => (brand.value ? [brand.value] : [])),
     ogTitle: seoTitle,
     ogDescription: seoDescription,
     ogType: "article",

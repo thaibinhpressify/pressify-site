@@ -4,11 +4,13 @@ import { useWpStore } from "~~/stores/wp";
 
 const { locale } = useI18n();
 const config = useRuntimeConfig();
+const siteKeywords = useSiteKeywords();
 const defaultOgImage = computed(() => getDefaultOgImageUrl(String(config.public.siteUrl || "")));
 
 useSeoMeta({
   title: "About",
   description: "About Pressify.",
+  keywords: () => buildMetaKeywords(["About Pressify", siteKeywords.value], siteKeywords.value),
   ogTitle: "About",
   ogDescription: "About Pressify.",
   ogImage: defaultOgImage,

@@ -17,9 +17,12 @@
 import BannerVideo from "~/components/banner/BannerVideo.vue";
 import FormContact from "~/components/form/FormContact.vue";
 
+const siteKeywords = useSiteKeywords();
+
 useSeoMeta({
   title: "Contact",
   description: "Contact Pressify support and sales. We’ll get back to you soon.",
+  keywords: () => buildMetaKeywords(["Contact Pressify", siteKeywords.value], siteKeywords.value),
   ogTitle: "Contact",
   ogDescription: "Contact Pressify support and sales. We’ll get back to you soon.",
 });

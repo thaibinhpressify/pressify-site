@@ -3,6 +3,9 @@
     "en": "Tiếng Anh",
     "vi": "Tiếng Việt"
   },
+  "seo": {
+    "keywords": "Pressify, in theo yêu cầu, POD, fulfillment, in ấn, áo thun, kho bãi, vận chuyển, thương mại điện tử, Shopify, Etsy"
+  },
   "seller-login": "Đăng nhập",
   "catalog": "Danh mục",
   "home": "Trang chủ",
@@ -77,7 +80,8 @@
   "news": {
     "title": "Tin tức",
     "status": "Tin tức & cập nhật",
-    "description": "Tất cả tin tức mới nhất từ Pressify, bao gồm sản phẩm mới ra, cập nhật tính năng, tips, tin tức công ty, và nhiều hơn."
+    "description": "Tất cả tin tức mới nhất từ Pressify, bao gồm sản phẩm mới ra, cập nhật tính năng, tips, tin tức công ty, và nhiều hơn.",
+    "keywords": "tin tức Pressify, cập nhật sản phẩm, thông báo, POD, fulfillment"
   },
   "post": {
     "read": "Đọc bài viết →",
@@ -86,6 +90,7 @@
   "tos": {
     "pageTitle": "Điều khoản dịch vụ",
     "pageDesc": "Chính sách hủy đơn và hoàn tiền theo trạng thái đơn hàng.",
+    "pageKeywords": "điều khoản Pressify, hủy đơn, hoàn tiền, resend, fulfillment POD",
     "cancelTable": {
       "caption": "Chính sách hủy đơn, refund và resend theo trạng thái tracking",
       "headers": {

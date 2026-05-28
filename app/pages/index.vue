@@ -33,10 +33,23 @@ const ogImageUrl = computed(() =>
 )
 
 const ogImageAlt = computed(() => home.news[0]?.title?.trim() || 'Pressify')
+const siteKeywords = useSiteKeywords()
+
+const pageKeywords = computed(() =>
+  buildMetaKeywords(
+    [
+      home.news[0]?.category,
+      home.news[0]?.title,
+      siteKeywords.value,
+    ],
+    siteKeywords.value
+  )
+)
 
 useSeoMeta({
   title: 'Pressify',
   description: pageDescription,
+  keywords: pageKeywords,
   ogTitle: 'Pressify',
   ogDescription: pageDescription,
   ogImage: ogImageUrl,

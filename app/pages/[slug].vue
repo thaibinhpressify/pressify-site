@@ -107,9 +107,9 @@ watch(locale, () => {
             <BaseTag v-if="categoryLabel" :tag="categoryLabel" />
           </div>
 
-          <h2 class="title text-[18px] md:text-[24px] lg:text-[38px] text-black-200">
+          <h1 class="title text-[18px] md:text-[24px] lg:text-[38px] text-black-200">
             {{ post.title }}
-          </h2>
+          </h1>
 
           <div class="content wp-content" v-html="post.content"/>
         </div>

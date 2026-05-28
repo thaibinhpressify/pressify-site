@@ -59,6 +59,7 @@ export default defineNuxtConfig({
       siteDescription:
         process.env.NUXT_PUBLIC_SITE_DESCRIPTION ||
         "Pressify helps you manage production, shipping, and storefront integrations.",
+      siteKeywords: process.env.NUXT_PUBLIC_SITE_KEYWORDS || "",
       gtmId,
     },
   },

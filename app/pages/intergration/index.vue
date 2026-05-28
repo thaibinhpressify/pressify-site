@@ -57,8 +57,14 @@ import SectionAnswer from "~/components/sections/SectionAnswer.vue";
 .page {
   .title {
     & *, & {
-      font-size: 48px;
-      line-height: 56px;
+      font-size: 24px;
+      line-height: 115%;
+      font-weight: 800;
+    
+      @media (min-width: 1024px) {
+        font-size: 48px;
+        line-height: 56px;
+      }
     }
   }
 
