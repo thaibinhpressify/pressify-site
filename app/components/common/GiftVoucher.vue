@@ -3,7 +3,7 @@ const localePath = useLocalePath()
 </script>
 
 <template>
-  <div class="gift-voucher-container rounded-[15px] overflow-hidden">
+  <div class="gift-voucher-container rounded-[15px] overflow-hidden inline-block">
     <NuxtLink
     :to="localePath('/signup?voucher=30')"
     class="gift-voucher"
@@ -24,6 +24,7 @@ const localePath = useLocalePath()
 <style scoped lang="scss">
 .gift-voucher {
   position: fixed;
+  width: fit-content;
   right: 10px;
   bottom: 20px;
   z-index: 999;

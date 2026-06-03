@@ -4,7 +4,7 @@ import BreadCrumb from '~/components/header/BreadCrumb.vue'
 import { useWpStore } from '~~/stores/wp'
 
 const route = useRoute()
-const router = useRouter()
+const localePath = useLocalePath()
 const slug = computed(() => String(route.params.slug || ''))
 const wp = useWpStore()
 const { locale } = useI18n()
@@ -77,6 +77,17 @@ const { data, pending, error } = useAsyncData(
 
 const post = computed(() => data.value?.post ?? null)
 
+watch([pending, post, error, slug], () => {
+  if (pending.value) return
+  if (!slug.value || error.value || !post.value) {
+    navigateTo(localePath('/news'), { replace: true })
+  } else {
+    if (!post.value?.title) {
+      navigateTo(localePath('/news'), { replace: true })
+    }
+  }
+})
+
 // Must run synchronously in setup — do not call after `await useAsyncData`
 useWpPostSeo(post, slug)
 
@@ -87,7 +98,7 @@ const breadcrumbItems = computed(() => [
 ])
 
 watch(locale, () => {
-  router.replace('/news')
+  navigateTo(localePath('/news'), { replace: true })
 })
 </script>
 

@@ -10,7 +10,11 @@ const { data: product, pending, error } = await useAsyncData(
   async () => {
     if (!id.value) return null
     const response = await $fetch(`https://pressify.us/api/product/${id.value}`)
-    return response.data
+    const data = response?.data
+    if (Array.isArray(data)) {
+      return data.length ? data[0] : null
+    }
+    return data || null
   },
   { watch: [id], server: false }
 )
