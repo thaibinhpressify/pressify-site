@@ -2,6 +2,7 @@
 import ProductDetail from '~/components/catalog/ProductDetail.vue'
 
 const route = useRoute()
+const localePath = useLocalePath()
 const id = computed(() => String(route.params.id || ''))
 
 const { data: product, pending, error } = await useAsyncData(
@@ -13,6 +14,13 @@ const { data: product, pending, error } = await useAsyncData(
   },
   { watch: [id], server: false }
 )
+
+watch([pending, product, error, id], () => {
+  if (pending.value) return
+  if (!id.value || error.value || !product.value) {
+    navigateTo(localePath('/catalog'), { replace: true })
+  }
+})
 
 const accessories = computed(() => product.value?.accessories || [])
 
