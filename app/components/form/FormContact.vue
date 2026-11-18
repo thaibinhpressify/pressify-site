@@ -145,7 +145,7 @@
             <h3 class="contact__title text-center">
               {{ t("contactForm.email") }}
             </h3>
-            <a href="mailto:info@pressify.us">info@pressify.us</a>
+            <a href="mailto:hoanglong@pressify.us">hoanglong@pressify.us</a>
           </div>
         </div>
 
@@ -321,7 +321,7 @@ const onSubmit = () => {
       form.email
     }\n\n${form.message}`,
   );
-  window.location.href = `mailto:info@pressify.us?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:hoanglong@pressify.us?subject=${subject}&body=${body}`;
 };
 </script>
 
