@@ -71,7 +71,7 @@
             <h3 class="contact__title text-center">
               {{ t("contactForm.phone") }}
             </h3>
-            <p>VN: +84905675273</p>
+            <p>VN: +84905337678</p>
             <p>US: +1 8324932954</p>
           </div>
         </div>
